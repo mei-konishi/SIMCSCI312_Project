@@ -8,15 +8,21 @@ public class Enemy : CharacterInterface
 
     private Animator animator;
 
+    public Text enemyStatsText;
+
     // Use this for initialization
     protected override void Start()
     {
+        setLevel(GameManager.getLevel());
+
         //Register this enemy with our instance of GameManager by adding it to a list of Enemy objects. 
         //This allows the GameManager to issue movement commands.
         GameManager.instance.AddEnemyToList(this);
 
         //Get and store a reference to the attached Animator component.
         animator = GetComponent<Animator>();
+
+        enemyStatsText = GameObject.Find("EnemyStatsText").GetComponent<Text>();
 
         base.Start();
         /*
@@ -44,6 +50,8 @@ public class Enemy : CharacterInterface
 
     // Update is called once per frame
     void Update () {
-		
-	}
+        enemyStatsText.text = "Str: " + strength + " \n"
+                             + "Def: " + defence + "\n"
+                             + "Health: " + currentHealth + "/" + maxHealth;
+    }
 }

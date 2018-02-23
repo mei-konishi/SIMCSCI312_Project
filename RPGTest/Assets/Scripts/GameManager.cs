@@ -9,15 +9,16 @@ public class GameManager : MonoBehaviour {
     private BoardManager boardScript;           // create background
 
  //   public Timer timer;
-    private int level = 1;      // used to keep track of stage 
+    private static int level = 1;      // used to keep track of stage 
     private bool puzzlePhase;
     //   public Enemy enemy;        // create a single enemy
     //   public GameObject enemy;
     private List<Enemy> enemies; // testing. Following tutorial setup first. 
-                                // and maybe in the future can have a stream of monsters? 
+                                 // and maybe in the future can have a stream of monsters? 
 
+    const float timerDuration = 10.0f;
     // temp timer for rpg testing
-    float timeLeft = 30.0f;
+    float timeLeft;
     public Text timerText;
 
     // Use this for initialization
@@ -36,6 +37,8 @@ public class GameManager : MonoBehaviour {
         enemies = new List<Enemy>();
 
         boardScript = GetComponent<BoardManager>();
+
+        timeLeft = timerDuration;
 
         InitGame();
 	}
@@ -93,12 +96,19 @@ public class GameManager : MonoBehaviour {
         {
             timerText.text = "Timer : " + (int)timeLeft;
             timeLeft -= Time.deltaTime;
-            if (timeLeft < 0)
+            if (timeLeft <= 0)
             {
                 timerText.text = "Attacking";
                 puzzlePhase = false;
-                timeLeft = 30.0f;
+                timeLeft = timerDuration;
             }
         }
 	}
+
+    public static int getLevel()
+    {
+        return level;
+    }
 }
+
+
