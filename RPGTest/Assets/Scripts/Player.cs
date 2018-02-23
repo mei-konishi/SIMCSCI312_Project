@@ -9,14 +9,12 @@ public class Player : CharacterInterface {
     private int expForNextLevel; // for prototype's simplicity sake, using a single fixed value
                                  // for future, required to make either a database of exp for level, or formula
 
-    private Text playerStatsText;
+    public Text playerStatsText;
 
     // Use this for initialization
     protected override void Start () {
 
         initializeStats();
-        
-        playerStatsText = GameObject.Find("playerStatsText").GetComponent<Text>();
 
         playerStatsText.text = "Str: " + strength + " \n"
                              + "Def: " + defence + "\n"
@@ -35,7 +33,9 @@ public class Player : CharacterInterface {
 
     public override void updateStats()
     {
-        base.updateStats();
+        playerStatsText.text = "Str: " + strength + " \n"
+                             + "Def: " + defence + "\n"
+                             + "Health: " + currentHealth + "/" + maxHealth;
     }
 
     public void gainExp(int exp)
@@ -59,8 +59,10 @@ public class Player : CharacterInterface {
 
     // Update is called once per frame
     void Update () {
-        
-		if (Input.touchCount > 0){ // check for touches
+
+        updateStats();
+
+        if (Input.touchCount > 0){ // check for touches
             Touch myTouch = Input.touches[0]; // get touch
         }
 	}

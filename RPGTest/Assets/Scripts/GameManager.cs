@@ -18,10 +18,10 @@ public class GameManager : MonoBehaviour {
 
     // temp timer for rpg testing
     float timeLeft = 30.0f;
-    
+    public Text timerText;
 
-	// Use this for initialization
-	void Awake () {
+    // Use this for initialization
+    void Awake () {
 
 		if (instance == null){ // check if instance already exists
             instance = this;    // if not, set instance to this
@@ -40,14 +40,22 @@ public class GameManager : MonoBehaviour {
         InitGame();
 	}
 
+    private void startRound()
+    {
+        puzzlePhase = true;
+    }
+
     private void InitGame()
     {
         puzzlePhase = false;    // game has not begun yet
+
+        timerText = GameObject.Find("Timer").GetComponent<Text>();
 
         enemies.Clear(); // clear monster in list to prepare for next level
 
         boardScript.SetupScene(level);  // setup bg
 
+        startRound();
     }
 
     //Call this to add the passed in Enemy to the List of Enemy objects.
@@ -83,9 +91,11 @@ public class GameManager : MonoBehaviour {
         // count down timer for puzzle phase
 		if (puzzlePhase)
         {
+            timerText.text = "Timer : " + (int)timeLeft;
             timeLeft -= Time.deltaTime;
             if (timeLeft < 0)
             {
+                timerText.text = "Attacking";
                 puzzlePhase = false;
                 timeLeft = 30.0f;
             }
