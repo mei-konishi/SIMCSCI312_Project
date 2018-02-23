@@ -11,8 +11,6 @@ public class GameManager : MonoBehaviour {
  //   public Timer timer;
     private static int level = 1;      // used to keep track of stage 
     private bool puzzlePhase;
-    //   public Enemy enemy;        // create a single enemy
-    //   public GameObject enemy;
     private List<Enemy> enemies; // testing. Following tutorial setup first. 
                                  // and maybe in the future can have a stream of monsters? 
 
@@ -20,6 +18,13 @@ public class GameManager : MonoBehaviour {
     // temp timer for rpg testing
     float timeLeft;
     public Text timerText;
+    public float turnDelay = 2f;
+
+    // temp counter for number of puzzles solved
+    private int atkPuzSolved;
+    private int defPuzSolved;
+
+    public Text puzzleSolvedText;
 
     // Use this for initialization
     void Awake () {
@@ -45,6 +50,8 @@ public class GameManager : MonoBehaviour {
 
     private void startRound()
     {
+        atkPuzSolved = 0;
+        defPuzSolved = 0;
         puzzlePhase = true;
     }
 
@@ -53,6 +60,7 @@ public class GameManager : MonoBehaviour {
         puzzlePhase = false;    // game has not begun yet
 
         timerText = GameObject.Find("Timer").GetComponent<Text>();
+        puzzleSolvedText = GameObject.Find("PuzzleSolvedText").GetComponent<Text>();
 
         enemies.Clear(); // clear monster in list to prepare for next level
 
@@ -91,9 +99,10 @@ public class GameManager : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        // count down timer for puzzle phase
+        
 		if (puzzlePhase)
         {
+            // count down timer for puzzle phase
             timerText.text = "Timer : " + (int)timeLeft;
             timeLeft -= Time.deltaTime;
             if (timeLeft <= 0)
@@ -102,7 +111,20 @@ public class GameManager : MonoBehaviour {
                 puzzlePhase = false;
                 timeLeft = timerDuration;
             }
+
+            // For prototype: using keyboard input as "puzzle solved"
+            if (Input.GetKeyDown("a"))
+            {
+                atkPuzSolved++;
+            }
+            if (Input.GetKeyDown("d"))
+            {
+                defPuzSolved++;
+            }
         }
+
+        puzzleSolvedText.text = "Atk Puzzles Solved: " + atkPuzSolved + "\n"
+                                + "Def Puzzles Solved: " + defPuzSolved;
 	}
 
     public static int getLevel()
