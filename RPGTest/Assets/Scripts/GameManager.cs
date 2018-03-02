@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour {
 
@@ -155,6 +156,9 @@ public class GameManager : MonoBehaviour {
         // during attack phase (and game still going on)
         if (!puzzlePhase && stageWin == 0)
         {
+            // enemy AI calculate dmg 
+            enemyAI();
+
             // trying to test out a delay to make it look "animated" 
             // trying to make player attack first, then enemy attack, but not working now
             StartCoroutine(AttackEnemy());
@@ -172,6 +176,14 @@ public class GameManager : MonoBehaviour {
         }
 
 	}
+
+    // this function should have a good algorithm to calculate a random dmg and atk 
+    // appropriate for the level of the stage. 
+    private void enemyAI()
+    {
+        enemyAtkPuzSolved = Random.Range(5, 10);
+        enemyDefPuzSolved = Random.Range(0, 3);
+    }
 
     IEnumerator AttackEnemy()
     {
