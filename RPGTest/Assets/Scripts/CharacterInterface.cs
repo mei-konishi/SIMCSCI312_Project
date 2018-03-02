@@ -34,7 +34,7 @@ public abstract class CharacterInterface : MonoBehaviour {
 
     public void receiveDamage(int dmg)
     {
-        if (dmg > currentHealth)
+        if (dmg >= currentHealth)
         {
             currentHealth = 0;
             statusDead = true;
@@ -43,6 +43,11 @@ public abstract class CharacterInterface : MonoBehaviour {
         {
             currentHealth -= dmg;
         }
+    }
+
+    public bool checkDead()
+    {
+        return statusDead;
     }
 	
 	// Update is called once per frame

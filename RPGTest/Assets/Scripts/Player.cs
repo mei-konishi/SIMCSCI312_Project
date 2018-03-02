@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Player : CharacterInterface {
 
@@ -11,8 +12,15 @@ public class Player : CharacterInterface {
 
     public Text playerStatsText;
 
+    private Animator animator;  //Used to store a reference to the Player's animator component.
+
     // Use this for initialization
     protected override void Start () {
+
+        GameManager.instance.AddPlayerToManager(this);
+
+        //Get a component reference to the Player's animator component
+        animator = GetComponent<Animator>();
 
         initializeStats();
 
@@ -66,4 +74,9 @@ public class Player : CharacterInterface {
             Touch myTouch = Input.touches[0]; // get touch
         }
 	}
+
+    public void doHitAnimation()
+    {
+        animator.SetTrigger("playerChop");
+    }
 }

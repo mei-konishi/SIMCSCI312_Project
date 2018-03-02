@@ -52,6 +52,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c5b971fbe874c144a01d6f78b1f2561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerSprite: {fileID: 1096649744337078, guid: 96d3c18d6ee8227488aaf1f482eeecac,
+    type: 2}
+  turnDelay: 2
 --- !u!114 &114978251125262674
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -42,10 +42,9 @@ public class Enemy : CharacterInterface
         // this is just for prototype. 
         // TODO : in future, make stats database, or some formula
         strength = lvl;
-        defence = lvl;
+        defence = lvl - 1;
         maxHealth = lvl * 20;
-        currentHealth = lvl * 20;
-
+        currentHealth = maxHealth;
     }
 
     // Update is called once per frame
