@@ -9,18 +9,19 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1467765916354252}
+  m_RootGameObject: {fileID: 1615325242237304}
   m_IsPrefabParent: 1
---- !u!1 &1467765916354252
+--- !u!1 &1615325242237304
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4054589409909562}
-  - component: {fileID: 114777611129929150}
-  - component: {fileID: 114978251125262674}
+  - component: {fileID: 4158874727336974}
+  - component: {fileID: 114603777807894548}
+  - component: {fileID: 114108530890989398}
+  - component: {fileID: 114427729803983112}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -28,12 +29,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4054589409909562
+--- !u!4 &4158874727336974
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1467765916354252}
+  m_GameObject: {fileID: 1615325242237304}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 489.79623, y: 269.1183, z: -6.875}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -41,26 +42,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114777611129929150
+--- !u!114 &114108530890989398
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1467765916354252}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c5b971fbe874c144a01d6f78b1f2561, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerSprite: {fileID: 1096649744337078, guid: 96d3c18d6ee8227488aaf1f482eeecac,
-    type: 2}
-  turnDelay: 2
---- !u!114 &114978251125262674
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1467765916354252}
+  m_GameObject: {fileID: 1615325242237304}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f9b8f6cfee8eb749b92268923d584a9, type: 3}
@@ -78,3 +65,28 @@ MonoBehaviour:
   enemyTiles:
   - {fileID: 1550933212087944, guid: 6365a2e1aff4f1749b30c911fc5fb281, type: 2}
   - {fileID: 1751910441343876, guid: d7809fadd4b55dd4594b7127c5eb4c38, type: 2}
+--- !u!114 &114427729803983112
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1615325242237304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d1ffa0a22bcea744a770eb92aafcd7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  puzzleDuration: 5
+--- !u!114 &114603777807894548
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1615325242237304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c5b971fbe874c144a01d6f78b1f2561, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSprite: {fileID: 1096649744337078, guid: 96d3c18d6ee8227488aaf1f482eeecac,
+    type: 2}

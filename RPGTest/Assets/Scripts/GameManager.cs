@@ -8,21 +8,14 @@ public class GameManager : MonoBehaviour {
 
     public static GameManager instance = null;  //Static instance of GameManager which allows it to be accessed by any other script.
     private BoardManager boardScript;           // create background
-    public GameObject playerSprite;           // create player image
     private Player player;                      // hold referrence to player script
     private List<Enemy> enemies;                // hold referrence to enemies script
     
-    //   public Timer timer;
+    private Timer timer;
 
-    private static int level = 1;      // used to keep track of stage 
+    public static int level = 1;      // used to keep track of stage 
     private bool puzzlePhase;
     private int stageWin; // -1 for lose, 0 for ongoing, 1 for win
-
-    const float timerDuration = 5.0f;
-    // temp timer for rpg testing
-    float timeLeft;
-    private Text timerText;
-    public float turnDelay = 2f;
 
     // temp counter for number of puzzles solved
     private int playerAtkPuzSolved;
@@ -49,11 +42,9 @@ public class GameManager : MonoBehaviour {
         DontDestroyOnLoad(gameObject); // don't destroy when reloading scene (need? or nah?)
 
         enemies = new List<Enemy>();    // allocate memory for enemies 
-        player = new Player();          // allocate memory for Player
 
         boardScript = GetComponent<BoardManager>();
-        
-        timeLeft = timerDuration;
+        timer = GetComponent<Timer>();
 
         InitGame();
 	}
@@ -65,16 +56,14 @@ public class GameManager : MonoBehaviour {
         playerDefPuzSolved = 0;
         enemyAtkPuzSolved = 0;
         enemyDefPuzSolved = 0;
-        timeLeft = timerDuration;
-        puzzlePhase = true;
+        timer.resetTimer();
     }
 
     private void InitGame()
     {
         puzzlePhase = false;    // game has not begun yet
         stageWin = 0; 
-
-        timerText = GameObject.Find("Timer").GetComponent<Text>();
+        
         puzzleSolvedText = GameObject.Find("PuzzleSolvedText").GetComponent<Text>();
         enemyDmgedText = GameObject.Find("EnemyDamagedText").GetComponent<Text>();
         playerDmgedText = GameObject.Find("PlayerDamagedText").GetComponent<Text>();
@@ -83,9 +72,6 @@ public class GameManager : MonoBehaviour {
         enemies.Clear(); // clear monster in list to prepare for next level
 
         boardScript.SetupScene(level);  // setup bg
-
-        // create player sprite
-        Instantiate(playerSprite, new Vector3(0.5f, 3, 0f), Quaternion.identity);
 
         startNextRound();
     }
@@ -107,18 +93,7 @@ public class GameManager : MonoBehaviour {
         
     }
 
-    // when timer sends message to this controller that time has passed
-    public void timeElapsed()
-    {
-        puzzlePhase = false; // end the puzzle phase
-    }
-
     private void puzzleComplete (int atkScore, int defScore)
-    {
-
-    }
-
-    static public void callBackButtonPress (string name)
     {
 
     }
@@ -127,18 +102,8 @@ public class GameManager : MonoBehaviour {
     void Update () {
         
         // during puzzle phase
-		if (puzzlePhase)
+		if (timer.checkPuzzlePhase())
         {
-            // count down timer for puzzle phase
-            timerText.text = "Timer : " + ((int)timeLeft + 1);
-            timeLeft -= Time.deltaTime;
-            if (timeLeft <= 0)
-            {
-                timerText.text = "Attacking";
-                puzzlePhase = false;
-                timeLeft = timerDuration;
-            }
-
             // For prototype: using keyboard input as "puzzle solved"
             if (Input.GetKeyDown("a"))
             {
@@ -154,7 +119,7 @@ public class GameManager : MonoBehaviour {
                                 + "Def Puzzles Solved: " + playerDefPuzSolved;
 
         // during attack phase (and game still going on)
-        if (!puzzlePhase && stageWin == 0)
+        if (!timer.checkPuzzlePhase() && stageWin == 0)
         {
             // enemy AI calculate dmg 
             enemyAI();
@@ -197,8 +162,8 @@ public class GameManager : MonoBehaviour {
         enemyDmgedText.text = (enemyDmgReceived) + "!"; // show dmg text
         enemies[0].receiveDamage(enemyDmgReceived); // update health
         // hold for a while
-        Invoke("HideDamageEnemy", turnDelay);
-        yield return new WaitForSeconds(turnDelay);
+        Invoke("HideDamageEnemy", 2f);
+        yield return new WaitForSeconds(2f);
     }
 
     IEnumerator GetAttacked()
@@ -211,8 +176,8 @@ public class GameManager : MonoBehaviour {
         playerDmgedText.text = playerDmgReceived + "!"; // show dmg text
         player.receiveDamage(playerDmgReceived); // update health
         // hold for a while
-        Invoke("HideDamagePlayer", turnDelay);
-        yield return new WaitForSeconds(turnDelay);
+        Invoke("HideDamagePlayer", 2f);
+        yield return new WaitForSeconds(2f);
     }
 
     private void HideDamageEnemy()

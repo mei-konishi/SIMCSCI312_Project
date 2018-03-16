@@ -280,7 +280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c3c47e2bd0cb7d4ca167f185ac3c34c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 1467765916354252, guid: e38aa65fc9620b2478e36360b6826ee5,
+  gameManager: {fileID: 1615325242237304, guid: 0b353a089d92d5649af4eccd9d2f8adf,
     type: 2}
 --- !u!1 &277377996
 GameObject:
@@ -875,6 +875,10 @@ Prefab:
     - target: {fileID: 4612736996506262, guid: 96d3c18d6ee8227488aaf1f482eeecac, type: 2}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1096649744337078, guid: 96d3c18d6ee8227488aaf1f482eeecac, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 96d3c18d6ee8227488aaf1f482eeecac, type: 2}
