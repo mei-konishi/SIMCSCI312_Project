@@ -163,6 +163,8 @@ public class GameManager : MonoBehaviour {
             // trying to make player attack first, then enemy attack, but not working now
             StartCoroutine(AttackEnemy());
 
+            enemies[0].doHitAnimation();
+
             StartCoroutine(GetAttacked());
             
             // somehow animation not triggering.
@@ -188,7 +190,8 @@ public class GameManager : MonoBehaviour {
     IEnumerator AttackEnemy()
     {
         // calculate damage received
-        int enemyDmgReceived = calculateDmg(playerAtkPuzSolved, enemyDefPuzSolved);
+        int enemyDmgReceived = calculateDmg(playerAtkPuzSolved * player.getStrength(),
+                                            enemyDefPuzSolved * enemies[0].getDefence());
 
         // deal damage to enemy
         enemyDmgedText.text = (enemyDmgReceived) + "!"; // show dmg text
@@ -201,7 +204,8 @@ public class GameManager : MonoBehaviour {
     IEnumerator GetAttacked()
     {
         // calculate damage received
-        int playerDmgReceived = calculateDmg(enemyAtkPuzSolved, playerDefPuzSolved);
+        int playerDmgReceived = calculateDmg(enemyAtkPuzSolved * enemies[0].getStrength(),
+                                             playerDefPuzSolved * player.getDefence());
 
         // receive damage 
         playerDmgedText.text = playerDmgReceived + "!"; // show dmg text

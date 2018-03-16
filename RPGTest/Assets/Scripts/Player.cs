@@ -77,6 +77,6 @@ public class Player : CharacterInterface {
 
     public void doHitAnimation()
     {
-        animator.SetTrigger("playerChop");
+        animator.SetTrigger("PlayerChop");
     }
 }

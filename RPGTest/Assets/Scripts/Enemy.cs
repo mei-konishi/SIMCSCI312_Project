@@ -53,4 +53,9 @@ public class Enemy : CharacterInterface
                              + "Def: " + defence + "\n"
                              + "Health: " + currentHealth + "/" + maxHealth;
     }
+
+    public void doHitAnimation()
+    {
+        animator.SetTrigger("EnemyAttack");
+    }
 }

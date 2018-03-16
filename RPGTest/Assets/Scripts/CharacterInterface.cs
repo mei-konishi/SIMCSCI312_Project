@@ -18,6 +18,16 @@ public abstract class CharacterInterface : MonoBehaviour {
 		
 	}
 
+    public int getStrength()
+    {
+        return strength;
+    }
+
+    public int getDefence()
+    {
+        return defence;
+    }
+
     public virtual void updateStats ()
     {
         /*
