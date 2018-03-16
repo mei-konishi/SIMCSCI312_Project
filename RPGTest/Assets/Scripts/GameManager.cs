@@ -14,7 +14,6 @@ public class GameManager : MonoBehaviour {
     private Timer timer;
 
     public static int level = 1;      // used to keep track of stage 
-    private bool puzzlePhase;
     private int stageWin; // -1 for lose, 0 for ongoing, 1 for win
 
     // temp counter for number of puzzles solved
@@ -56,12 +55,10 @@ public class GameManager : MonoBehaviour {
         playerDefPuzSolved = 0;
         enemyAtkPuzSolved = 0;
         enemyDefPuzSolved = 0;
-        timer.resetTimer();
     }
 
     private void InitGame()
     {
-        puzzlePhase = false;    // game has not begun yet
         stageWin = 0; 
         
         puzzleSolvedText = GameObject.Find("PuzzleSolvedText").GetComponent<Text>();
@@ -124,16 +121,17 @@ public class GameManager : MonoBehaviour {
             // enemy AI calculate dmg 
             enemyAI();
 
-            // trying to test out a delay to make it look "animated" 
-            // trying to make player attack first, then enemy attack, but not working now
-            StartCoroutine(AttackEnemy());
+            if (timer.checkAnimationTriggered("player"))
+            {
+                StartCoroutine(AttackEnemy());
+                player.doHitAnimation();
+            }
 
-            enemies[0].doHitAnimation();
-
-            StartCoroutine(GetAttacked());
-            
-            // somehow animation not triggering.
-            player.doHitAnimation();
+            if (timer.checkAnimationTriggered("enemy"))
+            {
+                StartCoroutine(GetAttacked());
+                enemies[0].doHitAnimation();
+            }
 
             // check if game is over or not. if not, reset stats for next round
             if (checkGameOver() == 0)
@@ -209,11 +207,13 @@ public class GameManager : MonoBehaviour {
         {
             stageWin = 1;
             winText.text = "YOU WIN!";
+            timer.stopTimer();
         }
         else if (player.checkDead())
         {
             stageWin = -1;
             winText.text = "DEFEATED!";
+            timer.stopTimer();
         }
         else
         {
