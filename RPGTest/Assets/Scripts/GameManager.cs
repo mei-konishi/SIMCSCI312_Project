@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour {
         boardScript.SetupScene(level);  // setup bg
 
         // create player sprite
-        Instantiate(playerSprite, new Vector3(-2, 3, 0f), Quaternion.identity);
+        Instantiate(playerSprite, new Vector3(0.5f, 3, 0f), Quaternion.identity);
 
         startNextRound();
     }

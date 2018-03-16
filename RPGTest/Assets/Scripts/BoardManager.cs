@@ -7,7 +7,7 @@ public class BoardManager : MonoBehaviour {
 
     // for background generation 
     private int columns = 8;
-    private int rows = 4;
+    private int rows = 5;
     
     private Transform boardHolder;
 
@@ -23,7 +23,7 @@ public class BoardManager : MonoBehaviour {
             for (int y = 0; y < rows; y++)
             {
                 GameObject toInstantiate = floorTiles[Random.Range(0, floorTiles.Length)];
-                GameObject instance = Instantiate(toInstantiate, new Vector3(x - 0.5f, y + 1, 0f), Quaternion.identity) as GameObject;
+                GameObject instance = Instantiate(toInstantiate, new Vector3(x, y + 1.5f, 0f), Quaternion.identity) as GameObject;
                 instance.transform.SetParent(boardHolder);
             }
         }
@@ -34,7 +34,7 @@ public class BoardManager : MonoBehaviour {
         for(int i = 0; i <= level; i += 2)
         {
             // create an enemy (just 1 type for prototype for now) 
-            Instantiate(enemyTiles[0], new Vector3(6, 3, 0f), Quaternion.identity);
+            Instantiate(enemyTiles[0], new Vector3(5, 3, 0f), Quaternion.identity);
         }
     }
 
