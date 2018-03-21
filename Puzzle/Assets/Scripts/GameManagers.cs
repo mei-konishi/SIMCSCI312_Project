@@ -33,6 +33,8 @@ public class GameManagers : MonoBehaviour
 
     public Text scoreText;
 
+    private int points;
+
     // Use this for initialization
     void Start()
     {
@@ -42,28 +44,6 @@ public class GameManagers : MonoBehaviour
         }
 
         scoreText.text = "Score: 0 - High Score: " + PlayerPrefs.GetInt("HiScore");
-
-        switch (difficulty)
-        {
-            case 4:
-                objects[7].SetActive(false);
-                break;
-            case 3:
-                objects[7].SetActive(false);
-                objects[6].SetActive(false);
-                break;
-            case 2:
-                objects[7].SetActive(false);
-                objects[6].SetActive(false);
-                objects[5].SetActive(false);
-                break;
-            case 1:
-                objects[7].SetActive(false);
-                objects[6].SetActive(false);
-                objects[5].SetActive(false);
-                objects[4].SetActive(false);
-                break;
-        }
     }
 
 
@@ -119,16 +99,18 @@ public class GameManagers : MonoBehaviour
         positionInSequence = 0;
         inputInSequence = 0;
 
-        //colourSelect = Random.Range(0, colours.Length);
-        colourSelect = Random.Range(0, difficulty+3);
+        for(int i = 0; i < difficulty +2; i++)
+        {
+            colourSelect = Random.Range(0, colours.Length);
 
-        activeSequence.Add(colourSelect);
+            activeSequence.Add(colourSelect);
 
-        colours[activeSequence[positionInSequence]].color = new Color(colours[activeSequence[positionInSequence]].color.r, colours[activeSequence[positionInSequence]].color.g, colours[activeSequence[positionInSequence]].color.b, 1f);
-        buttonSounds[activeSequence[positionInSequence]].Play();
+            colours[activeSequence[positionInSequence]].color = new Color(colours[activeSequence[positionInSequence]].color.r, colours[activeSequence[positionInSequence]].color.g, colours[activeSequence[positionInSequence]].color.b, 1f);
+            buttonSounds[activeSequence[positionInSequence]].Play();
 
-        stayLitCounter = stayLit;
-        shouldBeLit = true;
+            stayLitCounter = stayLit;
+            shouldBeLit = true;
+        }
 
         scoreText.text = "Score: 0 - High Score: " + PlayerPrefs.GetInt("HiScore");
     }
@@ -137,8 +119,6 @@ public class GameManagers : MonoBehaviour
     {
         if (gameActive)
         {
-            if (whichButton < difficulty + 3)
-            {
                 if (activeSequence[inputInSequence] == whichButton)
                 {
                     Debug.Log("Correct");
@@ -147,24 +127,32 @@ public class GameManagers : MonoBehaviour
 
                     if (inputInSequence >= activeSequence.Count)
                     {
-                        if (activeSequence.Count > PlayerPrefs.GetInt("HiScore"))
+                        points++;
+                        //if (activeSequence.Count > PlayerPrefs.GetInt("HiScore"))
+                        if (points > PlayerPrefs.GetInt("HiScore"))
                         {
-                            PlayerPrefs.SetInt("HiScore", activeSequence.Count);
+                            PlayerPrefs.SetInt("HiScore", points);
                         }
-                        scoreText.text = "Score: " + activeSequence.Count + " - HighScore: " + PlayerPrefs.GetInt("HiScore");
+
+                        //scoreText.text = "Score: " + activeSequence.Count + " - HighScore: " + PlayerPrefs.GetInt("HiScore");
+                        scoreText.text = "Score: " + points + " - HighScore: " + PlayerPrefs.GetInt("HiScore");
 
                         positionInSequence = 0;
                         inputInSequence = 0;
+                        
+                        activeSequence.Clear();
+                        
+                        for (int i = 0; i < difficulty + 2; i++)
+                        {
+                            colourSelect = Random.Range(0, colours.Length);
 
-                        //colourSelect = Random.Range(0, colours.Length);
-                        colourSelect = Random.Range(0, difficulty + 3);
+                            activeSequence.Add(colourSelect);
 
-                        activeSequence.Add(colourSelect);
+                            colours[activeSequence[positionInSequence]].color = new Color(colours[activeSequence[positionInSequence]].color.r, colours[activeSequence[positionInSequence]].color.g, colours[activeSequence[positionInSequence]].color.b, 1f);
 
-                        colours[activeSequence[positionInSequence]].color = new Color(colours[activeSequence[positionInSequence]].color.r, colours[activeSequence[positionInSequence]].color.g, colours[activeSequence[positionInSequence]].color.b, 1f);
-
-                        stayLitCounter = stayLit;
-                        shouldBeLit = true;
+                            stayLitCounter = stayLit;
+                            shouldBeLit = true;
+                        }
 
                         gameActive = false;
 
@@ -178,7 +166,7 @@ public class GameManagers : MonoBehaviour
                     incorrect.Play();
                     gameActive = false;
                 }
-            }
+            
             
         }
 
