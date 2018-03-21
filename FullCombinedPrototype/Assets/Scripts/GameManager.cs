@@ -7,7 +7,8 @@ using Random = UnityEngine.Random;
 public class GameManager : MonoBehaviour {
 
     public static GameManager instance = null;  //Static instance of GameManager which allows it to be accessed by any other script.
-    private BoardManager boardScript;           // create background
+    private BoardManager boardScript;           // script that creates bg 
+    private PuzzleManager pmScript;             // script that handles puzzle switching and score keeping
     private Player player;                      // hold referrence to player script
     private List<Enemy> enemies;                // hold referrence to enemies script
     
@@ -43,6 +44,7 @@ public class GameManager : MonoBehaviour {
         enemies = new List<Enemy>();    // allocate memory for enemies 
 
         boardScript = GetComponent<BoardManager>();
+        pmScript = GetComponent<PuzzleManager>();
         timer = GetComponent<Timer>();
 
         InitGame();
@@ -89,11 +91,7 @@ public class GameManager : MonoBehaviour {
     {
         
     }
-
-    private void puzzleComplete (int atkScore, int defScore)
-    {
-
-    }
+    
 
     // Update is called once per frame
     void Update () {
