@@ -42,14 +42,14 @@ public class ButtonManager : MonoBehaviour
 
     public void Update()
     {
-        // Camera rotation speed adjust here
+        // Camera rotation speed adjust here - NOT IN USE NOW -
         if (cameraFinalLookAt != null)
         {
             cameraTranform.rotation = Quaternion.Slerp(cameraTranform.rotation, cameraFinalLookAt.rotation, CAMERA_ROTATION_SPEED * Time.deltaTime);
         }
     }
 
-    // For menu rotation
+    // For menu rotation - NOT IN USE NOW -
     public void LookAtMenu(Transform menuTransform)
     {
         //Camera.main.transform.LookAt(menuTransform.position);
