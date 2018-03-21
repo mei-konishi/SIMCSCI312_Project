@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour {
     public static GameManager instance = null;  //Static instance of GameManager which allows it to be accessed by any other script.
     private BoardManager boardScript;           // script that creates bg 
     private PuzzleManager pmScript;             // script that handles puzzle switching and score keeping
+    private Formulas formulasScript;            // script that holds all the formulas for RPG calculation
     private Player player;                      // hold referrence to player script
     private List<Enemy> enemies;                // hold referrence to enemies script
     
@@ -45,6 +46,7 @@ public class GameManager : MonoBehaviour {
 
         boardScript = GetComponent<BoardManager>();
         pmScript = GetComponent<PuzzleManager>();
+        formulasScript = GetComponent<Formulas>();
         timer = GetComponent<Timer>();
 
         InitGame();
@@ -151,7 +153,7 @@ public class GameManager : MonoBehaviour {
     IEnumerator AttackEnemy()
     {
         // calculate damage received
-        int enemyDmgReceived = calculateDmg(playerAtkPuzSolved * player.getStrength(),
+        int enemyDmgReceived = formulasScript.calculateDmg(playerAtkPuzSolved * player.getStrength(),
                                             enemyDefPuzSolved * enemies[0].getDefence());
 
         // deal damage to enemy
@@ -165,7 +167,7 @@ public class GameManager : MonoBehaviour {
     IEnumerator GetAttacked()
     {
         // calculate damage received
-        int playerDmgReceived = calculateDmg(enemyAtkPuzSolved * enemies[0].getStrength(),
+        int playerDmgReceived = formulasScript.calculateDmg(enemyAtkPuzSolved * enemies[0].getStrength(),
                                              playerDefPuzSolved * player.getDefence());
 
         // receive damage 
@@ -185,17 +187,7 @@ public class GameManager : MonoBehaviour {
     {
         playerDmgedText.text = "";
     }
-
-    // do damage calculation here 
-    private int calculateDmg(int atk, int def)
-    {
-        int dmg = atk - def;
-        if (dmg < 0)
-        {
-            dmg = 0;
-        }
-        return dmg;
-    }
+    
     
     // check if either player or enemy is dead
     // returns -1 for lose, 1 for win, 0 for no one dead

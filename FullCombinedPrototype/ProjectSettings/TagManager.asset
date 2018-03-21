@@ -45,7 +45,10 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Floor
+  - name: BackgroundPuzzles
+    uniqueID: 1319872899
+    locked: 0
+  - name: ForegroundPuzzle
     uniqueID: 3131993583
     locked: 0
   - name: Items

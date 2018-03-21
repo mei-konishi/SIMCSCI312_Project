@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 114108530890989398}
   - component: {fileID: 114427729803983112}
   - component: {fileID: 114711067049195504}
+  - component: {fileID: 114113563098273514}
   m_Layer: 0
   m_Name: GameManager 1
   m_TagString: Untagged
@@ -66,6 +67,17 @@ MonoBehaviour:
   enemyTiles:
   - {fileID: 1550933212087944, guid: 6365a2e1aff4f1749b30c911fc5fb281, type: 2}
   - {fileID: 1751910441343876, guid: d7809fadd4b55dd4594b7127c5eb4c38, type: 2}
+--- !u!114 &114113563098273514
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1615325242237304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cb8d405e0174f34787e6c788a840853, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114427729803983112
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -77,7 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d1ffa0a22bcea744a770eb92aafcd7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puzzleDuration: 15
+  puzzleDuration: 5
 --- !u!114 &114603777807894548
 MonoBehaviour:
   m_ObjectHideFlags: 1
