@@ -16,8 +16,6 @@ public class ButtonManager : MonoBehaviour
     private Transform cameraFinalLookAt;
     private const float CAMERA_ROTATION_SPEED = 3.0f;
 
-    public AudioMixer audioMixer;
-
     public void Start()
     {
         cameraTranform = Camera.main.transform;
@@ -44,20 +42,14 @@ public class ButtonManager : MonoBehaviour
 
     public void Update()
     {
-        // Camera rotation speed adjust here
+        // Camera rotation speed adjust here - NOT IN USE NOW -
         if (cameraFinalLookAt != null)
         {
             cameraTranform.rotation = Quaternion.Slerp(cameraTranform.rotation, cameraFinalLookAt.rotation, CAMERA_ROTATION_SPEED * Time.deltaTime);
         }
     }
 
-    // Volume Control
-    public void SetVolume(float volume)
-    {
-        audioMixer.SetFloat("Volume", volume);
-    }
-
-    // For menu rotation
+    // For menu rotation - NOT IN USE NOW -
     public void LookAtMenu(Transform menuTransform)
     {
         //Camera.main.transform.LookAt(menuTransform.position);
