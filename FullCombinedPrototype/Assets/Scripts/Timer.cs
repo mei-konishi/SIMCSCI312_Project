@@ -5,19 +5,31 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour {
 
+    public static Timer instance = null; // Static instance of Timer
     public float puzzleDuration = 5.0f;
 
     private float timeLeft; 
     private Text timerText;
     private float animationDelay = 2.0f;
 
-    private bool puzzlePhase;   // true for puzzle phase, false for attack phase
-    private bool playerAtkTurn; // true for player's turn, false for enemy's turn
-    private bool animationTrigger; // true for animation to play (used as trigger switch)
-    private bool stop; // use for game over
+    private static bool puzzlePhase;   // true for puzzle phase, false for attack phase
+    private static bool playerAtkTurn; // true for player's turn, false for enemy's turn
+    private static bool animationTrigger; // true for animation to play (used as trigger switch)
+    private static bool stop; // use for game over
 
 	// Use this for initialization
 	void Awake () {
+
+        if (instance == null){ // check if instance already exists
+            instance = this;    // if not, set instance to this
+        }
+
+        else if (instance != this){ // if instance already exists and is not this
+            Destroy(gameObject);    // then destroy it. enforcing singleton
+        }
+
+        DontDestroyOnLoad(gameObject); // don't destroy when reloading scene (need? or nah?)
+
         timeLeft = puzzleDuration;
 
         timerText = GameObject.Find("Timer").GetComponent<Text>();
@@ -34,17 +46,17 @@ public class Timer : MonoBehaviour {
         puzzlePhase = true;
     }
 
-    public void stopTimer()
+    public static void stopTimer()
     {
         stop = true;
     }
 
-    public bool checkPuzzlePhase()
+    public static bool checkPuzzlePhase()
     {
         return puzzlePhase;
     }
 
-    public bool checkPlayerTurn()
+    public static bool checkPlayerTurn()
     {
         return playerAtkTurn;
     }
@@ -52,7 +64,7 @@ public class Timer : MonoBehaviour {
     // function to check if need to trigger animation
     // also switches trigger back off if it's on
     // this way animation only plays once
-    public bool checkAnimationTriggered(string name)
+    public static bool checkAnimationTriggered(string name)
     {
         // do separately for player and enemy...
         // i'm sorry I dunno how to make this neater ToT 

@@ -12,9 +12,7 @@ public class GameManager : MonoBehaviour {
     private Formulas formulasScript;            // script that holds all the formulas for RPG calculation
     private Player player;                      // hold referrence to player script
     private List<Enemy> enemies;                // hold referrence to enemies script
-    
-    private Timer timer;
-
+   
     public static int level = 1;      // used to keep track of stage 
     private int stageWin; // -1 for lose, 0 for ongoing, 1 for win
 
@@ -47,7 +45,6 @@ public class GameManager : MonoBehaviour {
         boardScript = GetComponent<BoardManager>();
         pmScript = GetComponent<PuzzleManager>();
         formulasScript = GetComponent<Formulas>();
-        timer = GetComponent<Timer>();
 
         InitGame();
 	}
@@ -63,8 +60,8 @@ public class GameManager : MonoBehaviour {
 
     private void InitGame()
     {
-        stageWin = 0; 
-        
+        stageWin = 0;
+
         puzzleSolvedText = GameObject.Find("PuzzleSolvedText").GetComponent<Text>();
         enemyDmgedText = GameObject.Find("EnemyDamagedText").GetComponent<Text>();
         playerDmgedText = GameObject.Find("PlayerDamagedText").GetComponent<Text>();
@@ -89,17 +86,11 @@ public class GameManager : MonoBehaviour {
         player = script;
     }
 
-    private void OnLevelWasLoaded(int index)
-    {
-        
-    }
-    
-
     // Update is called once per frame
     void Update () {
         
         // during puzzle phase
-		if (timer.checkPuzzlePhase())
+		if (Timer.checkPuzzlePhase())
         {
             // For prototype: using keyboard input as "puzzle solved"
             if (Input.GetKeyDown("a"))
@@ -116,18 +107,18 @@ public class GameManager : MonoBehaviour {
                                 + "Def Puzzles Solved: " + playerDefPuzSolved;
 
         // during attack phase (and game still going on)
-        if (!timer.checkPuzzlePhase() && stageWin == 0)
+        if (!Timer.checkPuzzlePhase() && stageWin == 0)
         {
             // enemy AI calculate dmg 
             enemyAI();
 
-            if (timer.checkAnimationTriggered("player"))
+            if (Timer.checkAnimationTriggered("player"))
             {
                 StartCoroutine(AttackEnemy());
                 player.doHitAnimation();
             }
 
-            if (timer.checkAnimationTriggered("enemy"))
+            if (Timer.checkAnimationTriggered("enemy"))
             {
                 StartCoroutine(GetAttacked());
                 enemies[0].doHitAnimation();
@@ -197,13 +188,13 @@ public class GameManager : MonoBehaviour {
         {
             stageWin = 1;
             winText.text = "YOU WIN!";
-            timer.stopTimer();
+            Timer.stopTimer();
         }
         else if (player.checkDead())
         {
             stageWin = -1;
             winText.text = "DEFEATED!";
-            timer.stopTimer();
+            Timer.stopTimer();
         }
         else
         {

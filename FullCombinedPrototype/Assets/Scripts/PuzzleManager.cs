@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PuzzleManager : MonoBehaviour {
 
@@ -11,6 +12,8 @@ public class PuzzleManager : MonoBehaviour {
 
     private int currentActivePuzzle; // 0 for atk, 1 for def, 2 for ulti
 
+    private Text puzzleSolvedText;
+
     // Use this for initialization
     void Start () {
         playerAtkPuzSolved = 0;
@@ -18,6 +21,8 @@ public class PuzzleManager : MonoBehaviour {
         enemyAtkPuzSolved = 0;
         enemyDefPuzSolved = 0;
         currentActivePuzzle = 0;
+
+        puzzleSolvedText = GameObject.Find("PuzzleSolvedText").GetComponent<Text>();
     }
 
     public void AtkPuzzleSolved()
