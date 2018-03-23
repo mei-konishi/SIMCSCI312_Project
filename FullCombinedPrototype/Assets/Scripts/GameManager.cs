@@ -8,21 +8,21 @@ public class GameManager : MonoBehaviour {
 
     public static GameManager instance = null;  //Static instance of GameManager which allows it to be accessed by any other script.
     private BoardManager boardScript;           // script that creates bg 
-    private PuzzleManager pmScript;             // script that handles puzzle switching and score keeping
+    private PuzzleManager puzzleManagerScript;             // script that handles puzzle switching and score keeping
     private Formulas formulasScript;            // script that holds all the formulas for RPG calculation
     private Player player;                      // hold referrence to player script
     private List<Enemy> enemies;                // hold referrence to enemies script
    
     public static int level = 1;      // used to keep track of stage 
     private int stageWin; // -1 for lose, 0 for ongoing, 1 for win
-
+/*
     // temp counter for number of puzzles solved
     private int playerAtkPuzSolved;
     private int playerDefPuzSolved;
     private int enemyAtkPuzSolved;
     private int enemyDefPuzSolved;
-
-    private Text puzzleSolvedText;
+    */
+//    private Text puzzleSolvedText;
     private Text enemyDmgedText;
     private Text playerDmgedText;
     private Text winText;
@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour {
         enemies = new List<Enemy>();    // allocate memory for enemies 
 
         boardScript = GetComponent<BoardManager>();
-        pmScript = GetComponent<PuzzleManager>();
+        puzzleManagerScript = GetComponent<PuzzleManager>();
         formulasScript = GetComponent<Formulas>();
 
         InitGame();
@@ -52,17 +52,19 @@ public class GameManager : MonoBehaviour {
     // set or reset stats to prepare for next round
     private void startNextRound()
     {
-        playerAtkPuzSolved = 0;
-        playerDefPuzSolved = 0;
-        enemyAtkPuzSolved = 0;
-        enemyDefPuzSolved = 0;
+        /*   playerAtkPuzSolved = 0;
+           playerDefPuzSolved = 0;
+           enemyAtkPuzSolved = 0;
+           enemyDefPuzSolved = 0;*/
+
+        puzzleManagerScript.resetScore();
     }
 
     private void InitGame()
     {
         stageWin = 0;
 
-        puzzleSolvedText = GameObject.Find("PuzzleSolvedText").GetComponent<Text>();
+ //       puzzleSolvedText = GameObject.Find("PuzzleSolvedText").GetComponent<Text>();
         enemyDmgedText = GameObject.Find("EnemyDamagedText").GetComponent<Text>();
         playerDmgedText = GameObject.Find("PlayerDamagedText").GetComponent<Text>();
         winText = GameObject.Find("YouWinText").GetComponent<Text>();
@@ -89,23 +91,6 @@ public class GameManager : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         
-        // during puzzle phase
-		if (Timer.checkPuzzlePhase())
-        {
-            // For prototype: using keyboard input as "puzzle solved"
-            if (Input.GetKeyDown("a"))
-            {
-                playerAtkPuzSolved++;
-            }
-            if (Input.GetKeyDown("d"))
-            {
-                playerDefPuzSolved++;
-            }
-        }
-
-        puzzleSolvedText.text = "Atk Puzzles Solved: " + playerAtkPuzSolved + "\n"
-                                + "Def Puzzles Solved: " + playerDefPuzSolved;
-
         // during attack phase (and game still going on)
         if (!Timer.checkPuzzlePhase() && stageWin == 0)
         {
@@ -123,29 +108,32 @@ public class GameManager : MonoBehaviour {
                 StartCoroutine(GetAttacked());
                 enemies[0].doHitAnimation();
             }
-
-            // check if game is over or not. if not, reset stats for next round
-            if (checkGameOver() == 0)
-            {
-                startNextRound();
-            }
         }
 
-	}
+        // check if game is over or not. if not, reset stats for next round
+        if (checkGameOver() == 0 && Timer.checkReadyForNextRound())
+        {
+            startNextRound();
+        }
+
+    }
 
     // this function should have a good algorithm to calculate a random dmg and atk 
     // appropriate for the level of the stage. 
     private void enemyAI()
     {
-        enemyAtkPuzSolved = Random.Range(5, 10);
-        enemyDefPuzSolved = Random.Range(0, 3);
+        /*enemyAtkPuzSolved = Random.Range(5, 10);
+        enemyDefPuzSolved = Random.Range(0, 3);*/
+
+        puzzleManagerScript.enemyAI();
     }
 
     IEnumerator AttackEnemy()
     {
-        // calculate damage received
-        int enemyDmgReceived = formulasScript.calculateDmg(playerAtkPuzSolved * player.getStrength(),
-                                            enemyDefPuzSolved * enemies[0].getDefence());
+        // calculate damage dealt to enemy
+        int enemyDmgReceived = formulasScript.calculateDmg(
+                            puzzleManagerScript.getPlayerAtkScore() * player.getStrength(),
+                            puzzleManagerScript.getEnemyDefScore() * enemies[0].getDefence());
 
         // deal damage to enemy
         enemyDmgedText.text = (enemyDmgReceived) + "!"; // show dmg text
@@ -158,8 +146,9 @@ public class GameManager : MonoBehaviour {
     IEnumerator GetAttacked()
     {
         // calculate damage received
-        int playerDmgReceived = formulasScript.calculateDmg(enemyAtkPuzSolved * enemies[0].getStrength(),
-                                             playerDefPuzSolved * player.getDefence());
+        int playerDmgReceived = formulasScript.calculateDmg(
+                                puzzleManagerScript.getEnemyAtkScore() * enemies[0].getStrength(),
+                                puzzleManagerScript.getPlayerDefScore() * player.getDefence());
 
         // receive damage 
         playerDmgedText.text = playerDmgReceived + "!"; // show dmg text

@@ -15,6 +15,7 @@ public class Timer : MonoBehaviour {
     private static bool puzzlePhase;   // true for puzzle phase, false for attack phase
     private static bool playerAtkTurn; // true for player's turn, false for enemy's turn
     private static bool animationTrigger; // true for animation to play (used as trigger switch)
+    private static bool readyForNextRound; // true to start next round (used as a trigger switch)
     private static bool stop; // use for game over
 
 	// Use this for initialization
@@ -37,6 +38,7 @@ public class Timer : MonoBehaviour {
         puzzlePhase = true;   
         playerAtkTurn = true;
         animationTrigger = false;
+        readyForNextRound = false;
         stop = false;
     }
 
@@ -59,6 +61,19 @@ public class Timer : MonoBehaviour {
     public static bool checkPlayerTurn()
     {
         return playerAtkTurn;
+    }
+
+    // trigger function to check if timer says ready for next round
+    public static bool checkReadyForNextRound()
+    {
+        // if timer says ready for next round, flip it back off and return true
+        if (readyForNextRound)
+        {
+            readyForNextRound = false;
+            return true;
+        }
+
+        else return false;
     }
 
     // function to check if need to trigger animation
@@ -138,6 +153,7 @@ public class Timer : MonoBehaviour {
                     timeLeft -= Time.deltaTime;
                     if (timeLeft <= 0)  // enemy's turn ends
                     {
+                        readyForNextRound = true; // tell timer that ready for next round to start
                         puzzlePhase = true; // go back to puzzle mode
                         playerAtkTurn = true; // set back to player's turn for next round
                         timeLeft = puzzleDuration; // set timer back to puzzle count down
