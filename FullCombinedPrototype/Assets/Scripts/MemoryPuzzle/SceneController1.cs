@@ -14,53 +14,35 @@ public class SceneController1 : MonoBehaviour {
     private GameObject DiffSlider;
     public int diffLv;
     private int ab = 0;
-    
-
+    int[] numbers;
+    private MainCard card;
     [SerializeField] private MainCard originalCard;
     [SerializeField] private Sprite[] images;
+    [SerializeField] private int clearP = 0;
 
     // Use this for initialization
     void Start() {
-
+      
         Vector3 startPos = originalCard.transform.position;
 
- /*       if (diffLv == 1)
-        {
-            gridRows = 1;
-            gridCols = 4;
-            arrayAmt = 4;
-        }
+        SetUpCards(diffLv); // set number of rows and cols of cards based on level
 
-        else if(diffLv == 2)
-        {
-            gridRows = 2;
-            gridCols = 4;
-            arrayAmt = 8;
-        }
+        PlaceCardsInRandSlots(startPos);  // put cards in slots randomly        
+    }
 
-        else if (diffLv == 3)
-        {
-            gridRows = 3;
-            gridCols = 4;
-            arrayAmt = 12;
-        }
-
-        else if (diffLv == 4)
-        {
-            gridRows = 4;
-            gridCols = 4;
-            arrayAmt = 16;
-        }
-        */
-
-        // I've simplified your codes above to these 3 lines below -Mei
+    private void SetUpCards(int level)
+    {
+        // set up cards based on level 
         gridRows = diffLv;
         gridCols = 4;
         arrayAmt = gridRows * gridCols;
-        
+    }
+
+    private void PlaceCardsInRandSlots(Vector3 startPos)
+    {
         int[] numbers = new int[arrayAmt];
 
-        for(int a = 0; a < arrayAmt/2; a++)
+        for (int a = 0; a < arrayAmt / 2; a++)
         {
             numbers[ab] = a;
             numbers[ab + 1] = a;
@@ -73,7 +55,7 @@ public class SceneController1 : MonoBehaviour {
         {
             for (int j = 0; j < gridRows; j++)
             {
-                MainCard card;
+                //    MainCard card;
                 if (i == 0 && j == 0)
                 {
                     card = originalCard;
@@ -92,8 +74,6 @@ public class SceneController1 : MonoBehaviour {
                 card.transform.position = new Vector3(posX, posY, startPos.z);
             }
         }
-
-
     }
 
     private int[] ShuffleArray(int[] numbers)
@@ -109,12 +89,24 @@ public class SceneController1 : MonoBehaviour {
         return newArray;
     }
 
+    void Update()
+    {
+        if(_score == arrayAmt/2)
+        {
+            _score = 0;
+            ab = 0;
+            clearP++;
+            Restart();
+        }
+    } 
+
     //-------------------------------------------------------------------------------------------------------------------------------------------
 
     private MainCard _firstRevealed;
     private MainCard _secondRevealed;
 
     private int _score = 0;
+    [SerializeField] private TextMesh scoreLabel;
 
     public bool canReveal
     {
@@ -139,6 +131,7 @@ public class SceneController1 : MonoBehaviour {
         if (_firstRevealed.id == _secondRevealed.id)
         {
             _score++;
+            scoreLabel.text = "Score: " + _score;
         }
         else
         {
@@ -150,14 +143,28 @@ public class SceneController1 : MonoBehaviour {
 
         _firstRevealed = null;
         _secondRevealed = null;
-
     }
 
+    
     public void Restart()
     {
-        SceneManager.LoadScene("Scene_001");
-      
+        GameObject[] tin = GameObject.FindGameObjectsWithTag("TheCard");
+        foreach (GameObject tal in tin)
+        {
+            if (tal.name != "MainCard")
+            {
+                Destroy(tal);
+            }
+            tal.transform.GetChild(0).gameObject.SetActive(true);
+        }
+
+        SetUpCards(diffLv); // set number of rows and cols of cards based on level
+
+        Vector3 startPos = originalCard.transform.position;
+
+        PlaceCardsInRandSlots(startPos);  // put cards in slots randomly 
     }
+
 
 
 }

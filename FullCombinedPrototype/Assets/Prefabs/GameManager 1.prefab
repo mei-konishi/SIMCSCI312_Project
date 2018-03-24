@@ -21,9 +21,9 @@ GameObject:
   - component: {fileID: 4158874727336974}
   - component: {fileID: 114603777807894548}
   - component: {fileID: 114108530890989398}
-  - component: {fileID: 114427729803983112}
   - component: {fileID: 114711067049195504}
   - component: {fileID: 114113563098273514}
+  - component: {fileID: 114251529515046724}
   m_Layer: 0
   m_Name: GameManager 1
   m_TagString: Untagged
@@ -78,7 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb8d405e0174f34787e6c788a840853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114427729803983112
+--- !u!114 &114251529515046724
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d1ffa0a22bcea744a770eb92aafcd7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puzzleDuration: 5
+  puzzleDuration: 15
 --- !u!114 &114603777807894548
 MonoBehaviour:
   m_ObjectHideFlags: 1

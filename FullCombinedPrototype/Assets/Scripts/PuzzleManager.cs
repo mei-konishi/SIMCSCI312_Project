@@ -14,6 +14,9 @@ public class PuzzleManager : MonoBehaviour {
 
     private Text puzzleSolvedText;
 
+    // testing <-------------------------------------------
+ //   private SceneController1 memoryPuzzleController; 
+
     // Use this for initialization
     void Awake () {
         playerAtkPuzSolved = 0;
@@ -23,6 +26,9 @@ public class PuzzleManager : MonoBehaviour {
         currentActivePuzzle = 0;
 
         puzzleSolvedText = GameObject.Find("PuzzleSolvedText").GetComponent<Text>();
+
+ //       memoryPuzzleController = GetComponent<SceneController1>();
+ //       memoryPuzzleController.SetPuzzleManager(this);
     }
 
     // call this function when atk puzzle is solved!

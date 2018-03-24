@@ -7,6 +7,11 @@ public class SpinningCube : MonoBehaviour
 
 	private Vector3 m_RotationDirection = Vector3.up;
 
+    public void Awake()
+    {
+        DontDestroyOnLoad(transform.gameObject);
+    }
+
 	public void ToggleRotationDirection()
 	{
 		Debug.Log ("Toggling rotation direction");

@@ -15,14 +15,7 @@ public class GameManager : MonoBehaviour {
    
     public static int level = 1;      // used to keep track of stage 
     private int stageWin; // -1 for lose, 0 for ongoing, 1 for win
-/*
-    // temp counter for number of puzzles solved
-    private int playerAtkPuzSolved;
-    private int playerDefPuzSolved;
-    private int enemyAtkPuzSolved;
-    private int enemyDefPuzSolved;
-    */
-//    private Text puzzleSolvedText;
+    
     private Text enemyDmgedText;
     private Text playerDmgedText;
     private Text winText;
@@ -52,19 +45,13 @@ public class GameManager : MonoBehaviour {
     // set or reset stats to prepare for next round
     private void startNextRound()
     {
-        /*   playerAtkPuzSolved = 0;
-           playerDefPuzSolved = 0;
-           enemyAtkPuzSolved = 0;
-           enemyDefPuzSolved = 0;*/
-
         puzzleManagerScript.resetScore();
     }
 
     private void InitGame()
     {
         stageWin = 0;
-
- //       puzzleSolvedText = GameObject.Find("PuzzleSolvedText").GetComponent<Text>();
+        
         enemyDmgedText = GameObject.Find("EnemyDamagedText").GetComponent<Text>();
         playerDmgedText = GameObject.Find("PlayerDamagedText").GetComponent<Text>();
         winText = GameObject.Find("YouWinText").GetComponent<Text>();
@@ -122,9 +109,6 @@ public class GameManager : MonoBehaviour {
     // appropriate for the level of the stage. 
     private void enemyAI()
     {
-        /*enemyAtkPuzSolved = Random.Range(5, 10);
-        enemyDefPuzSolved = Random.Range(0, 3);*/
-
         puzzleManagerScript.enemyAI();
     }
 
