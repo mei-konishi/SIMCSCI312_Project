@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneController1 : MonoBehaviour {
+public class MemoryPuzzleSceneController : MonoBehaviour {
 
     private int gridRows;
     private int gridCols;
@@ -91,8 +91,10 @@ public class SceneController1 : MonoBehaviour {
 
     void Update()
     {
-        if(_score == arrayAmt/2)
+        if(_score == arrayAmt/2) // win
         {
+            PuzzleManager.AtkPuzzleSolved();
+            PuzzleManager.DefPuzzleSolved();
             _score = 0;
             ab = 0;
             clearP++;

@@ -5,8 +5,10 @@ using UnityEngine.UI;
 
 public class PuzzleManager : MonoBehaviour {
 
-    private int playerAtkPuzSolved;
-    private int playerDefPuzSolved;
+    public static PuzzleManager instance = null; // Static instance of Puzzle Manager
+
+    private static int playerAtkPuzSolved;
+    private static int playerDefPuzSolved;
     private int enemyAtkPuzSolved;
     private int enemyDefPuzSolved;
 
@@ -14,11 +16,19 @@ public class PuzzleManager : MonoBehaviour {
 
     private Text puzzleSolvedText;
 
-    // testing <-------------------------------------------
- //   private SceneController1 memoryPuzzleController; 
-
     // Use this for initialization
     void Awake () {
+        
+        if (instance == null){ // check if instance already exists
+            instance = this;    // if not, set instance to this
+        }
+
+        else if (instance != this){ // if instance already exists and is not this
+            Destroy(gameObject);    // then destroy it. enforcing singleton
+        }
+
+        DontDestroyOnLoad(gameObject); // don't destroy when reloading scene (need? or nah?)
+
         playerAtkPuzSolved = 0;
         playerDefPuzSolved = 0;
         enemyAtkPuzSolved = 0;
@@ -26,19 +36,17 @@ public class PuzzleManager : MonoBehaviour {
         currentActivePuzzle = 0;
 
         puzzleSolvedText = GameObject.Find("PuzzleSolvedText").GetComponent<Text>();
-
- //       memoryPuzzleController = GetComponent<SceneController1>();
- //       memoryPuzzleController.SetPuzzleManager(this);
+        
     }
 
     // call this function when atk puzzle is solved!
-    public void AtkPuzzleSolved()
+    public static void AtkPuzzleSolved()
     {
         playerAtkPuzSolved++;
     }
     
     // call this function when def puzzle is solved!
-    public void DefPuzzleSolved()
+    public static void DefPuzzleSolved()
     {
         playerDefPuzSolved++;
     }

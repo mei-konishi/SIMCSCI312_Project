@@ -1003,7 +1003,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c926295eb64af2e4bb33df531b3bbda6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 1395332759}
+  controller: {fileID: 0}
 --- !u!4 &730257922
 Transform:
   m_ObjectHideFlags: 0
@@ -1567,7 +1567,8 @@ Prefab:
       propertyPath: originalCard.Array.data[0]
       value: 
       objectReference: {fileID: 1514051615}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 56667a4e4df108b41a614346c144d8c3, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1514051614

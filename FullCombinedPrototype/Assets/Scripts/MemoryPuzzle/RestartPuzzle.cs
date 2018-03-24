@@ -5,7 +5,7 @@ using UnityEngine;
 public class RestartPuzzle : MonoBehaviour
 {
 
-    [SerializeField] private SceneController1 controller;
+    [SerializeField] private MemoryPuzzleSceneController controller;
     // Use this for initialization
     void Start()
     {
