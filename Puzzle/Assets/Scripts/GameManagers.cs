@@ -38,12 +38,23 @@ public class GameManagers : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        if (!PlayerPrefs.HasKey("HiScore"))
-        {
-            PlayerPrefs.SetInt("HiScore", 0);
-        }
+        activeSequence.Clear();
 
-        scoreText.text = "Score: 0 - High Score: " + PlayerPrefs.GetInt("HiScore");
+        positionInSequence = 0;
+        inputInSequence = 0;
+
+        for (int i = 0; i < difficulty + 2; i++)
+        {
+            colourSelect = Random.Range(0, colours.Length);
+
+            activeSequence.Add(colourSelect);
+
+            colours[activeSequence[positionInSequence]].color = new Color(colours[activeSequence[positionInSequence]].color.r, colours[activeSequence[positionInSequence]].color.g, colours[activeSequence[positionInSequence]].color.b, 1f);
+            buttonSounds[activeSequence[positionInSequence]].Play();
+
+            stayLitCounter = stayLit;
+            shouldBeLit = true;
+        }
     }
 
 
@@ -92,83 +103,66 @@ public class GameManagers : MonoBehaviour
         }
     }
 
-    public void StartGame()
-    {
-        activeSequence.Clear();
-
-        positionInSequence = 0;
-        inputInSequence = 0;
-
-        for(int i = 0; i < difficulty +2; i++)
-        {
-            colourSelect = Random.Range(0, colours.Length);
-
-            activeSequence.Add(colourSelect);
-
-            colours[activeSequence[positionInSequence]].color = new Color(colours[activeSequence[positionInSequence]].color.r, colours[activeSequence[positionInSequence]].color.g, colours[activeSequence[positionInSequence]].color.b, 1f);
-            buttonSounds[activeSequence[positionInSequence]].Play();
-
-            stayLitCounter = stayLit;
-            shouldBeLit = true;
-        }
-
-        scoreText.text = "Score: 0 - High Score: " + PlayerPrefs.GetInt("HiScore");
-    }
-
     public void ColourPressed(int whichButton)
     {
         if (gameActive)
         {
-                if (activeSequence[inputInSequence] == whichButton)
+            if (activeSequence[inputInSequence] == whichButton)
+            {
+                Debug.Log("Correct");
+
+                inputInSequence++;
+
+                if (inputInSequence >= activeSequence.Count)
                 {
-                    Debug.Log("Correct");
+                    points++;
 
-                    inputInSequence++;
+                    positionInSequence = 0;
+                    inputInSequence = 0;
 
-                    if (inputInSequence >= activeSequence.Count)
+                    activeSequence.Clear();
+
+                    for (int i = 0; i < difficulty + 2; i++)
                     {
-                        points++;
-                        //if (activeSequence.Count > PlayerPrefs.GetInt("HiScore"))
-                        if (points > PlayerPrefs.GetInt("HiScore"))
-                        {
-                            PlayerPrefs.SetInt("HiScore", points);
-                        }
+                        colourSelect = Random.Range(0, colours.Length);
 
-                        //scoreText.text = "Score: " + activeSequence.Count + " - HighScore: " + PlayerPrefs.GetInt("HiScore");
-                        scoreText.text = "Score: " + points + " - HighScore: " + PlayerPrefs.GetInt("HiScore");
+                        activeSequence.Add(colourSelect);
 
-                        positionInSequence = 0;
-                        inputInSequence = 0;
-                        
-                        activeSequence.Clear();
-                        
-                        for (int i = 0; i < difficulty + 2; i++)
-                        {
-                            colourSelect = Random.Range(0, colours.Length);
+                        colours[activeSequence[positionInSequence]].color = new Color(colours[activeSequence[positionInSequence]].color.r, colours[activeSequence[positionInSequence]].color.g, colours[activeSequence[positionInSequence]].color.b, 1f);
 
-                            activeSequence.Add(colourSelect);
-
-                            colours[activeSequence[positionInSequence]].color = new Color(colours[activeSequence[positionInSequence]].color.r, colours[activeSequence[positionInSequence]].color.g, colours[activeSequence[positionInSequence]].color.b, 1f);
-
-                            stayLitCounter = stayLit;
-                            shouldBeLit = true;
-                        }
-
-                        gameActive = false;
-
-                        correct.Play();
+                        stayLitCounter = stayLit;
+                        shouldBeLit = true;
                     }
-                }
 
-                else
-                {
-                    Debug.Log("Wrong");
-                    incorrect.Play();
                     gameActive = false;
+                    correct.Play();
                 }
-            
-            
-        }
+            }
 
+            else
+            {
+                Debug.Log("Wrong");
+
+                positionInSequence = 0;
+                inputInSequence = 0;
+
+                activeSequence.Clear();
+
+                for (int i = 0; i < difficulty + 2; i++)
+                {
+                    colourSelect = Random.Range(0, colours.Length);
+
+                    activeSequence.Add(colourSelect);
+
+                    colours[activeSequence[positionInSequence]].color = new Color(colours[activeSequence[positionInSequence]].color.r, colours[activeSequence[positionInSequence]].color.g, colours[activeSequence[positionInSequence]].color.b, 1f);
+
+                    stayLitCounter = stayLit;
+                    shouldBeLit = true;
+                }
+
+                incorrect.Play();
+                gameActive = false;
+            }
+        }
     }
 }
