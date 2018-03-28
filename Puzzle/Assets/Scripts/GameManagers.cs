@@ -61,6 +61,11 @@ public class GameManagers : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            callStart();
+        }
+
         if (shouldBeLit)
         {
             stayLitCounter -= Time.deltaTime;
@@ -165,4 +170,27 @@ public class GameManagers : MonoBehaviour
             }
         }
     }
+
+    void callStart()
+    {
+        activeSequence.Clear();
+
+        positionInSequence = 0;
+        inputInSequence = 0;
+
+        for (int i = 0; i < difficulty + 2; i++)
+        {
+            colourSelect = Random.Range(0, colours.Length);
+
+            activeSequence.Add(colourSelect);
+
+            colours[activeSequence[positionInSequence]].color = new Color(colours[activeSequence[positionInSequence]].color.r, colours[activeSequence[positionInSequence]].color.g, colours[activeSequence[positionInSequence]].color.b, 1f);
+            buttonSounds[activeSequence[positionInSequence]].Play();
+
+            stayLitCounter = stayLit;
+            shouldBeLit = true;
+        }
+    }
+
 }
+ 
