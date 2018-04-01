@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameManagers : MonoBehaviour
+public class SimonSaysGameManagers : MonoBehaviour
 {
     public int difficulty;
 
