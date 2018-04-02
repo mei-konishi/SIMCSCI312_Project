@@ -12,7 +12,7 @@ public class PuzzleManager : MonoBehaviour {
     private int enemyAtkPuzSolved;
     private int enemyDefPuzSolved;
 
-    private int currentActivePuzzle; // 0 for atk, 1 for def, 2 for ulti
+    private static int currentActivePuzzle; // 0 for atk, 1 for def, 2 for ulti
 
     private Text puzzleSolvedText;
 
@@ -52,7 +52,7 @@ public class PuzzleManager : MonoBehaviour {
     }
 
     // for AI use.
-    public void enemyAtkPuzzleSolved()
+    public void EnemyAtkPuzzleSolved()
     {
         enemyAtkPuzSolved++;
     }
@@ -63,7 +63,7 @@ public class PuzzleManager : MonoBehaviour {
         enemyDefPuzSolved++;
     }
 
-    public void resetScore()
+    public void ResetScore()
     {
         playerAtkPuzSolved = 0;
         playerDefPuzSolved = 0;
@@ -72,31 +72,49 @@ public class PuzzleManager : MonoBehaviour {
     }
 
     // temp AI, will change next time to real time update
-    public void enemyAI()
+    public void EnemyAI()
     {
         enemyAtkPuzSolved = Random.Range(5, 10);
         enemyDefPuzSolved = Random.Range(0, 3);
     }
 
     // getters ===============================================
-    public int getPlayerAtkScore()
+    public int GetPlayerAtkScore()
     {
         return playerAtkPuzSolved;
     }
 
-    public int getPlayerDefScore()
+    public int GetPlayerDefScore()
     {
         return playerDefPuzSolved;
     }
 
-    public int getEnemyAtkScore()
+    public int GetEnemyAtkScore()
     {
         return enemyAtkPuzSolved;
     }
 
-    public int getEnemyDefScore()
+    public int GetEnemyDefScore()
     {
         return enemyDefPuzSolved;
+    }
+
+     public int GetCurrentPuzzle()
+    {
+        return currentActivePuzzle;
+    }
+
+    // setter ======================================================
+    public void SetNewActive(int puzzleNumber)
+    {
+        // if new input is different from current
+        if (puzzleNumber != currentActivePuzzle)
+        {
+            // swap their display layers
+            UpdateActivePuzzleSelection(puzzleNumber);
+            // update current active puzzle
+            currentActivePuzzle = puzzleNumber;
+        }
     }
 	
 	// Update is called once per frame =============================
@@ -119,4 +137,62 @@ public class PuzzleManager : MonoBehaviour {
                                 + "Def Puzzles Solved: " + playerDefPuzSolved;
 
     }
+
+    // check current active puzzle being selected, and make sure the layer is being set right
+    private void UpdateActivePuzzleSelection(int newActivePuzzle)
+    {
+        // get the current active bg and objects and new active bg and objects
+        GameObject currentBackground = null;
+        GameObject[] currentObjects = null;
+        GameObject newActiveBackground = null;
+        GameObject[] newActiveObjects = null;
+        
+        switch (currentActivePuzzle)
+        {
+            case 0: currentBackground = GameObject.FindGameObjectWithTag("P1Bg");
+                currentObjects = GameObject.FindGameObjectsWithTag("P1Obj");
+                break;
+
+            case 1: currentBackground = GameObject.FindGameObjectWithTag("P2Bg");
+                currentObjects = GameObject.FindGameObjectsWithTag("P2ObjCard");
+                break;
+
+            case 2: currentBackground = GameObject.FindGameObjectWithTag("P3Bg");
+                currentObjects = GameObject.FindGameObjectsWithTag("P3Obj");
+                break;
+        }
+
+        switch (newActivePuzzle)
+        {
+            case 0:
+                newActiveBackground = GameObject.FindGameObjectWithTag("P1Bg");
+                newActiveObjects = GameObject.FindGameObjectsWithTag("P1Obj");
+                break;
+
+            case 1:
+                newActiveBackground = GameObject.FindGameObjectWithTag("P2Bg");
+                newActiveObjects = GameObject.FindGameObjectsWithTag("P2ObjCard");
+                break;
+
+            case 2:
+                newActiveBackground = GameObject.FindGameObjectWithTag("P3Bg");
+                newActiveObjects = GameObject.FindGameObjectsWithTag("P3Obj");
+                break;
+        }
+
+        // now switch their display layers 
+        currentBackground.GetComponent<Renderer>().sortingLayerName = "BackgroundPuzzles";
+        foreach (GameObject currObj in currentObjects)
+        {
+            currObj.GetComponent<Renderer>().sortingLayerName = "BackgroundPuzzles";
+        }
+
+        newActiveBackground.GetComponent<Renderer>().sortingLayerName = "ForegroundPuzzle";
+        foreach (GameObject currObj in newActiveObjects)
+        {
+            currObj.GetComponent<Renderer>().sortingLayerName = "ForegroundPuzzle";
+        }
+    }
 }
+
+

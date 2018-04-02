@@ -150,7 +150,7 @@ public class MemoryPuzzleSceneController : MonoBehaviour {
     
     public void Restart()
     {
-        GameObject[] tin = GameObject.FindGameObjectsWithTag("TheCard");
+        GameObject[] tin = GameObject.FindGameObjectsWithTag("theCard");
         foreach (GameObject tal in tin)
         {
             if (tal.name != "MainCard")
