@@ -17,6 +17,12 @@ public class PuzzleManager : MonoBehaviour
 
     private Text puzzleSolvedText;
 
+    // TODO IN FUTURE, MAKE A LIST OF PUZZLE CONTROLLERS 
+    // INSTEAD OF HOLDING EVERY PUZZLE'S INDIVIDUAL CONTROLLERS
+    private PuzzleControllerInterface[] puzzleControllers; // <-- like this. this holds all puzzles
+    private PuzzleControllerInterface[] slottedPuzzleCtrls; // <-- this holds selected skills
+    private MemoryPuzzleController memoryPuzzleController; // this is the temp reference for now
+
     // Use this for initialization
     void Awake()
     {
@@ -40,7 +46,7 @@ public class PuzzleManager : MonoBehaviour
         currentActivePuzzle = 1;
 
         puzzleSolvedText = GameObject.Find("PuzzleSolvedText").GetComponent<Text>();
-
+        memoryPuzzleController = GetComponent<MemoryPuzzleController>();
     }
 
     // call this function when atk puzzle is solved!
@@ -114,10 +120,23 @@ public class PuzzleManager : MonoBehaviour
         // if new input is different from current
         if (puzzleNumber != currentActivePuzzle)
         {
+           
             // swap their display layers
             UpdateActivePuzzleSelection(puzzleNumber);
+
             // update current active puzzle
             currentActivePuzzle = puzzleNumber;
+
+            // TODO IN FUTURE, CHANGE THE FOLLOWING HARD CODE CALLS INTO GENERIC CALLS
+            if (puzzleNumber == 2)
+            {
+                memoryPuzzleController.Play();
+            }
+            else
+            {
+                memoryPuzzleController.Stoppage();
+            }
+            
         }
     }
 

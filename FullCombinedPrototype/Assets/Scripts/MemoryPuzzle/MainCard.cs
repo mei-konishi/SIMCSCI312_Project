@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class MainCard : MonoBehaviour {
 
-    [SerializeField] private MemoryPuzzleSceneController controller;
+    [SerializeField] private MemoryPuzzleController controller;
     [SerializeField] private GameObject Card_Back;
 
     public void OnMouseDown()
     {
-        if(Card_Back.activeSelf && controller.canReveal )
+        if(Card_Back.activeSelf && controller.canReveal && controller.IsEnable)
         {
             Card_Back.SetActive(false);
             controller.CardRevealed(this);

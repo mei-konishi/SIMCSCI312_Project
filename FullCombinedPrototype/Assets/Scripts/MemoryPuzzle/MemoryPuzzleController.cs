@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MemoryPuzzleSceneController : MonoBehaviour {
+public class MemoryPuzzleController : MonoBehaviour {
 
     private int gridRows;
     private int gridCols;
@@ -11,7 +11,8 @@ public class MemoryPuzzleSceneController : MonoBehaviour {
     public const float offsetX = 1.8f;
     public const float offsetY = 1.4f;
 
-    private GameObject DiffSlider;
+    public bool IsEnable = false;
+
     public int diffLv;
     private int ab = 0;
     int[] numbers;
@@ -22,7 +23,7 @@ public class MemoryPuzzleSceneController : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
-      
+        
         Vector3 startPos = originalCard.transform.position;
 
         SetUpCards(diffLv); // set number of rows and cols of cards based on level
@@ -41,6 +42,8 @@ public class MemoryPuzzleSceneController : MonoBehaviour {
     private void PlaceCardsInRandSlots(Vector3 startPos)
     {
         int[] numbers = new int[arrayAmt];
+
+        ab = 0;
 
         for (int a = 0; a < arrayAmt / 2; a++)
         {
@@ -93,14 +96,24 @@ public class MemoryPuzzleSceneController : MonoBehaviour {
     {
         if(_score == arrayAmt/2) // win
         {
-            PuzzleManager.AtkPuzzleSolved();
+           // PuzzleManager.AtkPuzzleSolved();
             PuzzleManager.DefPuzzleSolved();
             _score = 0;
             ab = 0;
             clearP++;
             Restart();
         }
+        //To stop the game
+        if (Input.GetKey(KeyCode.P))
+        {
+            Stoppage();
+        }
     } 
+
+    public void Play()
+    {
+        IsEnable = true;
+    }
 
     //-------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -150,21 +163,83 @@ public class MemoryPuzzleSceneController : MonoBehaviour {
     
     public void Restart()
     {
-        GameObject[] tin = GameObject.FindGameObjectsWithTag("theCard");
+        GameObject[] tin = GameObject.FindGameObjectsWithTag("TheCard");
         foreach (GameObject tal in tin)
         {
-            if (tal.name != "MainCard")
+            GameObject objectMain = tal.transform.parent.gameObject;
+            if (objectMain.name != "MainCard")
             {
-                Destroy(tal);
+                Destroy(objectMain);
             }
-            tal.transform.GetChild(0).gameObject.SetActive(true);
+            objectMain.transform.GetChild(0).gameObject.SetActive(true);
+        }
+        SetUpCards(diffLv); // set number of rows and cols of cards based on level
+
+        Vector3 startPos = originalCard.transform.position;
+
+        PlaceCardsInRandSlots(startPos);  // put cards in slots randomly 
+    }
+
+    public void Stoppage()
+    {
+        GameObject[] tin = GameObject.FindGameObjectsWithTag("TheCard");
+        foreach (GameObject tal in tin)
+        {
+            GameObject objectMain = tal.transform.parent.gameObject;
+            if (objectMain.name != "MainCard")
+            {
+                Destroy(objectMain);
+            }
+            objectMain.transform.GetChild(0).gameObject.SetActive(true);
         }
 
         SetUpCards(diffLv); // set number of rows and cols of cards based on level
 
         Vector3 startPos = originalCard.transform.position;
 
-        PlaceCardsInRandSlots(startPos);  // put cards in slots randomly 
+
+        //Resetting the score, array
+        int[] numbers = new int[arrayAmt];
+        ab = 0;
+        _score = 0;
+
+        //Resetting the puzzles solve variable
+        clearP = 0;
+
+        for (int a = 0; a < arrayAmt / 2; a++)
+        {
+            numbers[ab] = a;
+            numbers[ab + 1] = a;
+            ab += 2;
+        }
+        numbers = ShuffleArray(numbers);
+
+        // Placing various cards in random slots
+        for (int i = 0; i < gridCols; i++)
+        {
+            for (int j = 0; j < gridRows; j++)
+            {
+                MainCard card;
+                if (i == 0 && j == 0)
+                {
+                    card = originalCard;
+                }
+                else
+                {
+                    card = Instantiate(originalCard) as MainCard;
+                }
+
+                int index = j * gridCols + i;
+                int id = numbers[index];
+                card.ChangeSprite(id, images[id]);
+
+                float posX = (offsetX * i) + startPos.x;
+                float posY = (offsetY * j) + startPos.y;
+                card.transform.position = new Vector3(posX, posY, startPos.z);
+            }
+        }
+
+        IsEnable = false;
     }
 
 
