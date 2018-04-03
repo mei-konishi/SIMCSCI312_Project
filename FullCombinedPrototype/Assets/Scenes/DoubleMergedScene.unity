@@ -1608,7 +1608,11 @@ GameObject:
   - component: {fileID: 541167980}
   m_Layer: 0
   m_Name: Card_Back
+<<<<<<< HEAD
   m_TagString: P2ObjCard
+=======
+  m_TagString: Untagged
+>>>>>>> master
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
