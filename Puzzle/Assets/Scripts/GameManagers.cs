@@ -33,6 +33,7 @@ public class GameManagers : MonoBehaviour
 
     public Text scoreText;
 
+<<<<<<< HEAD
     private int points;
 
     // Use this for initialization
@@ -54,6 +55,38 @@ public class GameManagers : MonoBehaviour
 
             stayLitCounter = stayLit;
             shouldBeLit = true;
+=======
+    // Use this for initialization
+    void Start()
+    {
+        if (!PlayerPrefs.HasKey("HiScore"))
+        {
+            PlayerPrefs.SetInt("HiScore", 0);
+        }
+
+        scoreText.text = "Score: 0 - High Score: " + PlayerPrefs.GetInt("HiScore");
+
+        switch (difficulty)
+        {
+            case 4:
+                objects[7].SetActive(false);
+                break;
+            case 3:
+                objects[7].SetActive(false);
+                objects[6].SetActive(false);
+                break;
+            case 2:
+                objects[7].SetActive(false);
+                objects[6].SetActive(false);
+                objects[5].SetActive(false);
+                break;
+            case 1:
+                objects[7].SetActive(false);
+                objects[6].SetActive(false);
+                objects[5].SetActive(false);
+                objects[4].SetActive(false);
+                break;
+>>>>>>> 8951da006c6fd44743972954e15918577283faa9
         }
     }
 
@@ -61,11 +94,14 @@ public class GameManagers : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+<<<<<<< HEAD
         if(Input.GetKeyDown(KeyCode.R))
         {
             callStart();
         }
 
+=======
+>>>>>>> 8951da006c6fd44743972954e15918577283faa9
         if (shouldBeLit)
         {
             stayLitCounter -= Time.deltaTime;
@@ -108,10 +144,35 @@ public class GameManagers : MonoBehaviour
         }
     }
 
+<<<<<<< HEAD
+=======
+    public void StartGame()
+    {
+        activeSequence.Clear();
+
+        positionInSequence = 0;
+        inputInSequence = 0;
+
+        //colourSelect = Random.Range(0, colours.Length);
+        colourSelect = Random.Range(0, difficulty+3);
+
+        activeSequence.Add(colourSelect);
+
+        colours[activeSequence[positionInSequence]].color = new Color(colours[activeSequence[positionInSequence]].color.r, colours[activeSequence[positionInSequence]].color.g, colours[activeSequence[positionInSequence]].color.b, 1f);
+        buttonSounds[activeSequence[positionInSequence]].Play();
+
+        stayLitCounter = stayLit;
+        shouldBeLit = true;
+
+        scoreText.text = "Score: 0 - High Score: " + PlayerPrefs.GetInt("HiScore");
+    }
+
+>>>>>>> 8951da006c6fd44743972954e15918577283faa9
     public void ColourPressed(int whichButton)
     {
         if (gameActive)
         {
+<<<<<<< HEAD
             if (activeSequence[inputInSequence] == whichButton)
             {
                 Debug.Log("Correct");
@@ -130,6 +191,29 @@ public class GameManagers : MonoBehaviour
                     for (int i = 0; i < difficulty + 2; i++)
                     {
                         colourSelect = Random.Range(0, colours.Length);
+=======
+            if (whichButton < difficulty + 3)
+            {
+                if (activeSequence[inputInSequence] == whichButton)
+                {
+                    Debug.Log("Correct");
+
+                    inputInSequence++;
+
+                    if (inputInSequence >= activeSequence.Count)
+                    {
+                        if (activeSequence.Count > PlayerPrefs.GetInt("HiScore"))
+                        {
+                            PlayerPrefs.SetInt("HiScore", activeSequence.Count);
+                        }
+                        scoreText.text = "Score: " + activeSequence.Count + " - HighScore: " + PlayerPrefs.GetInt("HiScore");
+
+                        positionInSequence = 0;
+                        inputInSequence = 0;
+
+                        //colourSelect = Random.Range(0, colours.Length);
+                        colourSelect = Random.Range(0, difficulty + 3);
+>>>>>>> 8951da006c6fd44743972954e15918577283faa9
 
                         activeSequence.Add(colourSelect);
 
@@ -137,6 +221,7 @@ public class GameManagers : MonoBehaviour
 
                         stayLitCounter = stayLit;
                         shouldBeLit = true;
+<<<<<<< HEAD
                     }
 
                     gameActive = false;
@@ -194,3 +279,24 @@ public class GameManagers : MonoBehaviour
 
 }
  
+=======
+
+                        gameActive = false;
+
+                        correct.Play();
+                    }
+                }
+
+                else
+                {
+                    Debug.Log("Wrong");
+                    incorrect.Play();
+                    gameActive = false;
+                }
+            }
+            
+        }
+
+    }
+}
+>>>>>>> 8951da006c6fd44743972954e15918577283faa9

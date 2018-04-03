@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PuzzleManager : MonoBehaviour {
+public class PuzzleManager : MonoBehaviour
+{
 
     public static PuzzleManager instance = null; // Static instance of Puzzle Manager
 
@@ -17,13 +18,16 @@ public class PuzzleManager : MonoBehaviour {
     private Text puzzleSolvedText;
 
     // Use this for initialization
-    void Awake () {
-        
-        if (instance == null){ // check if instance already exists
+    void Awake()
+    {
+
+        if (instance == null)
+        { // check if instance already exists
             instance = this;    // if not, set instance to this
         }
 
-        else if (instance != this){ // if instance already exists and is not this
+        else if (instance != this)
+        { // if instance already exists and is not this
             Destroy(gameObject);    // then destroy it. enforcing singleton
         }
 
@@ -36,7 +40,7 @@ public class PuzzleManager : MonoBehaviour {
         currentActivePuzzle = 0;
 
         puzzleSolvedText = GameObject.Find("PuzzleSolvedText").GetComponent<Text>();
-        
+
     }
 
     // call this function when atk puzzle is solved!
@@ -44,7 +48,7 @@ public class PuzzleManager : MonoBehaviour {
     {
         playerAtkPuzSolved++;
     }
-    
+
     // call this function when def puzzle is solved!
     public static void DefPuzzleSolved()
     {
@@ -99,7 +103,7 @@ public class PuzzleManager : MonoBehaviour {
         return enemyDefPuzSolved;
     }
 
-     public int GetCurrentPuzzle()
+    public int GetCurrentPuzzle()
     {
         return currentActivePuzzle;
     }
@@ -116,9 +120,10 @@ public class PuzzleManager : MonoBehaviour {
             currentActivePuzzle = puzzleNumber;
         }
     }
-	
-	// Update is called once per frame =============================
-	void Update () {
+
+    // Update is called once per frame =============================
+    void Update()
+    {
         // during puzzle phase
         if (Timer.checkPuzzlePhase())
         {
@@ -146,18 +151,21 @@ public class PuzzleManager : MonoBehaviour {
         GameObject[] currentObjects = null;
         GameObject newActiveBackground = null;
         GameObject[] newActiveObjects = null;
-        
+
         switch (currentActivePuzzle)
         {
-            case 0: currentBackground = GameObject.FindGameObjectWithTag("P1Bg");
+            case 0:
+                currentBackground = GameObject.FindGameObjectWithTag("P1Bg");
                 currentObjects = GameObject.FindGameObjectsWithTag("P1Obj");
                 break;
 
-            case 1: currentBackground = GameObject.FindGameObjectWithTag("P2Bg");
+            case 1:
+                currentBackground = GameObject.FindGameObjectWithTag("P2Bg");
                 currentObjects = GameObject.FindGameObjectsWithTag("P2ObjCard");
                 break;
 
-            case 2: currentBackground = GameObject.FindGameObjectWithTag("P3Bg");
+            case 2:
+                currentBackground = GameObject.FindGameObjectWithTag("P3Bg");
                 currentObjects = GameObject.FindGameObjectsWithTag("P3Obj");
                 break;
         }
