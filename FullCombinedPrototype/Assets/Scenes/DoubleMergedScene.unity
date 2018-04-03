@@ -2505,6 +2505,9 @@ SpriteRenderer:
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
+<<<<<<< HEAD
+>>>>>>> parent of 898182d... Changes made to memory puzzle
+=======
 >>>>>>> parent of 898182d... Changes made to memory puzzle
   m_Modification:
     m_TransformParent: {fileID: 0}
@@ -2512,7 +2515,11 @@ Prefab:
     - target: {fileID: 4222841930517282, guid: 3a54913ca8d2ba8419bb551dea9b7c75, type: 2}
       propertyPath: m_LocalPosition.x
 <<<<<<< HEAD
+<<<<<<< HEAD
       value: 0.4
+=======
+      value: 0.51
+>>>>>>> parent of 898182d... Changes made to memory puzzle
 =======
       value: 0.51
 >>>>>>> parent of 898182d... Changes made to memory puzzle
@@ -2544,7 +2551,11 @@ Prefab:
     - target: {fileID: 4222841930517282, guid: 3a54913ca8d2ba8419bb551dea9b7c75, type: 2}
       propertyPath: m_RootOrder
 <<<<<<< HEAD
+<<<<<<< HEAD
       value: 8
+=======
+      value: 2
+>>>>>>> parent of 898182d... Changes made to memory puzzle
 =======
       value: 2
 >>>>>>> parent of 898182d... Changes made to memory puzzle
@@ -2570,7 +2581,11 @@ Prefab:
         type: 2}
       propertyPath: m_SortingLayerID
 <<<<<<< HEAD
+<<<<<<< HEAD
       value: 1319872899
+=======
+      value: 1861650685
+>>>>>>> parent of 898182d... Changes made to memory puzzle
 =======
       value: 1861650685
 >>>>>>> parent of 898182d... Changes made to memory puzzle
@@ -2579,7 +2594,11 @@ Prefab:
         type: 2}
       propertyPath: m_SortingLayer
 <<<<<<< HEAD
+<<<<<<< HEAD
       value: 1
+=======
+      value: 3
+>>>>>>> parent of 898182d... Changes made to memory puzzle
 =======
       value: 3
 >>>>>>> parent of 898182d... Changes made to memory puzzle
@@ -2588,7 +2607,11 @@ Prefab:
         type: 2}
       propertyPath: m_SortingLayerID
 <<<<<<< HEAD
+<<<<<<< HEAD
       value: 1319872899
+=======
+      value: 1861650685
+>>>>>>> parent of 898182d... Changes made to memory puzzle
 =======
       value: 1861650685
 >>>>>>> parent of 898182d... Changes made to memory puzzle
@@ -2597,13 +2620,19 @@ Prefab:
         type: 2}
       propertyPath: m_SortingLayer
 <<<<<<< HEAD
+<<<<<<< HEAD
       value: 1
 =======
+=======
+>>>>>>> parent of 898182d... Changes made to memory puzzle
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1862010541225310, guid: 3a54913ca8d2ba8419bb551dea9b7c75, type: 2}
       propertyPath: m_TagString
       value: TheCard
+<<<<<<< HEAD
+>>>>>>> parent of 898182d... Changes made to memory puzzle
+=======
 >>>>>>> parent of 898182d... Changes made to memory puzzle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
