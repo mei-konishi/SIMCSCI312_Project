@@ -12,12 +12,8 @@ public class PuzzleManager : MonoBehaviour
     private static int playerDefPuzSolved;
     private int enemyAtkPuzSolved;
     private int enemyDefPuzSolved;
-
-<<<<<<< HEAD
+    
     private static int currentActivePuzzle; // 1 for atk, 2 for def, 3 for ulti
-=======
-    private static int currentActivePuzzle; // 0 for atk, 1 for def, 2 for ulti
->>>>>>> e30181c06654de5252aadafc9571f70a34c6934a
 
     private Text puzzleSolvedText;
 
@@ -158,30 +154,17 @@ public class PuzzleManager : MonoBehaviour
 
         switch (currentActivePuzzle)
         {
-<<<<<<< HEAD
             case 1:
-=======
-            case 0:
->>>>>>> e30181c06654de5252aadafc9571f70a34c6934a
                 currentBackground = GameObject.FindGameObjectWithTag("P1Bg");
                 currentObjects = GameObject.FindGameObjectsWithTag("P1Obj");
                 break;
-
-<<<<<<< HEAD
+                
             case 2:
                 currentBackground = GameObject.FindGameObjectWithTag("P2Bg");
                 currentObjects = GameObject.FindGameObjectsWithTag("P2Obj");
                 break;
 
             case 3:
-=======
-            case 1:
-                currentBackground = GameObject.FindGameObjectWithTag("P2Bg");
-                currentObjects = GameObject.FindGameObjectsWithTag("P2ObjCard");
-                break;
-
-            case 2:
->>>>>>> e30181c06654de5252aadafc9571f70a34c6934a
                 currentBackground = GameObject.FindGameObjectWithTag("P3Bg");
                 currentObjects = GameObject.FindGameObjectsWithTag("P3Obj");
                 break;
@@ -189,30 +172,18 @@ public class PuzzleManager : MonoBehaviour
 
         switch (newActivePuzzle)
         {
-<<<<<<< HEAD
+
             case 1:
-=======
-            case 0:
->>>>>>> e30181c06654de5252aadafc9571f70a34c6934a
                 newActiveBackground = GameObject.FindGameObjectWithTag("P1Bg");
                 newActiveObjects = GameObject.FindGameObjectsWithTag("P1Obj");
                 break;
 
-<<<<<<< HEAD
             case 2:
                 newActiveBackground = GameObject.FindGameObjectWithTag("P2Bg");
                 newActiveObjects = GameObject.FindGameObjectsWithTag("P2Obj");
                 break;
 
             case 3:
-=======
-            case 1:
-                newActiveBackground = GameObject.FindGameObjectWithTag("P2Bg");
-                newActiveObjects = GameObject.FindGameObjectsWithTag("P2ObjCard");
-                break;
-
-            case 2:
->>>>>>> e30181c06654de5252aadafc9571f70a34c6934a
                 newActiveBackground = GameObject.FindGameObjectWithTag("P3Bg");
                 newActiveObjects = GameObject.FindGameObjectsWithTag("P3Obj");
                 break;
