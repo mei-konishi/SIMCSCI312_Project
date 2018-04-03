@@ -3426,7 +3426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bff21585a2bb0db4eb9cc9a6e15cdbe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficulty: 2
+  difficulty: 4
   objects: []
   colours: []
   buttonSounds: []
