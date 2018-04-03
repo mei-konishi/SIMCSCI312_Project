@@ -9,7 +9,7 @@ public class MainCard : MonoBehaviour {
 
     public void OnMouseDown()
     {
-        if(Card_Back.activeSelf && controller.canReveal && controller.IsEnable)
+        if(Card_Back.activeSelf && controller.canReveal )
         {
             Card_Back.SetActive(false);
             controller.CardRevealed(this);
