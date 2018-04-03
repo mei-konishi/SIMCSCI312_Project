@@ -40,7 +40,7 @@ public class BoardManager : MonoBehaviour {
 
     public void SetupScene (int level)
     {
-        bgSetup();
+        //bgSetup(); // dynamic tile generation. was just testing. don't need it in our project
 
         createEnemies(level);
     }

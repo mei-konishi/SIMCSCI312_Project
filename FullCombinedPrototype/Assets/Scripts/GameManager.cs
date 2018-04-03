@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour {
     // set or reset stats to prepare for next round
     private void startNextRound()
     {
-        puzzleManagerScript.resetScore();
+        puzzleManagerScript.ResetScore();
     }
 
     private void InitGame()
@@ -109,15 +109,15 @@ public class GameManager : MonoBehaviour {
     // appropriate for the level of the stage. 
     private void enemyAI()
     {
-        puzzleManagerScript.enemyAI();
+        puzzleManagerScript.EnemyAI();
     }
 
     IEnumerator AttackEnemy()
     {
         // calculate damage dealt to enemy
         int enemyDmgReceived = formulasScript.calculateDmg(
-                            puzzleManagerScript.getPlayerAtkScore() * player.getStrength(),
-                            puzzleManagerScript.getEnemyDefScore() * enemies[0].getDefence());
+                            puzzleManagerScript.GetPlayerAtkScore() * player.getStrength(),
+                            puzzleManagerScript.GetEnemyDefScore() * enemies[0].getDefence());
 
         // deal damage to enemy
         enemyDmgedText.text = (enemyDmgReceived) + "!"; // show dmg text
@@ -131,8 +131,8 @@ public class GameManager : MonoBehaviour {
     {
         // calculate damage received
         int playerDmgReceived = formulasScript.calculateDmg(
-                                puzzleManagerScript.getEnemyAtkScore() * enemies[0].getStrength(),
-                                puzzleManagerScript.getPlayerDefScore() * player.getDefence());
+                                puzzleManagerScript.GetEnemyAtkScore() * enemies[0].getStrength(),
+                                puzzleManagerScript.GetPlayerDefScore() * player.getDefence());
 
         // receive damage 
         playerDmgedText.text = playerDmgReceived + "!"; // show dmg text
