@@ -8,6 +8,13 @@ TagManager:
   - Exit
   - Enemy
   - Soda
+  - P1Bg
+  - P2Bg
+  - P3Bg
+  - P1Obj
+  - P2Obj
+  - P3Obj
+  - P2ObjCard
   layers:
   - Default
   - TransparentFX

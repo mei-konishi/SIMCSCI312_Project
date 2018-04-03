@@ -14,6 +14,7 @@ public class PuzzleManager : MonoBehaviour
     private int enemyDefPuzSolved;
 
     private static int currentActivePuzzle; // 1 for atk, 2 for def, 3 for ulti
+    private static int currentActivePuzzle; // 0 for atk, 1 for def, 2 for ulti
 
     private Text puzzleSolvedText;
 
@@ -155,6 +156,7 @@ public class PuzzleManager : MonoBehaviour
         switch (currentActivePuzzle)
         {
             case 1:
+            case 0:
                 currentBackground = GameObject.FindGameObjectWithTag("P1Bg");
                 currentObjects = GameObject.FindGameObjectsWithTag("P1Obj");
                 break;
@@ -165,6 +167,12 @@ public class PuzzleManager : MonoBehaviour
                 break;
 
             case 3:
+            case 1:
+                currentBackground = GameObject.FindGameObjectWithTag("P2Bg");
+                currentObjects = GameObject.FindGameObjectsWithTag("P2ObjCard");
+                break;
+
+            case 2:
                 currentBackground = GameObject.FindGameObjectWithTag("P3Bg");
                 currentObjects = GameObject.FindGameObjectsWithTag("P3Obj");
                 break;
@@ -173,6 +181,7 @@ public class PuzzleManager : MonoBehaviour
         switch (newActivePuzzle)
         {
             case 1:
+            case 0:
                 newActiveBackground = GameObject.FindGameObjectWithTag("P1Bg");
                 newActiveObjects = GameObject.FindGameObjectsWithTag("P1Obj");
                 break;
@@ -183,6 +192,12 @@ public class PuzzleManager : MonoBehaviour
                 break;
 
             case 3:
+            case 1:
+                newActiveBackground = GameObject.FindGameObjectWithTag("P2Bg");
+                newActiveObjects = GameObject.FindGameObjectsWithTag("P2ObjCard");
+                break;
+
+            case 2:
                 newActiveBackground = GameObject.FindGameObjectWithTag("P3Bg");
                 newActiveObjects = GameObject.FindGameObjectsWithTag("P3Obj");
                 break;
