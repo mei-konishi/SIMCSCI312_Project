@@ -2957,7 +2957,11 @@ GameObject:
   - component: {fileID: 1514051615}
   m_Layer: 0
   m_Name: MainCard
+<<<<<<< HEAD
   m_TagString: P2ObjCard
+=======
+  m_TagString: Untagged
+>>>>>>> master
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3059,8 +3063,14 @@ Transform:
   m_LocalScale: {x: 0.4263545, y: 0.27616435, z: 0.33484912}
   m_Children:
   - {fileID: 541167979}
+<<<<<<< HEAD
   m_Father: {fileID: 1685003166}
   m_RootOrder: 2
+=======
+  - {fileID: 88971734}
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+>>>>>>> master
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1542129779
 GameObject:
