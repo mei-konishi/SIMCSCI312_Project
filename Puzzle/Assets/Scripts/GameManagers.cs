@@ -33,75 +33,31 @@ public class GameManagers : MonoBehaviour
 
     public Text scoreText;
 
-<<<<<<< HEAD
     private int points;
 
+    private bool restart = false;
+    private bool stop = false;
+
     // Use this for initialization
     void Start()
     {
-        activeSequence.Clear();
-
-        positionInSequence = 0;
-        inputInSequence = 0;
-
-        for (int i = 0; i < difficulty + 2; i++)
-        {
-            colourSelect = Random.Range(0, colours.Length);
-
-            activeSequence.Add(colourSelect);
-
-            colours[activeSequence[positionInSequence]].color = new Color(colours[activeSequence[positionInSequence]].color.r, colours[activeSequence[positionInSequence]].color.g, colours[activeSequence[positionInSequence]].color.b, 1f);
-            buttonSounds[activeSequence[positionInSequence]].Play();
-
-            stayLitCounter = stayLit;
-            shouldBeLit = true;
-=======
-    // Use this for initialization
-    void Start()
-    {
-        if (!PlayerPrefs.HasKey("HiScore"))
-        {
-            PlayerPrefs.SetInt("HiScore", 0);
-        }
-
-        scoreText.text = "Score: 0 - High Score: " + PlayerPrefs.GetInt("HiScore");
-
-        switch (difficulty)
-        {
-            case 4:
-                objects[7].SetActive(false);
-                break;
-            case 3:
-                objects[7].SetActive(false);
-                objects[6].SetActive(false);
-                break;
-            case 2:
-                objects[7].SetActive(false);
-                objects[6].SetActive(false);
-                objects[5].SetActive(false);
-                break;
-            case 1:
-                objects[7].SetActive(false);
-                objects[6].SetActive(false);
-                objects[5].SetActive(false);
-                objects[4].SetActive(false);
-                break;
->>>>>>> 8951da006c6fd44743972954e15918577283faa9
-        }
+        //StartGame();
     }
 
 
     // Update is called once per frame
     void Update()
     {
-<<<<<<< HEAD
         if(Input.GetKeyDown(KeyCode.R))
         {
-            callStart();
+            Restart();
         }
 
-=======
->>>>>>> 8951da006c6fd44743972954e15918577283faa9
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            Stop();
+        }
+
         if (shouldBeLit)
         {
             stayLitCounter -= Time.deltaTime;
@@ -142,10 +98,73 @@ public class GameManagers : MonoBehaviour
                 }
             }
         }
+
+        if (restart)
+        {
+            if (shouldBeLit)
+            {
+                stayLitCounter -= Time.deltaTime;
+
+                if (stayLitCounter < 0)
+                {
+                    colours[activeSequence[positionInSequence]].color = new Color(colours[activeSequence[positionInSequence]].color.r, colours[activeSequence[positionInSequence]].color.g, colours[activeSequence[positionInSequence]].color.b, 0.5f);
+                    buttonSounds[activeSequence[positionInSequence]].Stop();
+                    shouldBeLit = false;
+
+                    shouldBeDark = true;
+                    waitBetweenCounter = waitBetweenLight;
+
+                    positionInSequence++;
+
+                    restart = false;
+                    StartGame();
+                }
+            }
+
+            else
+            {
+                restart = false;
+                StartGame();
+            }
+
+        }
+
+        if(stop)
+        {
+            if (shouldBeLit)
+            {
+                stayLitCounter -= Time.deltaTime;
+
+                if (stayLitCounter < 0)
+                {
+                    colours[activeSequence[positionInSequence]].color = new Color(colours[activeSequence[positionInSequence]].color.r, colours[activeSequence[positionInSequence]].color.g, colours[activeSequence[positionInSequence]].color.b, 0.5f);
+                    buttonSounds[activeSequence[positionInSequence]].Stop();
+                    shouldBeLit = false;
+
+                    shouldBeDark = true;
+                    waitBetweenCounter = waitBetweenLight;
+
+                    positionInSequence++;
+
+                    stop = false;
+                    activeSequence.Clear();
+
+                    positionInSequence = 0;
+                    inputInSequence = 0;
+                }
+            }
+
+            else
+            {
+                stop = false;
+                activeSequence.Clear();
+
+                positionInSequence = 0;
+                inputInSequence = 0;
+            }
+        }
     }
 
-<<<<<<< HEAD
-=======
     public void StartGame()
     {
         activeSequence.Clear();
@@ -153,26 +172,29 @@ public class GameManagers : MonoBehaviour
         positionInSequence = 0;
         inputInSequence = 0;
 
-        //colourSelect = Random.Range(0, colours.Length);
-        colourSelect = Random.Range(0, difficulty+3);
+        for (int i = 0; i < difficulty + 2; i++)
+        {
+            colourSelect = Random.Range(0, colours.Length);
 
-        activeSequence.Add(colourSelect);
+            activeSequence.Add(colourSelect);
 
-        colours[activeSequence[positionInSequence]].color = new Color(colours[activeSequence[positionInSequence]].color.r, colours[activeSequence[positionInSequence]].color.g, colours[activeSequence[positionInSequence]].color.b, 1f);
-        buttonSounds[activeSequence[positionInSequence]].Play();
+            colours[activeSequence[positionInSequence]].color = new Color(colours[activeSequence[positionInSequence]].color.r, colours[activeSequence[positionInSequence]].color.g, colours[activeSequence[positionInSequence]].color.b, 1f);
+            buttonSounds[activeSequence[positionInSequence]].Play();
 
-        stayLitCounter = stayLit;
-        shouldBeLit = true;
-
-        scoreText.text = "Score: 0 - High Score: " + PlayerPrefs.GetInt("HiScore");
+            stayLitCounter = stayLit;
+            shouldBeLit = true;
+        }
     }
 
->>>>>>> 8951da006c6fd44743972954e15918577283faa9
+    public void Stop()
+    {
+        stop = true;
+    }
+
     public void ColourPressed(int whichButton)
     {
         if (gameActive)
         {
-<<<<<<< HEAD
             if (activeSequence[inputInSequence] == whichButton)
             {
                 Debug.Log("Correct");
@@ -191,29 +213,6 @@ public class GameManagers : MonoBehaviour
                     for (int i = 0; i < difficulty + 2; i++)
                     {
                         colourSelect = Random.Range(0, colours.Length);
-=======
-            if (whichButton < difficulty + 3)
-            {
-                if (activeSequence[inputInSequence] == whichButton)
-                {
-                    Debug.Log("Correct");
-
-                    inputInSequence++;
-
-                    if (inputInSequence >= activeSequence.Count)
-                    {
-                        if (activeSequence.Count > PlayerPrefs.GetInt("HiScore"))
-                        {
-                            PlayerPrefs.SetInt("HiScore", activeSequence.Count);
-                        }
-                        scoreText.text = "Score: " + activeSequence.Count + " - HighScore: " + PlayerPrefs.GetInt("HiScore");
-
-                        positionInSequence = 0;
-                        inputInSequence = 0;
-
-                        //colourSelect = Random.Range(0, colours.Length);
-                        colourSelect = Random.Range(0, difficulty + 3);
->>>>>>> 8951da006c6fd44743972954e15918577283faa9
 
                         activeSequence.Add(colourSelect);
 
@@ -221,7 +220,6 @@ public class GameManagers : MonoBehaviour
 
                         stayLitCounter = stayLit;
                         shouldBeLit = true;
-<<<<<<< HEAD
                     }
 
                     gameActive = false;
@@ -256,47 +254,10 @@ public class GameManagers : MonoBehaviour
         }
     }
 
-    void callStart()
+    public void Restart()
     {
-        activeSequence.Clear();
-
-        positionInSequence = 0;
-        inputInSequence = 0;
-
-        for (int i = 0; i < difficulty + 2; i++)
-        {
-            colourSelect = Random.Range(0, colours.Length);
-
-            activeSequence.Add(colourSelect);
-
-            colours[activeSequence[positionInSequence]].color = new Color(colours[activeSequence[positionInSequence]].color.r, colours[activeSequence[positionInSequence]].color.g, colours[activeSequence[positionInSequence]].color.b, 1f);
-            buttonSounds[activeSequence[positionInSequence]].Play();
-
-            stayLitCounter = stayLit;
-            shouldBeLit = true;
-        }
+        restart = true;
     }
 
 }
  
-=======
-
-                        gameActive = false;
-
-                        correct.Play();
-                    }
-                }
-
-                else
-                {
-                    Debug.Log("Wrong");
-                    incorrect.Play();
-                    gameActive = false;
-                }
-            }
-            
-        }
-
-    }
-}
->>>>>>> 8951da006c6fd44743972954e15918577283faa9
