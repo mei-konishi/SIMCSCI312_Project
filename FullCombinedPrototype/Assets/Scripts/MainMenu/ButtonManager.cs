@@ -3,20 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using UnityEngine.Audio;
 
 public class ButtonManager : MonoBehaviour
 {
     public GameObject levelButtonContainer;
     public GameObject levelPanelContainer;
     public GameObject levelPanel;
+    public string gameSceneName = "MergedScene";
     private bool counter = false;
 
     private Transform cameraTranform;
     private Transform cameraFinalLookAt;
     private const float CAMERA_ROTATION_SPEED = 3.0f;
-
-    public AudioMixer audioMixer;
 
     public void Start()
     {
@@ -34,7 +32,7 @@ public class ButtonManager : MonoBehaviour
 
             string sceneName = thumbnail.name;
             container.name = sceneName;
-            container.transform.Find("StartLevelButton").GetComponent<Button>().onClick.AddListener(() => LoadLevel("LastSaveScene"));
+            container.transform.Find("StartLevelButton").GetComponent<Button>().onClick.AddListener(() => LoadLevel(gameSceneName));
             container.transform.Find("ClosePanelButton").GetComponent<Button>().onClick.AddListener(() => CloseLevelPanel(sceneName));
 
             levelButtonContainer.transform.Find(sceneName).GetComponent<Button>().onClick.AddListener(() => OpenLevelPanel(sceneName));
@@ -49,12 +47,6 @@ public class ButtonManager : MonoBehaviour
         {
             cameraTranform.rotation = Quaternion.Slerp(cameraTranform.rotation, cameraFinalLookAt.rotation, CAMERA_ROTATION_SPEED * Time.deltaTime);
         }
-    }
-
-    // Volume Control
-    public void SetVolume(float volume)
-    {
-        audioMixer.SetFloat("Volume", volume);
     }
 
     // For menu rotation
