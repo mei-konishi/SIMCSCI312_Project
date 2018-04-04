@@ -36,7 +36,7 @@ public class GameManagers : MonoBehaviour
     private int points;
 
     private bool restart = false;
-    private bool stop = false;
+    public bool stop = false;
 
     // Use this for initialization
     void Start()
@@ -56,6 +56,7 @@ public class GameManagers : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.S))
         {
             Stop();
+            gameActive = false;
         }
 
         if (shouldBeLit)
@@ -146,7 +147,6 @@ public class GameManagers : MonoBehaviour
 
                     positionInSequence++;
 
-                    stop = false;
                     activeSequence.Clear();
 
                     positionInSequence = 0;
@@ -156,7 +156,6 @@ public class GameManagers : MonoBehaviour
 
             else
             {
-                stop = false;
                 activeSequence.Clear();
 
                 positionInSequence = 0;
@@ -256,7 +255,9 @@ public class GameManagers : MonoBehaviour
 
     public void Restart()
     {
+        stop = false;
         restart = true;
+        
     }
 
 }
