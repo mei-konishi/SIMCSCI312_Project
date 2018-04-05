@@ -9,7 +9,7 @@ public class SimonSaysButtonController : MonoBehaviour
 
     public int thisButtonNumber;
 
-    private SimonSaysGameManagers theGM;
+    private SimonSaysGameController theGM;
 
     private AudioSource theSound;
 
@@ -17,7 +17,7 @@ public class SimonSaysButtonController : MonoBehaviour
     void Start()
     {
         theSprite = GetComponent<SpriteRenderer>();
-        theGM = FindObjectOfType<SimonSaysGameManagers>();
+        theGM = FindObjectOfType<SimonSaysGameController>();
         theSound = GetComponent<AudioSource>();
     }
 

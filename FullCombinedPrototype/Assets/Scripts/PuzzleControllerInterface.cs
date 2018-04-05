@@ -10,17 +10,17 @@ public abstract class PuzzleControllerInterface : MonoBehaviour {
 	// Use this for initialization
 	public virtual void Start () {
         slotted = false;
-        active = true;
+        active = false;
 	}
 	
     // use this to start the puzzle
-    public virtual void play()
+    public virtual void Play()
     {
         active = true;
     }
 
     // use this to stop the puzzle
-    public virtual void stop()
+    public virtual void Stop()
     {
         active = false;
     }

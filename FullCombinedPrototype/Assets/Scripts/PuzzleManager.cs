@@ -19,9 +19,10 @@ public class PuzzleManager : MonoBehaviour
 
     // TODO IN FUTURE, MAKE A LIST OF PUZZLE CONTROLLERS 
     // INSTEAD OF HOLDING EVERY PUZZLE'S INDIVIDUAL CONTROLLERS
-    private PuzzleControllerInterface[] puzzleControllers; // <-- like this. this holds all puzzles
+    public PuzzleControllerInterface[] puzzleControllers; // <-- like this. this holds all puzzles
     private PuzzleControllerInterface[] slottedPuzzleCtrls; // <-- this holds selected skills
     private MemoryPuzzleController memoryPuzzleController; // this is the temp reference for now
+    private SimonSaysGameController simonSaysController; // this is temp
 
     // Use this for initialization
     void Awake()
@@ -46,7 +47,8 @@ public class PuzzleManager : MonoBehaviour
         currentActivePuzzle = 1;
 
         puzzleSolvedText = GameObject.Find("PuzzleSolvedText").GetComponent<Text>();
-        memoryPuzzleController = GetComponent<MemoryPuzzleController>();
+        memoryPuzzleController = FindObjectOfType<MemoryPuzzleController>();
+        simonSaysController = FindObjectOfType<SimonSaysGameController>();
     }
 
     // call this function when atk puzzle is solved!

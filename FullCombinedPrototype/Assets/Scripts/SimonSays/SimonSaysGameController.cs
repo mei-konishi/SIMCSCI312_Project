@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SimonSaysGameManagers : MonoBehaviour
+public class SimonSaysGameController : PuzzleControllerInterface
 {
     public int difficulty;
 
@@ -39,9 +39,9 @@ public class SimonSaysGameManagers : MonoBehaviour
     public bool stop = false;
 
     // Use this for initialization
-    void Start()
+    public override void Start()
     {
-        //StartGame();
+        base.Start();
     }
 
 
@@ -55,7 +55,7 @@ public class SimonSaysGameManagers : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.S))
         {
-            Stop();
+            stop = true;
             gameActive = false;
         }
 
@@ -185,11 +185,6 @@ public class SimonSaysGameManagers : MonoBehaviour
         }
     }
 
-    public void Stop()
-    {
-        stop = true;
-    }
-
     public void ColourPressed(int whichButton)
     {
         if (gameActive)
@@ -223,6 +218,7 @@ public class SimonSaysGameManagers : MonoBehaviour
 
                     gameActive = false;
                     correct.Play();
+                    PuzzleManager.AtkPuzzleSolved(); // WIN HERE 
                 }
             }
 
@@ -253,11 +249,23 @@ public class SimonSaysGameManagers : MonoBehaviour
         }
     }
 
+    public override void Play()
+    {
+        base.Play();
+        Restart();
+    }
+
+    public override void Stop()
+    {
+        base.Stop();
+        stop = true;
+        gameActive = false;
+    }
+
     public void Restart()
     {
         stop = false;
         restart = true;
-
     }
 
 }
