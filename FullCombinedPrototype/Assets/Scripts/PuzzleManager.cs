@@ -27,7 +27,6 @@ public class PuzzleManager : MonoBehaviour
     // Use this for initialization
     void Awake()
     {
-
         if (instance == null)
         { // check if instance already exists
             instance = this;    // if not, set instance to this
@@ -49,6 +48,13 @@ public class PuzzleManager : MonoBehaviour
         puzzleSolvedText = GameObject.Find("PuzzleSolvedText").GetComponent<Text>();
         memoryPuzzleController = FindObjectOfType<MemoryPuzzleController>();
         simonSaysController = FindObjectOfType<SimonSaysGameController>();
+
+        StartFirstPuzzle();
+    }
+
+    private void StartFirstPuzzle()
+    {
+        simonSaysController.Play();
     }
 
     // call this function when atk puzzle is solved!
@@ -133,10 +139,20 @@ public class PuzzleManager : MonoBehaviour
             if (puzzleNumber == 2)
             {
                 memoryPuzzleController.Play();
+                simonSaysController.Stop();
             }
             else
             {
                 memoryPuzzleController.Stoppage();
+            }
+
+            if (puzzleNumber == 1)
+            {
+                simonSaysController.Play();
+            }
+            else
+            {
+                simonSaysController.Stop();
             }
             
         }
