@@ -16,14 +16,10 @@ public class PuzzleManager : MonoBehaviour
     private static int currentActivePuzzle; // 1 for atk, 2 for def, 3 for ulti
 
     private Text puzzleSolvedText;
-
-    // TODO IN FUTURE, MAKE A LIST OF PUZZLE CONTROLLERS 
-    // INSTEAD OF HOLDING EVERY PUZZLE'S INDIVIDUAL CONTROLLERS
-    public PuzzleControllerInterface[] puzzleControllers; // <-- like this. this holds all puzzles
-    private PuzzleControllerInterface[] slottedPuzzleCtrls; // <-- this holds selected skills
-    private MemoryPuzzleController memoryPuzzleController; // this is the temp reference for now
-    private SimonSaysGameController simonSaysController; // this is temp
-
+    
+    public PuzzleControllerInterface[] puzzleControllers; // this holds all puzzles
+    private PuzzleControllerInterface[] slottedPuzzleCtrls; // this holds selected skills
+    
     // Use this for initialization
     void Awake()
     {
@@ -46,15 +42,23 @@ public class PuzzleManager : MonoBehaviour
         currentActivePuzzle = 1;
 
         puzzleSolvedText = GameObject.Find("PuzzleSolvedText").GetComponent<Text>();
-        memoryPuzzleController = FindObjectOfType<MemoryPuzzleController>();
-        simonSaysController = FindObjectOfType<SimonSaysGameController>();
+
+        // TESTING putting in different controllers into array of interface
+        puzzleControllers = new PuzzleControllerInterface[2];
+        puzzleControllers[0] = FindObjectOfType<SimonSaysGameController>();
+        puzzleControllers[1] = FindObjectOfType<MemoryPuzzleController>();
+
+        // IN THE FUTURE this will change to be a fun
+        slottedPuzzleCtrls = new PuzzleControllerInterface[2];
+        slottedPuzzleCtrls[0] = puzzleControllers[0];
+        slottedPuzzleCtrls[1] = puzzleControllers[1];
 
         StartFirstPuzzle();
     }
 
     private void StartFirstPuzzle()
     {
-        simonSaysController.Play();
+        slottedPuzzleCtrls[0].Play();
     }
 
     // call this function when atk puzzle is solved!
@@ -128,33 +132,25 @@ public class PuzzleManager : MonoBehaviour
         // if new input is different from current
         if (puzzleNumber != currentActivePuzzle)
         {
-           
             // swap their display layers
             UpdateActivePuzzleSelection(puzzleNumber);
 
             // update current active puzzle
             currentActivePuzzle = puzzleNumber;
 
-            // TODO IN FUTURE, CHANGE THE FOLLOWING HARD CODE CALLS INTO GENERIC CALLS
-            if (puzzleNumber == 2)
+            // activate and deactivate puzzles 
+            switch (puzzleNumber)
             {
-                memoryPuzzleController.Play();
-                simonSaysController.Stop();
+                case 1: slottedPuzzleCtrls[0].Play();
+                    slottedPuzzleCtrls[1].Stop();
+                    break;
+                case 2: slottedPuzzleCtrls[0].Stop();
+                    slottedPuzzleCtrls[1].Play();
+                    break;
+                case 3: slottedPuzzleCtrls[0].Stop();
+                    slottedPuzzleCtrls[1].Stop();
+                    break;
             }
-            else
-            {
-                memoryPuzzleController.Stoppage();
-            }
-
-            if (puzzleNumber == 1)
-            {
-                simonSaysController.Play();
-            }
-            else
-            {
-                simonSaysController.Stop();
-            }
-            
         }
     }
 

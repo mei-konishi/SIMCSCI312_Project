@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MemoryPuzzleController : MonoBehaviour {
+public class MemoryPuzzleController : PuzzleControllerInterface {
 
     private int gridRows;
     private int gridCols;
@@ -22,7 +22,9 @@ public class MemoryPuzzleController : MonoBehaviour {
     [SerializeField] private int clearP = 0;
 
     // Use this for initialization
-    void Start() {
+    public override void Start() {
+
+        base.Start();
         
         Vector3 startPos = originalCard.transform.position;
 
@@ -96,7 +98,6 @@ public class MemoryPuzzleController : MonoBehaviour {
     {
         if(_score == arrayAmt/2) // win
         {
-           // PuzzleManager.AtkPuzzleSolved();
             PuzzleManager.DefPuzzleSolved();
             _score = 0;
             ab = 0;
@@ -106,11 +107,11 @@ public class MemoryPuzzleController : MonoBehaviour {
         //To stop the game
         if (Input.GetKey(KeyCode.P))
         {
-            Stoppage();
+            Stop();
         }
     } 
 
-    public void Play()
+    public override void Play()
     {
         IsEnable = true;
     }
@@ -180,7 +181,7 @@ public class MemoryPuzzleController : MonoBehaviour {
         PlaceCardsInRandSlots(startPos);  // put cards in slots randomly 
     }
 
-    public void Stoppage()
+    public override void Stop()
     {
         GameObject[] tin = GameObject.FindGameObjectsWithTag("TheCard");
         foreach (GameObject tal in tin)
