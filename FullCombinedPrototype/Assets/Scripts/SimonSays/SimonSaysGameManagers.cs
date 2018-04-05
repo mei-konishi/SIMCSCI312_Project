@@ -35,35 +35,28 @@ public class SimonSaysGameManagers : MonoBehaviour
 
     private int points;
 
+    private bool restart = false;
+    public bool stop = false;
+
     // Use this for initialization
     void Start()
     {
-        activeSequence.Clear();
-
-        positionInSequence = 0;
-        inputInSequence = 0;
-
-        for (int i = 0; i < difficulty + 2; i++)
-        {
-            colourSelect = Random.Range(0, colours.Length);
-
-            activeSequence.Add(colourSelect);
-
-            colours[activeSequence[positionInSequence]].color = new Color(colours[activeSequence[positionInSequence]].color.r, colours[activeSequence[positionInSequence]].color.g, colours[activeSequence[positionInSequence]].color.b, 1f);
-            buttonSounds[activeSequence[positionInSequence]].Play();
-
-            stayLitCounter = stayLit;
-            shouldBeLit = true;
-        }
+        //StartGame();
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            callStart();
+            Restart();
+        }
+
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            Stop();
+            gameActive = false;
         }
 
         if (shouldBeLit)
@@ -106,6 +99,95 @@ public class SimonSaysGameManagers : MonoBehaviour
                 }
             }
         }
+
+        if (restart)
+        {
+            if (shouldBeLit)
+            {
+                stayLitCounter -= Time.deltaTime;
+
+                if (stayLitCounter < 0)
+                {
+                    colours[activeSequence[positionInSequence]].color = new Color(colours[activeSequence[positionInSequence]].color.r, colours[activeSequence[positionInSequence]].color.g, colours[activeSequence[positionInSequence]].color.b, 0.5f);
+                    buttonSounds[activeSequence[positionInSequence]].Stop();
+                    shouldBeLit = false;
+
+                    shouldBeDark = true;
+                    waitBetweenCounter = waitBetweenLight;
+
+                    positionInSequence++;
+
+                    restart = false;
+                    StartGame();
+                }
+            }
+
+            else
+            {
+                restart = false;
+                StartGame();
+            }
+
+        }
+
+        if (stop)
+        {
+            if (shouldBeLit)
+            {
+                stayLitCounter -= Time.deltaTime;
+
+                if (stayLitCounter < 0)
+                {
+                    colours[activeSequence[positionInSequence]].color = new Color(colours[activeSequence[positionInSequence]].color.r, colours[activeSequence[positionInSequence]].color.g, colours[activeSequence[positionInSequence]].color.b, 0.5f);
+                    buttonSounds[activeSequence[positionInSequence]].Stop();
+                    shouldBeLit = false;
+
+                    shouldBeDark = true;
+                    waitBetweenCounter = waitBetweenLight;
+
+                    positionInSequence++;
+
+                    activeSequence.Clear();
+
+                    positionInSequence = 0;
+                    inputInSequence = 0;
+                }
+            }
+
+            else
+            {
+                activeSequence.Clear();
+
+                positionInSequence = 0;
+                inputInSequence = 0;
+            }
+        }
+    }
+
+    public void StartGame()
+    {
+        activeSequence.Clear();
+
+        positionInSequence = 0;
+        inputInSequence = 0;
+
+        for (int i = 0; i < difficulty + 2; i++)
+        {
+            colourSelect = Random.Range(0, colours.Length);
+
+            activeSequence.Add(colourSelect);
+
+            colours[activeSequence[positionInSequence]].color = new Color(colours[activeSequence[positionInSequence]].color.r, colours[activeSequence[positionInSequence]].color.g, colours[activeSequence[positionInSequence]].color.b, 1f);
+            buttonSounds[activeSequence[positionInSequence]].Play();
+
+            stayLitCounter = stayLit;
+            shouldBeLit = true;
+        }
+    }
+
+    public void Stop()
+    {
+        stop = true;
     }
 
     public void ColourPressed(int whichButton)
@@ -171,26 +253,11 @@ public class SimonSaysGameManagers : MonoBehaviour
         }
     }
 
-    void callStart()
+    public void Restart()
     {
-        activeSequence.Clear();
+        stop = false;
+        restart = true;
 
-        positionInSequence = 0;
-        inputInSequence = 0;
-
-        for (int i = 0; i < difficulty + 2; i++)
-        {
-            colourSelect = Random.Range(0, colours.Length);
-
-            activeSequence.Add(colourSelect);
-
-            colours[activeSequence[positionInSequence]].color = new Color(colours[activeSequence[positionInSequence]].color.r, colours[activeSequence[positionInSequence]].color.g, colours[activeSequence[positionInSequence]].color.b, 1f);
-            buttonSounds[activeSequence[positionInSequence]].Play();
-
-            stayLitCounter = stayLit;
-            shouldBeLit = true;
-        }
     }
 
 }
- 

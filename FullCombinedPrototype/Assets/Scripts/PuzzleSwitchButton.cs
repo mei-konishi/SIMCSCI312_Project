@@ -2,16 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PuzzleSwitchButton : MonoBehaviour {
+public class PuzzleSwitchButton : MonoBehaviour
+{
 
     public int thisButtonNumber;
 
     private PuzzleManager puzzleManager;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         puzzleManager = FindObjectOfType<PuzzleManager>();
-	}
+    }
 
     private void OnMouseDown()
     {
@@ -21,7 +23,7 @@ public class PuzzleSwitchButton : MonoBehaviour {
 
     private void OnMouseUp()
     {
-        
+
     }
-    
+
 }
