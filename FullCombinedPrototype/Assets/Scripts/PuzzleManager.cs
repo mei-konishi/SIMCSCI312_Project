@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class PuzzleManager : MonoBehaviour
 {
-
     public static PuzzleManager instance = null; // Static instance of Puzzle Manager
 
     private static int playerAtkPuzSolved;
@@ -232,7 +231,7 @@ public class PuzzleManager : MonoBehaviour
         newActiveBackground.GetComponent<Renderer>().sortingLayerName = "ForegroundPuzzle";
         foreach (GameObject currObj in newActiveObjects)
         {
-            currObj.GetComponent<Renderer>().sortingLayerName = "ForegroundPuzzle";
+            currObj.GetComponent<Renderer>().sortingLayerName = "ForegroundPuzzleObj";
         }
     }
 }

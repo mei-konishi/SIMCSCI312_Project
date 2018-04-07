@@ -34,7 +34,7 @@ public class BoardManager : MonoBehaviour {
         for(int i = 0; i <= level; i += 2)
         {
             // create an enemy (just 1 type for prototype for now) 
-            Instantiate(enemyTiles[0], new Vector3(5, 3, 0f), Quaternion.identity);
+            Instantiate(enemyTiles[0], new Vector3(5, 3.5f, 0f), Quaternion.identity);
         }
     }
 

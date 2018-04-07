@@ -15,6 +15,7 @@ TagManager:
   - P2Obj
   - P3Obj
   - P2ObjCard
+  - TheCard
   layers:
   - Default
   - TransparentFX
@@ -52,11 +53,20 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: BackBack
+    uniqueID: 3032925753
+    locked: 0
+  - name: BGSections
+    uniqueID: 620350085
+    locked: 0
   - name: BackgroundPuzzles
     uniqueID: 1319872899
     locked: 0
   - name: ForegroundPuzzle
     uniqueID: 3131993583
+    locked: 0
+  - name: ForegroundPuzzleObj
+    uniqueID: 3343982977
     locked: 0
   - name: Items
     uniqueID: 1861650685
@@ -64,6 +74,6 @@ TagManager:
   - name: Units
     uniqueID: 3393972251
     locked: 0
-  - name: UIText
+  - name: UI
     uniqueID: 415192079
     locked: 0
