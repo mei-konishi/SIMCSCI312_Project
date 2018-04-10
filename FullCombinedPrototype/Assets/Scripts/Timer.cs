@@ -125,6 +125,7 @@ public class Timer : MonoBehaviour {
                 {
                     puzzlePhase = false;    // enter attack phase
                     playerAtkTurn = true;   // player's turn first
+                    PuzzleManager.StopPuzzle(); // make the puzzles inactive
                     timeLeft = animationDelay;
                     animationTrigger = true; // play player's animation
                 }
@@ -156,6 +157,7 @@ public class Timer : MonoBehaviour {
                         readyForNextRound = true; // tell timer that ready for next round to start
                         puzzlePhase = true; // go back to puzzle mode
                         playerAtkTurn = true; // set back to player's turn for next round
+                        PuzzleManager.StartPuzzle(); // activate the puzzle again
                         timeLeft = puzzleDuration; // set timer back to puzzle count down
                     }
                 }

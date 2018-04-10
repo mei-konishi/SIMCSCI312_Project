@@ -1403,7 +1403,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 32
+    m_FontSize: 24
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -1931,7 +1931,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 80, y: 260}
+  m_AnchoredPosition: {x: 80, y: 250}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &653404510
@@ -1955,10 +1955,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 32
+    m_FontSize: 28
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 3
+    m_MinSize: 2
     m_MaxSize: 64
     m_Alignment: 0
     m_AlignByGeometry: 0
@@ -2082,7 +2082,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 50, y: 260}
+  m_AnchoredPosition: {x: 50, y: 250}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &776630568
@@ -2106,7 +2106,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 32
+    m_FontSize: 28
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -3224,7 +3224,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1514051614}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.51, y: -4.05, z: -0.33258}
+  m_LocalPosition: {x: 0.51, y: -4.05, z: -0}
   m_LocalScale: {x: 0.16742451, y: 0.16742456, z: 0.33484912}
   m_Children:
   - {fileID: 541167979}
@@ -3620,7 +3620,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bff21585a2bb0db4eb9cc9a6e15cdbe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficulty: 3
+  difficulty: 1
   objects:
   - {fileID: 1542129779}
   - {fileID: 531928421}
@@ -3648,8 +3648,8 @@ MonoBehaviour:
   - {fileID: 877158093}
   - {fileID: 2047011416}
   - {fileID: 16680766}
-  stayLit: 1
-  waitBetweenLight: 0.5
+  stayLit: 0.5
+  waitBetweenLight: 0.1
   activeSequence: 
   correct: {fileID: 1806363631}
   incorrect: {fileID: 865032561}

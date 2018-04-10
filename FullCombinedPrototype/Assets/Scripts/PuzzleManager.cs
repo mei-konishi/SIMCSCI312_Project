@@ -16,8 +16,8 @@ public class PuzzleManager : MonoBehaviour
 
     private Text puzzleSolvedText;
     
-    public PuzzleControllerInterface[] puzzleControllers; // this holds all puzzles
-    private PuzzleControllerInterface[] slottedPuzzleCtrls; // this holds selected skills
+    public static PuzzleControllerInterface[] puzzleControllers; // this holds all puzzles
+    public static PuzzleControllerInterface[] slottedPuzzleCtrls; // this holds selected skills
     
     // Use this for initialization
     void Awake()
@@ -31,8 +31,6 @@ public class PuzzleManager : MonoBehaviour
         { // if instance already exists and is not this
             Destroy(gameObject);    // then destroy it. enforcing singleton
         }
-
-        DontDestroyOnLoad(gameObject); // don't destroy when reloading scene (need? or nah?)
 
         playerAtkPuzSolved = 0;
         playerDefPuzSolved = 0;
@@ -151,6 +149,18 @@ public class PuzzleManager : MonoBehaviour
                     break;
             }
         }
+    }
+
+    // function to stop puzzles 
+    public static void StopPuzzle()
+    {
+        slottedPuzzleCtrls[currentActivePuzzle - 1].Stop();
+    }
+
+    // function to start puzzles
+    public static void StartPuzzle()
+    {
+        slottedPuzzleCtrls[currentActivePuzzle - 1].Play();
     }
 
     // Update is called once per frame =============================
