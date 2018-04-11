@@ -112,3 +112,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad4fc4efaa685c444885cea92849c84c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myPuzzles:
+  - {fileID: 1692299172751666, guid: e61c37d263eed6e4ea3e5dfc87e0ac20, type: 2}
+  puzzleControllers: []

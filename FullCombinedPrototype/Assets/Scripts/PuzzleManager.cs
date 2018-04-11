@@ -15,9 +15,16 @@ public class PuzzleManager : MonoBehaviour
     private static int currentActivePuzzle; // 1 for atk, 2 for def, 3 for ulti
 
     private Text puzzleSolvedText;
+<<<<<<< HEAD
     
     public static PuzzleControllerInterface[] puzzleControllers; // this holds all puzzles
     public static PuzzleControllerInterface[] slottedPuzzleCtrls; // this holds selected skills
+=======
+
+    public GameObject[] myPuzzles; // this holds all puzzles
+    public PuzzleControllerInterface[] puzzleControllers; // this holds all puzzles
+    private PuzzleControllerInterface[] slottedPuzzleCtrls; // this holds selected skills
+>>>>>>> MemoryPuzzle(Dynamic)
     
     // Use this for initialization
     void Awake()
@@ -39,6 +46,7 @@ public class PuzzleManager : MonoBehaviour
         currentActivePuzzle = 1;
 
         puzzleSolvedText = GameObject.Find("PuzzleSolvedText").GetComponent<Text>();
+        Instantiate(myPuzzles[0], new Vector3(2.19f, -2.65f, 0.05f), Quaternion.identity);
 
         // TESTING putting in different controllers into array of interface
         puzzleControllers = new PuzzleControllerInterface[2];
@@ -49,6 +57,8 @@ public class PuzzleManager : MonoBehaviour
         slottedPuzzleCtrls = new PuzzleControllerInterface[2];
         slottedPuzzleCtrls[0] = puzzleControllers[0];
         slottedPuzzleCtrls[1] = puzzleControllers[1];
+
+    
 
         StartFirstPuzzle();
     }
