@@ -16,9 +16,11 @@ public class PuzzleManager : MonoBehaviour
 
     private Text puzzleSolvedText;
 
-    public GameObject[] myPuzzles; // this holds all puzzles
-    public PuzzleControllerInterface[] puzzleControllers; // this holds all puzzles
-    private PuzzleControllerInterface[] slottedPuzzleCtrls; // this holds selected skills
+    public GameObject[] puzzleObjects; // this holds all puzzle objects
+
+    public static PuzzleControllerInterface[] puzzleControllers; // this holds all puzzles
+    public static PuzzleControllerInterface[] slottedPuzzleCtrls; // this holds selected skills
+
     
     // Use this for initialization
     void Awake()
@@ -33,8 +35,6 @@ public class PuzzleManager : MonoBehaviour
             Destroy(gameObject);    // then destroy it. enforcing singleton
         }
 
-        DontDestroyOnLoad(gameObject); // don't destroy when reloading scene (need? or nah?)
-
         playerAtkPuzSolved = 0;
         playerDefPuzSolved = 0;
         enemyAtkPuzSolved = 0;
@@ -42,13 +42,13 @@ public class PuzzleManager : MonoBehaviour
         currentActivePuzzle = 1;
 
         puzzleSolvedText = GameObject.Find("PuzzleSolvedText").GetComponent<Text>();
-        Instantiate(myPuzzles[0], new Vector3(2.19f, -2.65f, 0.05f), Quaternion.identity);
+        Instantiate(puzzleObjects[0], new Vector3(2.19f, -2.65f, 0.05f), Quaternion.identity);
 
         // TESTING putting in different controllers into array of interface
         puzzleControllers = new PuzzleControllerInterface[2];
-        puzzleControllers[0] = FindObjectOfType<SimonSaysGameController>();
-        puzzleControllers[1] = FindObjectOfType<MemoryPuzzleController>();
-
+        puzzleControllers[0] = FindObjectOfType<MemoryPuzzleController>();
+        puzzleControllers[1] = FindObjectOfType<SimonSaysGameController>();
+      
         // IN THE FUTURE this will change to be a fun
         slottedPuzzleCtrls = new PuzzleControllerInterface[2];
         slottedPuzzleCtrls[0] = puzzleControllers[0];
@@ -155,6 +155,18 @@ public class PuzzleManager : MonoBehaviour
                     break;
             }
         }
+    }
+
+    // function to stop puzzles 
+    public static void StopPuzzle()
+    {
+        slottedPuzzleCtrls[currentActivePuzzle - 1].Stop();
+    }
+
+    // function to start puzzles
+    public static void StartPuzzle()
+    {
+        slottedPuzzleCtrls[currentActivePuzzle - 1].Play();
     }
 
     // Update is called once per frame =============================

@@ -43,7 +43,7 @@ public class Enemy : CharacterInterface
         // TODO : in future, make stats database, or some formula
         strength = lvl;
         defence = lvl - 1;
-        maxHealth = lvl * 20;
+        maxHealth = lvl * 4;
         currentHealth = maxHealth;
     }
 

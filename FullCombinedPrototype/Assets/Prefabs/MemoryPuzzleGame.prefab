@@ -54,7 +54,7 @@ GameObject:
   - component: {fileID: 212264771353641448}
   m_Layer: 0
   m_Name: Puzzle Card - Back
-  m_TagString: P2Obj
+  m_TagString: P1Obj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 114563638305149734}
   m_Layer: 0
   m_Name: MainCard
-  m_TagString: P2Obj
+  m_TagString: P1Obj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -273,8 +273,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1319872899
-  m_SortingLayer: 3
+  m_SortingLayerID: -950984319
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: fa416790df187d94c83ff65122a1bec6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -317,8 +317,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1319872899
-  m_SortingLayer: 3
+  m_SortingLayerID: -950984319
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6d61ced4321ea5f47af62cf8a7a7a68f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

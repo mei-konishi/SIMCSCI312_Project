@@ -34,7 +34,7 @@ public class Player : CharacterInterface {
         level = 1;
         strength = 1;
         defence = 1;
-        maxHealth = 50;
+        maxHealth = 20;
         currentHealth = maxHealth;
         currentExp = 0;
     }

@@ -218,7 +218,7 @@ public class SimonSaysGameController : PuzzleControllerInterface
 
                     gameActive = false;
                     correct.Play();
-                    PuzzleManager.AtkPuzzleSolved(); // WIN HERE 
+                    PuzzleManager.DefPuzzleSolved(); // WIN HERE 
                 }
             }
 

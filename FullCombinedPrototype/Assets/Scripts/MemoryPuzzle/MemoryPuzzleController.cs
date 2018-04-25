@@ -98,7 +98,7 @@ public class MemoryPuzzleController : PuzzleControllerInterface {
     {
         if(_score == arrayAmt/2) // win
         {
-            PuzzleManager.DefPuzzleSolved();
+            PuzzleManager.AtkPuzzleSolved();
             _score = 0;
             ab = 0;
             clearP++;
