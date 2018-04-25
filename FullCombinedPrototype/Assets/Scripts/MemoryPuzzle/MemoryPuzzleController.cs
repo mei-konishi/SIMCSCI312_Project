@@ -8,7 +8,7 @@ public class MemoryPuzzleController : PuzzleControllerInterface {
     private int gridRows;
     private int gridCols;
     private int arrayAmt;
-    public const float offsetX = 1.8f;
+    public const float offsetX = 1.35f;
     public const float offsetY = 1.4f;
 
     public bool IsEnable = false;
@@ -147,7 +147,7 @@ public class MemoryPuzzleController : PuzzleControllerInterface {
         if (_firstRevealed.id == _secondRevealed.id)
         {
             _score++;
-            scoreLabel.text = "Score: " + _score;
+       //     scoreLabel.text = "Score: " + _score;
         }
         else
         {
