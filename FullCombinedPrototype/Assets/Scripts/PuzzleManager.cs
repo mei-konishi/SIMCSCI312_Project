@@ -11,7 +11,7 @@ public class PuzzleManager : MonoBehaviour
     private static int playerDefPuzSolved;
     private int enemyAtkPuzSolved;
     private int enemyDefPuzSolved;
-
+    
     private static int currentActivePuzzle; // 1 for atk, 2 for def, 3 for ulti
 
     private Text puzzleSolvedText;
@@ -21,7 +21,7 @@ public class PuzzleManager : MonoBehaviour
     public static PuzzleControllerInterface[] puzzleControllers; // this holds all puzzles
     public static PuzzleControllerInterface[] slottedPuzzleCtrls; // this holds selected skills
 
-
+    
     // Use this for initialization
     void Awake()
     {
@@ -42,26 +42,26 @@ public class PuzzleManager : MonoBehaviour
         currentActivePuzzle = 1;
 
         puzzleSolvedText = GameObject.Find("PuzzleSolvedText").GetComponent<Text>();
-        Instantiate(puzzleObjects[1], new Vector3(2.19f, -2.65f, 0.05f), Quaternion.identity);
+        Instantiate(puzzleObjects[0], new Vector3(2.19f, -2.65f, 0.05f), Quaternion.identity);
 
         // TESTING putting in different controllers into array of interface
         puzzleControllers = new PuzzleControllerInterface[2];
-        puzzleControllers[0] = FindObjectOfType<SimonSaysGameController>();
-        puzzleControllers[1] = FindObjectOfType<MemoryPuzzleController>();
-
+        puzzleControllers[0] = FindObjectOfType<MemoryPuzzleController>();
+        puzzleControllers[1] = FindObjectOfType<SimonSaysGameController>();
+      
         // IN THE FUTURE this will change to be a fun
         slottedPuzzleCtrls = new PuzzleControllerInterface[2];
         slottedPuzzleCtrls[0] = puzzleControllers[0];
         slottedPuzzleCtrls[1] = puzzleControllers[1];
 
+    
 
         StartFirstPuzzle();
     }
 
     private void StartFirstPuzzle()
     {
-        slottedPuzzleCtrls[0].Play(); // set the first puzzle to active
-        puzzleObjects[1].SetActive(false);  // set the objects of second puzzle to deactivate
+        slottedPuzzleCtrls[0].Play();
     }
 
     // call this function when atk puzzle is solved!
@@ -144,23 +144,14 @@ public class PuzzleManager : MonoBehaviour
             // activate and deactivate puzzles 
             switch (puzzleNumber)
             {
-                case 1:
-                    slottedPuzzleCtrls[0].Play(); // activate puzzle
-                    //puzzleObjects[0].SetActive(true); // activate objects
-                    slottedPuzzleCtrls[1].Stop(); // deactivate puzzles
-                    puzzleObjects[1].SetActive(false); // hide objects
-                    break;
-                case 2:
-                    slottedPuzzleCtrls[0].Stop();
-                    puzzleObjects[0].SetActive(false);
-                    slottedPuzzleCtrls[1].Play();
-                    puzzleObjects[1].SetActive(true);
-                    break;
-                case 3:
-                    slottedPuzzleCtrls[0].Stop();
-                    puzzleObjects[0].SetActive(false);
+                case 1: slottedPuzzleCtrls[0].Play();
                     slottedPuzzleCtrls[1].Stop();
-                    puzzleObjects[1].SetActive(true);
+                    break;
+                case 2: slottedPuzzleCtrls[0].Stop();
+                    slottedPuzzleCtrls[1].Play();
+                    break;
+                case 3: slottedPuzzleCtrls[0].Stop();
+                    slottedPuzzleCtrls[1].Stop();
                     break;
             }
         }
@@ -215,7 +206,7 @@ public class PuzzleManager : MonoBehaviour
                 currentBackground = GameObject.FindGameObjectWithTag("P1Bg");
                 currentObjects = GameObject.FindGameObjectsWithTag("P1Obj");
                 break;
-
+                
             case 2:
                 currentBackground = GameObject.FindGameObjectWithTag("P2Bg");
                 currentObjects = GameObject.FindGameObjectsWithTag("P2Obj");
@@ -260,3 +251,5 @@ public class PuzzleManager : MonoBehaviour
         }
     }
 }
+
+
