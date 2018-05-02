@@ -21,9 +21,9 @@ GameObject:
   - component: {fileID: 4158874727336974}
   - component: {fileID: 114603777807894548}
   - component: {fileID: 114108530890989398}
-  - component: {fileID: 114711067049195504}
   - component: {fileID: 114113563098273514}
   - component: {fileID: 114251529515046724}
+  - component: {fileID: 114554365726894144}
   m_Layer: 0
   m_Name: GameManager 1
   m_TagString: Untagged
@@ -90,6 +90,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   puzzleDuration: 30
+--- !u!114 &114554365726894144
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1615325242237304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4fc4efaa685c444885cea92849c84c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  puzzleObjects:
+  - {fileID: 1605090663177072, guid: e61c37d263eed6e4ea3e5dfc87e0ac20, type: 2}
+  - {fileID: 1754963278048158, guid: 15cee55b31c9a59408ddb66b3466d51e, type: 2}
 --- !u!114 &114603777807894548
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -101,17 +115,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c5b971fbe874c144a01d6f78b1f2561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114711067049195504
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1615325242237304}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad4fc4efaa685c444885cea92849c84c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myPuzzles:
-  - {fileID: 1692299172751666, guid: e61c37d263eed6e4ea3e5dfc87e0ac20, type: 2}
-  puzzleControllers: []
