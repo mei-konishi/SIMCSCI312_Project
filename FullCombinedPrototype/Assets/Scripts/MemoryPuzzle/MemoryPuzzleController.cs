@@ -12,8 +12,7 @@ public class MemoryPuzzleController : PuzzleControllerInterface {
     public const float offsetY = 1.4f;
 
     public bool IsEnable = false;
-
-    public int diffLv;
+    
     private int ab = 0;
     int[] numbers;
     private MainCard card;
@@ -25,10 +24,12 @@ public class MemoryPuzzleController : PuzzleControllerInterface {
     public override void Start() {
 
         base.Start();
+        puzzleType = 2; // this puzzle is a defence type
+        puzzleDifficulty = 1; // set puzzle difficulty to 1 first
         
         Vector3 startPos = originalCard.transform.position;
 
-        SetUpCards(diffLv); // set number of rows and cols of cards based on level
+        SetUpCards(puzzleDifficulty); // set number of rows and cols of cards based on level
 
         PlaceCardsInRandSlots(startPos);  // put cards in slots randomly        
     }
@@ -36,7 +37,7 @@ public class MemoryPuzzleController : PuzzleControllerInterface {
     private void SetUpCards(int level)
     {
         // set up cards based on level 
-        gridRows = diffLv;
+        gridRows = puzzleDifficulty;
         gridCols = 4;
         arrayAmt = gridRows * gridCols;
     }
@@ -98,7 +99,7 @@ public class MemoryPuzzleController : PuzzleControllerInterface {
     {
         if(_score == arrayAmt/2) // win
         {
-            PuzzleManager.AtkPuzzleSolved();
+            PuzzleManager.PuzzleSolved(puzzleType); // tell manager that puzzle solved
             _score = 0;
             ab = 0;
             clearP++;
@@ -174,7 +175,7 @@ public class MemoryPuzzleController : PuzzleControllerInterface {
             }
             objectMain.transform.GetChild(0).gameObject.SetActive(true);
         }
-        SetUpCards(diffLv); // set number of rows and cols of cards based on level
+        SetUpCards(puzzleDifficulty); // set number of rows and cols of cards based on level
 
         Vector3 startPos = originalCard.transform.position;
 
@@ -194,7 +195,7 @@ public class MemoryPuzzleController : PuzzleControllerInterface {
             objectMain.transform.GetChild(0).gameObject.SetActive(true);
         }
 
-        SetUpCards(diffLv); // set number of rows and cols of cards based on level
+        SetUpCards(puzzleDifficulty); // set number of rows and cols of cards based on level
 
         Vector3 startPos = originalCard.transform.position;
 

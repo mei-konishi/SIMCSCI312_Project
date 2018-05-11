@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class SimonSaysGameController : PuzzleControllerInterface
 {
-    public int difficulty;
+ //   public int difficulty;
 
     public GameObject[] objects;
     public SpriteRenderer[] colours;
@@ -42,8 +42,14 @@ public class SimonSaysGameController : PuzzleControllerInterface
     public override void Start()
     {
         base.Start();
+        puzzleType = 1; // this puzzle is an attack type
+        puzzleDifficulty = GameManager.level; // difficulty set to current level
     }
 
+    public void SetDifficulty(int difficulty)
+    {
+        puzzleDifficulty = difficulty;
+    }
 
     // Update is called once per frame
     void Update()
@@ -171,7 +177,7 @@ public class SimonSaysGameController : PuzzleControllerInterface
         positionInSequence = 0;
         inputInSequence = 0;
 
-        for (int i = 0; i < difficulty + 2; i++)
+        for (int i = 0; i < puzzleDifficulty + 2; i++)
         {
             colourSelect = Random.Range(0, colours.Length);
 
@@ -204,7 +210,7 @@ public class SimonSaysGameController : PuzzleControllerInterface
 
                     activeSequence.Clear();
 
-                    for (int i = 0; i < difficulty + 2; i++)
+                    for (int i = 0; i < puzzleDifficulty + 2; i++)
                     {
                         colourSelect = Random.Range(0, colours.Length);
 
@@ -218,7 +224,7 @@ public class SimonSaysGameController : PuzzleControllerInterface
 
                     gameActive = false;
                     correct.Play();
-                    PuzzleManager.DefPuzzleSolved(); // WIN HERE 
+                    PuzzleManager.PuzzleSolved(puzzleType); // WIN HERE 
                 }
             }
 
@@ -231,7 +237,7 @@ public class SimonSaysGameController : PuzzleControllerInterface
 
                 activeSequence.Clear();
 
-                for (int i = 0; i < difficulty + 2; i++)
+                for (int i = 0; i < puzzleDifficulty + 2; i++)
                 {
                     colourSelect = Random.Range(0, colours.Length);
 

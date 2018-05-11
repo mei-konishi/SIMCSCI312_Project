@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114491618636582200}
   m_Layer: 0
   m_Name: MainCard
-  m_TagString: P1Obj
+  m_TagString: P2Obj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 212240605427185510}
   m_Layer: 0
   m_Name: Puzzle Card - Back
-  m_TagString: P1Obj
+  m_TagString: P2Obj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -199,10 +199,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   originalCard: {fileID: 114491618636582200}
   images:
-  - {fileID: 21300000, guid: 0e3bff2854a2d944f9bea8fb5dbc2e95, type: 3}
-  - {fileID: 21300000, guid: f270a103d5fe7cc40a9b28b99c359148, type: 3}
-  - {fileID: 21300000, guid: 7524e91bfcfea664a8395c4a833bcb37, type: 3}
-  - {fileID: 21300000, guid: 04b180941a3742e47a19715f7b6429eb, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   scoreLabel: {fileID: 0}
 --- !u!114 &114332175855378750
 MonoBehaviour:
@@ -216,17 +216,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsEnable: 0
-  diffLv: 2
   originalCard: {fileID: 114491618636582200}
   images:
   - {fileID: 21300000, guid: fa416790df187d94c83ff65122a1bec6, type: 3}
   - {fileID: 21300000, guid: c163ff02bfbab074fb7c063e589b3103, type: 3}
   - {fileID: 21300000, guid: e6e03b0aff68b214dba0bf785a167672, type: 3}
   - {fileID: 21300000, guid: c119c630c8262e74c95ba6066fbade00, type: 3}
-  - {fileID: 21300000, guid: 5a60a9a8d143c544986511e36987cf93, type: 3}
-  - {fileID: 21300000, guid: d3e44eca97026544bafb2e50439a80bf, type: 3}
-  - {fileID: 21300000, guid: 2a95cf5eb5ab34f48b49cb343c2e9ff7, type: 3}
-  - {fileID: 21300000, guid: d53ad4c8686b26c46afb1e13033309fd, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   clearP: 0
   scoreLabel: {fileID: 0}
 --- !u!114 &114491618636582200
@@ -251,6 +250,7 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -266,13 +266,14 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -950984319
-  m_SortingLayer: 5
+  m_SortingLayerID: 1319872899
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6d61ced4321ea5f47af62cf8a7a7a68f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -293,6 +294,7 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -308,13 +310,14 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -950984319
-  m_SortingLayer: 5
+  m_SortingLayerID: 1319872899
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: fa416790df187d94c83ff65122a1bec6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

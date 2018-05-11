@@ -9,6 +9,7 @@ public class PuzzleManager : MonoBehaviour
 
     private static int playerAtkPuzSolved;
     private static int playerDefPuzSolved;
+    private static bool playerUltiPuzSolved;
     private int enemyAtkPuzSolved;
     private int enemyDefPuzSolved;
 
@@ -37,6 +38,7 @@ public class PuzzleManager : MonoBehaviour
 
         playerAtkPuzSolved = 0;
         playerDefPuzSolved = 0;
+        playerUltiPuzSolved = false;
         enemyAtkPuzSolved = 0;
         enemyDefPuzSolved = 0;
         currentActivePuzzle = 1;
@@ -47,15 +49,13 @@ public class PuzzleManager : MonoBehaviour
 
         // TESTING putting in different controllers into array of interface
         puzzleControllers = new PuzzleControllerInterface[2];
-        puzzleControllers[0] = FindObjectOfType<MemoryPuzzleController>();
-        puzzleControllers[1] = FindObjectOfType<SimonSaysGameController>();
-
+        puzzleControllers[0] = FindObjectOfType<SimonSaysGameController>();
+        puzzleControllers[1] = FindObjectOfType<MemoryPuzzleController>();
+        
         // IN THE FUTURE this will change to be a fun
         slottedPuzzleCtrls = new PuzzleControllerInterface[2];
         slottedPuzzleCtrls[0] = puzzleControllers[0];
         slottedPuzzleCtrls[1] = puzzleControllers[1];
-
-
 
         StartFirstPuzzle();
     }
@@ -65,16 +65,18 @@ public class PuzzleManager : MonoBehaviour
         slottedPuzzleCtrls[0].Play();
     }
 
-    // call this function when atk puzzle is solved!
-    public static void AtkPuzzleSolved()
+    // call this function when puzzle is solved!
+    public static void PuzzleSolved(int puzType)
     {
-        playerAtkPuzSolved++;
-    }
-
-    // call this function when def puzzle is solved!
-    public static void DefPuzzleSolved()
-    {
-        playerDefPuzSolved++;
+        switch (puzType)
+        {
+            case 1: playerAtkPuzSolved++;
+                break;
+            case 2: playerDefPuzSolved++;
+                break;
+            case 3: playerUltiPuzSolved = true;
+                break;
+        }
     }
 
     // for AI use.
@@ -204,6 +206,7 @@ public class PuzzleManager : MonoBehaviour
         GameObject newActiveBackground = null;
         GameObject[] newActiveObjects = null;
 
+        // grab all current active puzzle objects 
         switch (currentActivePuzzle)
         {
             case 1:
@@ -222,6 +225,7 @@ public class PuzzleManager : MonoBehaviour
                 break;
         }
 
+        // grab all new active puzzle objects
         switch (newActivePuzzle)
         {
 
@@ -241,17 +245,23 @@ public class PuzzleManager : MonoBehaviour
                 break;
         }
 
-        // now switch their display layers 
+        // now switch their display layers and z pos (to compensate for stacked colliders)
         currentBackground.GetComponent<Renderer>().sortingLayerName = "BackgroundPuzzles";
         foreach (GameObject currObj in currentObjects)
         {
             currObj.GetComponent<Renderer>().sortingLayerName = "BackgroundPuzzles";
+            Vector3 originalPosition = currObj.GetComponent<Transform>().position;
+            Vector3 newPosition = originalPosition + new Vector3(0, 0, 0.1f); // move the object backwards
+            currObj.GetComponent<Transform>().position = newPosition;
         }
 
         newActiveBackground.GetComponent<Renderer>().sortingLayerName = "ForegroundPuzzle";
         foreach (GameObject currObj in newActiveObjects)
         {
             currObj.GetComponent<Renderer>().sortingLayerName = "ForegroundPuzzleObj";
+            Vector3 originalPosition = currObj.GetComponent<Transform>().position;
+            Vector3 newPosition = originalPosition + new Vector3(0, 0, -0.1f); // move the object backwards
+            currObj.GetComponent<Transform>().position = newPosition;
         }
     }
 }
