@@ -119,7 +119,7 @@ public class Timer : MonoBehaviour {
             // count down timer for puzzle phase
             if (puzzlePhase)
             {
-                timerText.text = "Timer : " + ((int)timeLeft + 1);
+                timerText.text = "" + ((int)timeLeft + 1);
                 timeLeft -= Time.deltaTime;
                 if (timeLeft <= 0)
                 {

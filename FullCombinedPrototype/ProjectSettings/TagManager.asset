@@ -16,6 +16,9 @@ TagManager:
   - P3Obj
   - P2ObjCard
   - TheCard
+  - AttackPoint
+  - DefendPoint
+  - Points
   layers:
   - Default
   - TransparentFX

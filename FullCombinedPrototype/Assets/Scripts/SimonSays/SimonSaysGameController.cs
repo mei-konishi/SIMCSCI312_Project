@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class SimonSaysGameController : PuzzleControllerInterface
 {
- //   public int difficulty;
-
     public GameObject[] objects;
     public SpriteRenderer[] colours;
     public AudioSource[] buttonSounds;
@@ -224,7 +222,7 @@ public class SimonSaysGameController : PuzzleControllerInterface
 
                     gameActive = false;
                     correct.Play();
-                    PuzzleManager.PuzzleSolved(puzzleType); // WIN HERE 
+                    puzzleManagerScript.PuzzleSolved(puzzleType); // WIN HERE 
                 }
             }
 

@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114113563098273514}
   - component: {fileID: 114251529515046724}
   - component: {fileID: 114554365726894144}
+  - component: {fileID: 114974104770236442}
   m_Layer: 0
   m_Name: GameManager 1
   m_TagString: Untagged
@@ -55,6 +56,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f9b8f6cfee8eb749b92268923d584a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  backgrounds:
+  - {fileID: 1716630686904924, guid: faba1c6a728e3dc43afd77f7c9e857d2, type: 2}
+  - {fileID: 1340968712167724, guid: 6472b3e83da2d12479c796e915ac0fa0, type: 2}
+  - {fileID: 1859671959164368, guid: 79267571d5b001c4f8ccb7d86a6b5d5b, type: 2}
+  - {fileID: 1710202495790684, guid: 00f8c353aa021bf4ab7ecc02e8ac93cb, type: 2}
+  - {fileID: 1939992086187154, guid: 221f00a9db4cc4e48b3dc684412a9bea, type: 2}
+  - {fileID: 1851134981202882, guid: 44e5ec25df6079d49b0d0065d5049c4e, type: 2}
+  - {fileID: 1578710286034208, guid: f08c10cecfd29a84eb7935128bc41f28, type: 2}
+  - {fileID: 1603532191916510, guid: a4b8f5f6063f05942b4160cd9d5cc106, type: 2}
+  - {fileID: 1983354653763706, guid: 21c3ab6205e76104fbf97adf8498810e, type: 2}
+  - {fileID: 1841058567014368, guid: 24dde76d38097d348b9dec5ee7d096a9, type: 2}
   floorTiles:
   - {fileID: 1234746465019944, guid: 102ba5262669dbb40a2820d490fe4775, type: 2}
   - {fileID: 1555556548509412, guid: 0726a911cc720714492a417e65125fc7, type: 2}
@@ -115,3 +127,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c5b971fbe874c144a01d6f78b1f2561, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114974104770236442
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1615325242237304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cd3c7b5c6195ef4c9687f49e45183bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackIcon: {fileID: 1866013504236136, guid: 6c2d72a413a26a84c9e1ce1d6fdf7268, type: 2}
+  defendIcon: {fileID: 1593873904639902, guid: db0e0f41ac1db044e815aa702940e2a6, type: 2}
+  healthIcon: {fileID: 1879894702538242, guid: 456bbeed680b334458b4962f500a4c39, type: 2}
+  attackBox: {fileID: 1658385855302570, guid: 08b846c1399fd844cb9c8977b84447a0, type: 2}
+  defendBox: {fileID: 1281093055052432, guid: 3d5887ad235bb2649873bd49ef333a9d, type: 2}
+  attackPoint: {fileID: 1252665935186494, guid: de0494e8751b38e46938bfcfc0f900be,
+    type: 2}
+  defendPoint: {fileID: 1783937049747352, guid: efff1e8eb317b6c418ffb1dd1e1ee6ce,
+    type: 2}
+  healthBar: {fileID: 1932521050575090, guid: 26bb1d1097c641b408b09f81523e2950, type: 2}

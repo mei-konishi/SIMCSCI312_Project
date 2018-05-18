@@ -24,9 +24,10 @@ public class Player : CharacterInterface {
 
         initializeStats();
 
-        playerStatsText.text = "Str: " + strength + " \n"
+ /*       playerStatsText.text = "Str: " + strength + " \n"
                              + "Def: " + defence + "\n"
                              + "Health: " + currentHealth + "/" + maxHealth;
+                             */
     }
 
     private void initializeStats()
@@ -37,13 +38,16 @@ public class Player : CharacterInterface {
         maxHealth = 50;
         currentHealth = maxHealth;
         currentExp = 0;
+        StatsUIManager.InitPlayerStats(strength, defence, maxHealth); // update the UI
     }
 
     public override void updateStats()
     {
-        playerStatsText.text = "Str: " + strength + " \n"
+ /*       playerStatsText.text = "Str: " + strength + " \n"
                              + "Def: " + defence + "\n"
                              + "Health: " + currentHealth + "/" + maxHealth;
+*/
+        StatsUIManager.UpdatePlayerHealth(currentHealth); // update UI on health
     }
 
     public void gainExp(int exp)
@@ -77,6 +81,6 @@ public class Player : CharacterInterface {
 
     public void doHitAnimation()
     {
-        animator.SetTrigger("PlayerChop");
+        animator.SetTrigger("PlayerAttack");
     }
 }

@@ -59,8 +59,6 @@ public class GameManager : MonoBehaviour {
         enemies.Clear(); // clear monster in list to prepare for next level
 
         boardScript.SetupScene(level);  // setup bg
-
-        startNextRound();
     }
 
     //Call this to add the passed in Enemy to the List of Enemy objects.

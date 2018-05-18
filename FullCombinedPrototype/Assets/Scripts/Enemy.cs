@@ -22,7 +22,7 @@ public class Enemy : CharacterInterface
         //Get and store a reference to the attached Animator component.
         animator = GetComponent<Animator>();
 
-        enemyStatsText = GameObject.Find("EnemyStatsText").GetComponent<Text>();
+ //       enemyStatsText = GameObject.Find("EnemyStatsText").GetComponent<Text>();
 
         base.Start();
         /*
@@ -45,13 +45,17 @@ public class Enemy : CharacterInterface
         defence = lvl - 1;
         maxHealth = lvl * 20;
         currentHealth = maxHealth;
+        StatsUIManager.InitEnemyValues(strength, defence, maxHealth); // update UI 
     }
 
     // Update is called once per frame
     void Update () {
+        /*
         enemyStatsText.text = "Str: " + strength + " \n"
                              + "Def: " + defence + "\n"
                              + "Health: " + currentHealth + "/" + maxHealth;
+                             */
+        StatsUIManager.UpdateEnemyHealth(currentHealth); // update UI
     }
 
     public void doHitAnimation()

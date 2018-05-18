@@ -7,15 +7,17 @@ public class PuzzleManager : MonoBehaviour
 {
     public static PuzzleManager instance = null; // Static instance of Puzzle Manager
 
+    private const int MAX_PUZ_SOLVE = 6;
+
     private static int playerAtkPuzSolved;
     private static int playerDefPuzSolved;
     private static bool playerUltiPuzSolved;
     private int enemyAtkPuzSolved;
     private int enemyDefPuzSolved;
 
-    private static int currentActivePuzzle; // 1 for atk, 2 for def, 3 for ulti
+    private StatsUIManager statsUIManagerScript;
 
-    private Text puzzleSolvedText;
+    private static int currentActivePuzzle; // 1 for atk, 2 for def, 3 for ulti
 
     public GameObject[] puzzleObjects; // this holds all puzzle objects
 
@@ -26,13 +28,13 @@ public class PuzzleManager : MonoBehaviour
     // Use this for initialization
     void Awake()
     {
-        if (instance == null)
-        { // check if instance already exists
+        if (instance == null) // check if instance already exists
+        { 
             instance = this;    // if not, set instance to this
         }
 
-        else if (instance != this)
-        { // if instance already exists and is not this
+        else if (instance != this) // if instance already exists and is not this
+        { 
             Destroy(gameObject);    // then destroy it. enforcing singleton
         }
 
@@ -42,17 +44,20 @@ public class PuzzleManager : MonoBehaviour
         enemyAtkPuzSolved = 0;
         enemyDefPuzSolved = 0;
         currentActivePuzzle = 1;
-
-        puzzleSolvedText = GameObject.Find("PuzzleSolvedText").GetComponent<Text>();
+        
         Instantiate(puzzleObjects[0], new Vector3(0f, 0f, 0f), Quaternion.identity);
         Instantiate(puzzleObjects[1], new Vector3(0f, 0f, 0f), Quaternion.identity);
+
+        // get the stats UI manager script and set up the UI
+        statsUIManagerScript = GetComponent<StatsUIManager>();
+        statsUIManagerScript.Setup();
 
         // TESTING putting in different controllers into array of interface
         puzzleControllers = new PuzzleControllerInterface[2];
         puzzleControllers[0] = FindObjectOfType<SimonSaysGameController>();
         puzzleControllers[1] = FindObjectOfType<MemoryPuzzleController>();
         
-        // IN THE FUTURE this will change to be a fun
+        // IN THE FUTURE this will change to be a function?
         slottedPuzzleCtrls = new PuzzleControllerInterface[2];
         slottedPuzzleCtrls[0] = puzzleControllers[0];
         slottedPuzzleCtrls[1] = puzzleControllers[1];
@@ -66,13 +71,21 @@ public class PuzzleManager : MonoBehaviour
     }
 
     // call this function when puzzle is solved!
-    public static void PuzzleSolved(int puzType)
+    public void PuzzleSolved(int puzType)
     {
         switch (puzType)
         {
-            case 1: playerAtkPuzSolved++;
+            case 1: if (playerAtkPuzSolved < MAX_PUZ_SOLVE) // if max not reached
+                { 
+                    playerAtkPuzSolved++;   // increment attack puzzle count
+                    statsUIManagerScript.UpdateAtkPuzzleSolved(playerAtkPuzSolved); // update UI
+                }
                 break;
-            case 2: playerDefPuzSolved++;
+            case 2: if (playerDefPuzSolved < MAX_PUZ_SOLVE)// if max not reached
+                { 
+                    playerDefPuzSolved++; // increment defence puzzle count
+                    statsUIManagerScript.UpdateDefPuzzleSolved(playerDefPuzSolved); // update UI
+                }
                 break;
             case 3: playerUltiPuzSolved = true;
                 break;
@@ -97,6 +110,7 @@ public class PuzzleManager : MonoBehaviour
         playerDefPuzSolved = 0;
         enemyAtkPuzSolved = 0;
         enemyDefPuzSolved = 0;
+        statsUIManagerScript.ClearPoints(); // clear UI
     }
 
     // temp AI, will change next time to real time update
@@ -191,10 +205,7 @@ public class PuzzleManager : MonoBehaviour
                 playerDefPuzSolved++;
             }
         }
-
-        puzzleSolvedText.text = "Atk Puzzles Solved: " + playerAtkPuzSolved + "\n"
-                                + "Def Puzzles Solved: " + playerDefPuzSolved;
-
+        
     }
 
     // check current active puzzle being selected, and make sure the layer is being set right
