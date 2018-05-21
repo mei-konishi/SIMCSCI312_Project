@@ -17,12 +17,13 @@ public class PuzzleManager : MonoBehaviour
 
     private StatsUIManager statsUIManagerScript;
 
+    private int[] puzzles; // an array of 3 int, with each int telling us which puzzle is to be loaded
+    private int noOfPuzzles; // whether there's 2 or 3 puzzles
     private static int currentActivePuzzle; // 1 for atk, 2 for def, 3 for ulti
 
     public GameObject[] puzzleObjects; // this holds all puzzle objects
 
-    public static PuzzleControllerInterface[] puzzleControllers; // this holds all puzzles
-    public static PuzzleControllerInterface[] slottedPuzzleCtrls; // this holds selected skills
+    public static PuzzleControllerInterface[] puzzleControllers; // this holds the puzzle controllers 
 
 
     // Use this for initialization
@@ -44,30 +45,90 @@ public class PuzzleManager : MonoBehaviour
         enemyAtkPuzSolved = 0;
         enemyDefPuzSolved = 0;
         currentActivePuzzle = 1;
-        
-        Instantiate(puzzleObjects[0], new Vector3(0f, 0f, 0f), Quaternion.identity);
-        Instantiate(puzzleObjects[1], new Vector3(0f, 0f, 0f), Quaternion.identity);
+
+        // go to player prefs to get skills equipped information,
+        // and pass into function to turn the string into array of int to find puzzles equipped
+        puzzles = new int[3];
+        Formulas.StringToIntArray(PlayerPrefs.GetString("skillsEquipped"), puzzles);
+        // get number of puzzles
+        if (puzzles[2] == 0)
+            noOfPuzzles = 2;
+        else
+            noOfPuzzles = 3;
+
+        // Instantiate the puzzles we need
+        InstantiatePuzzles();
 
         // get the stats UI manager script and set up the UI
         statsUIManagerScript = GetComponent<StatsUIManager>();
         statsUIManagerScript.Setup();
 
-        // TESTING putting in different controllers into array of interface
-        puzzleControllers = new PuzzleControllerInterface[2];
-        puzzleControllers[0] = FindObjectOfType<SimonSaysGameController>();
-        puzzleControllers[1] = FindObjectOfType<MemoryPuzzleController>();
-        
-        // IN THE FUTURE this will change to be a function?
-        slottedPuzzleCtrls = new PuzzleControllerInterface[2];
-        slottedPuzzleCtrls[0] = puzzleControllers[0];
-        slottedPuzzleCtrls[1] = puzzleControllers[1];
+        // get the controllers of each puzzle
+        GetControllers();
 
         StartFirstPuzzle();
     }
 
+    private void InstantiatePuzzles()
+    {
+        // instantitate the puzzles according to the number in each array
+        if (puzzles[0] == 1) // attack puzzle is first puzzle type
+        {
+            Instantiate(puzzleObjects[0], new Vector3(0f, 0f, 0f), Quaternion.identity);
+        }
+        else if (puzzles[0] == 2) // attack puzzle is second puzzle type
+        {
+            Instantiate(puzzleObjects[1], new Vector3(0f, 0f, 0f), Quaternion.identity);
+        }
+
+        if (puzzles[1] == 1) // defend puzzle is first puzzle type
+        {
+            Instantiate(puzzleObjects[2], new Vector3(0f, 0f, 0f), Quaternion.identity);
+        }
+        else if (puzzles[1] == 2) // defend puzzle is second puzzle type
+        {
+            Instantiate(puzzleObjects[3], new Vector3(0f, 0f, 0f), Quaternion.identity);
+        }
+
+        if (puzzles[2] == 1) // ultimate puzzle is available
+        {
+            Instantiate(puzzleObjects[4], new Vector3(0f, 0f, 0f), Quaternion.identity);
+        }
+    }
+
+    private void GetControllers()
+    {
+        // instantiate memory space for puzzle controllers
+        puzzleControllers = new PuzzleControllerInterface[noOfPuzzles];
+
+        // get the controllers that are being created
+        if (puzzles[0] == 1) // attack puzzle is first puzzle type
+        {
+            puzzleControllers[0] = FindObjectOfType<SimonSaysGameController>(); // load simon says
+        }
+        else if (puzzles[0] == 2) // attack puzzle is second puzzle type
+        {
+            puzzleControllers[0] = FindObjectOfType<FollowTheLeaderController>(); // load follow the leader says
+        }
+
+        if (puzzles[1] == 1) // defend puzzle is first puzzle type
+        {
+            puzzleControllers[1] = FindObjectOfType<MemoryPuzzleController>(); // load memory puzzle
+        }
+        else if (puzzles[1] == 2) // defend puzzle is second puzzle type
+        {
+            // load your new puzzle controller here 
+        }
+
+        if (puzzles[2] == 1) // ultimate puzzle is available
+        {
+            // load your new puzzle controller here. 
+        }
+    }
+
     private void StartFirstPuzzle()
     {
-        slottedPuzzleCtrls[0].Play();
+        puzzleControllers[0].Play();
     }
 
     // call this function when puzzle is solved!
@@ -162,16 +223,16 @@ public class PuzzleManager : MonoBehaviour
             switch (puzzleNumber)
             {
                 case 1:
-                    slottedPuzzleCtrls[0].Play();
-                    slottedPuzzleCtrls[1].Stop();
+                    puzzleControllers[0].Play();
+                    puzzleControllers[1].Stop();
                     break;
                 case 2:
-                    slottedPuzzleCtrls[0].Stop();
-                    slottedPuzzleCtrls[1].Play();
+                    puzzleControllers[0].Stop();
+                    puzzleControllers[1].Play();
                     break;
                 case 3:
-                    slottedPuzzleCtrls[0].Stop();
-                    slottedPuzzleCtrls[1].Stop();
+                    puzzleControllers[0].Stop();
+                    puzzleControllers[1].Stop();
                     break;
             }
         }
@@ -180,13 +241,13 @@ public class PuzzleManager : MonoBehaviour
     // function to stop puzzles 
     public static void StopPuzzle()
     {
-        slottedPuzzleCtrls[currentActivePuzzle - 1].Stop();
+        puzzleControllers[currentActivePuzzle - 1].Stop();
     }
 
     // function to start puzzles
     public static void StartPuzzle()
     {
-        slottedPuzzleCtrls[currentActivePuzzle - 1].Play();
+        puzzleControllers[currentActivePuzzle - 1].Play();
     }
 
     // Update is called once per frame =============================
