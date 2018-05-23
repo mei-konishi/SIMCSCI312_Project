@@ -114,8 +114,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   puzzleObjects:
-  - {fileID: 1605090663177072, guid: e61c37d263eed6e4ea3e5dfc87e0ac20, type: 2}
   - {fileID: 1765263334277986, guid: 15cee55b31c9a59408ddb66b3466d51e, type: 2}
+  - {fileID: 1241188519039688, guid: 379b36b1e32462744b7c01c05942ee68, type: 2}
+  - {fileID: 1605090663177072, guid: e61c37d263eed6e4ea3e5dfc87e0ac20, type: 2}
 --- !u!114 &114603777807894548
 MonoBehaviour:
   m_ObjectHideFlags: 1
