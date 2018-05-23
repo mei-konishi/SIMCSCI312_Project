@@ -41,10 +41,15 @@ public class Enemy : CharacterInterface
     {
         // this is just for prototype. 
         // TODO : in future, make stats database, or some formula
-        strength = lvl;
-        defence = lvl - 1;
-        maxHealth = lvl * 20;
+        // =ROUNDDOWN(lvl^3*0.09 + lvl^2*0.08 + 1)
+        strength = (int)Mathf.Floor(Mathf.Pow(lvl, 3) * 0.09f + Mathf.Pow(lvl, 2) * 0.08f + 1f);
+        // =ROUNDDOWN(lvl^3*0.08 + lvl^2*0.07 + 1)
+        defence = (int)Mathf.Floor(Mathf.Pow(lvl, 3) * 0.08f + Mathf.Pow(lvl, 2) * 0.07f + 1f);
+        // =ROUNDUP(lvl^4*0.09 + 50)
+        maxHealth = (int)Mathf.Ceil(Mathf.Pow(lvl, 4) * 0.09f + 50f);
         currentHealth = maxHealth;
+        //How much exp does the enemy give,  lvl^1.8+50
+        int expGiven = (int)Mathf.Floor(Mathf.Pow(lvl, 1.8f) + 50);
         StatsUIManager.InitEnemyValues(strength, defence, maxHealth); // update UI 
     }
 

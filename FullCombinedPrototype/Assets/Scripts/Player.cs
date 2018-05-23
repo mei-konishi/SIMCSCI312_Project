@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class Player : CharacterInterface {
 
     private int currentExp;
-    private int expForNextLevel; // for prototype's simplicity sake, using a single fixed value
+    private int expForNextLevel = 51; // for prototype's simplicity sake, using a single fixed value
                                  // for future, required to make either a database of exp for level, or formula
 
     public Text playerStatsText;
@@ -67,6 +67,8 @@ public class Player : CharacterInterface {
     {
         base.levelUp();
         // TODO: in future, make a exp chart database, or some algorithm to generate next exp req
+        // =ROUNDUP((A2^3)*0.03+(A2^2)*0.1+50*A2)
+        expForNextLevel = (int)Mathf.Ceil( Mathf.Pow(level, 3.0F) * 0.03f + Mathf.Pow(level, 2.0f) * 0.1f + level * 50);
     }
 
     // Update is called once per frame
