@@ -32,12 +32,12 @@ public class Player : CharacterInterface {
 
     private void initializeStats()
     {
-        level = 1;
-        strength = 1;
-        defence = 1;
-        maxHealth = 50;
+        level = PlayerPrefs.GetInt("level");
+        strength = PlayerPrefs.GetInt("str");
+        defence = PlayerPrefs.GetInt("def");
+        maxHealth = PlayerPrefs.GetInt("hp");
         currentHealth = maxHealth;
-        currentExp = 0;
+        currentExp = PlayerPrefs.GetInt("exp");
         StatsUIManager.InitPlayerStats(strength, defence, maxHealth); // update the UI
     }
 

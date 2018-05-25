@@ -20,6 +20,9 @@ public class GameManager : MonoBehaviour {
     private Text playerDmgedText;
     private Text winText;
 
+    // Win / Lose Panels 
+    public GameObject canvas;
+
     // Use this for initialization
     void Awake () {
 
@@ -41,6 +44,14 @@ public class GameManager : MonoBehaviour {
 
         InitGame();
 	}
+
+    void Start ()
+    {
+        canvas.transform.GetChild(0).gameObject.SetActive(false);
+        canvas.transform.GetChild(1).gameObject.SetActive(false);
+        //youWinPanel.SetActive(false);
+        //youLosePanel.SetActive(false);
+    }
 
     // set or reset stats to prepare for next round
     private void startNextRound()
@@ -156,16 +167,20 @@ public class GameManager : MonoBehaviour {
     private int checkGameOver()
     {
         if (enemies[0].checkDead())
-        {
+        {          
             stageWin = 1;
             winText.text = "YOU WIN!";
             Timer.stopTimer();
+            // ADD PANEL HERE?
+            canvas.transform.GetChild(0).gameObject.SetActive(true);
         }
         else if (player.checkDead())
-        {
+        {         
             stageWin = -1;
             winText.text = "DEFEATED!";
             Timer.stopTimer();
+            // ADD PANEL HERE?
+            canvas.transform.GetChild(1).gameObject.SetActive(true);
         }
         else
         {
