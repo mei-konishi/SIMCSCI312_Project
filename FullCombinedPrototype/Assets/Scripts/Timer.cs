@@ -29,7 +29,7 @@ public class Timer : MonoBehaviour {
             Destroy(gameObject);    // then destroy it. enforcing singleton
         }
 
-        DontDestroyOnLoad(gameObject); // don't destroy when reloading scene (need? or nah?)
+//        DontDestroyOnLoad(gameObject); // don't destroy when reloading scene (need? or nah?)
 
         timeLeft = puzzleDuration;
 

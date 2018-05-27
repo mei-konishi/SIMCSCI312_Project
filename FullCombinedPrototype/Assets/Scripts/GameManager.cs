@@ -34,8 +34,6 @@ public class GameManager : MonoBehaviour {
             Destroy(gameObject);    // then destroy it. enforcing singleton
         }
 
-        DontDestroyOnLoad(gameObject); // don't destroy when reloading scene (need? or nah?)
-
         enemies = new List<Enemy>();    // allocate memory for enemies 
 
         boardScript = GetComponent<BoardManager>();
@@ -193,6 +191,7 @@ public class GameManager : MonoBehaviour {
     {
         return level;
     }
+    
 }
 
 

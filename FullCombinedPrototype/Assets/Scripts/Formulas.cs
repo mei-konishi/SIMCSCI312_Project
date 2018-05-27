@@ -47,6 +47,12 @@ public class Formulas : MonoBehaviour {
         
     }
 
+    public static string IntArrayToString(int[] input)
+    {
+        string output = "" + input[0].ToString() + input[1].ToString() + input[2].ToString();
+        return output;
+    }
+
     // Update is called once per frame
     void Update () {
 		

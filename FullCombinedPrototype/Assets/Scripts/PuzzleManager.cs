@@ -25,6 +25,8 @@ public class PuzzleManager : MonoBehaviour
 
     public static PuzzleControllerInterface[] puzzleControllers; // this holds the puzzle controllers 
 
+    // HAAAAAX. As in God-mode hacks :3
+    public bool hack_Ulti_On;
 
     // Use this for initialization
     void Awake()
@@ -45,6 +47,8 @@ public class PuzzleManager : MonoBehaviour
         enemyAtkPuzSolved = 0;
         enemyDefPuzSolved = 0;
         currentActivePuzzle = 1;
+
+        checkHacks(); // check if any hacks on, and update accordingly
 
         // go to player prefs to get skills equipped information,
         // and pass into function to turn the string into array of int to find puzzles equipped
@@ -122,7 +126,7 @@ public class PuzzleManager : MonoBehaviour
 
         if (puzzles[2] == 1) // ultimate puzzle is available
         {
-            // load your new puzzle controller here. 
+            puzzleControllers[2] = FindObjectOfType<UltimatePuzzleController>(); // load ultimate puzzle
         }
     }
 
@@ -225,14 +229,20 @@ public class PuzzleManager : MonoBehaviour
                 case 1:
                     puzzleControllers[0].Play();
                     puzzleControllers[1].Stop();
+                    if (noOfPuzzles == 3)
+                        puzzleControllers[2].Stop();
                     break;
                 case 2:
                     puzzleControllers[0].Stop();
                     puzzleControllers[1].Play();
+                    if (noOfPuzzles == 3)
+                        puzzleControllers[2].Stop();
                     break;
                 case 3:
                     puzzleControllers[0].Stop();
                     puzzleControllers[1].Stop();
+                    if (noOfPuzzles == 3)
+                        puzzleControllers[2].Play();
                     break;
             }
         }
@@ -323,7 +333,7 @@ public class PuzzleManager : MonoBehaviour
         {
             currObj.GetComponent<Renderer>().sortingLayerName = "BackgroundPuzzles";
             Vector3 originalPosition = currObj.GetComponent<Transform>().position;
-            Vector3 newPosition = originalPosition + new Vector3(0, 0, 0.1f); // move the object backwards
+            Vector3 newPosition = originalPosition + new Vector3(0, 0, 0.9f); // move the object backwards
             currObj.GetComponent<Transform>().position = newPosition;
         }
 
@@ -332,8 +342,23 @@ public class PuzzleManager : MonoBehaviour
         {
             currObj.GetComponent<Renderer>().sortingLayerName = "ForegroundPuzzleObj";
             Vector3 originalPosition = currObj.GetComponent<Transform>().position;
-            Vector3 newPosition = originalPosition + new Vector3(0, 0, -0.1f); // move the object backwards
+            Vector3 newPosition = originalPosition + new Vector3(0, 0, -0.9f); // move the object backwards
             currObj.GetComponent<Transform>().position = newPosition;
+        }
+    }
+
+    private void checkHacks()
+    {
+        if (hack_Ulti_On == true) // turn on ultimate skill (Available to play)
+        {
+            int[] skills = new int[3];
+            // get playerPrefs current skill sets
+            Formulas.StringToIntArray(PlayerPrefs.GetString("skillsEquipped"), skills);
+            skills[2] = 1; // set ultimate to on
+            // change back numbers to string
+            string skillsString = Formulas.IntArrayToString(skills);
+            // set back the numbers to playerPrefs
+            PlayerPrefs.SetString("skillsEquipped", skillsString);
         }
     }
 }
