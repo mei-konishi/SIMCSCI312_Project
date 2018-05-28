@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d1ffa0a22bcea744a770eb92aafcd7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puzzleDuration: 5
+  puzzleDuration: 30
 --- !u!114 &114554365726894144
 MonoBehaviour:
   m_ObjectHideFlags: 1
