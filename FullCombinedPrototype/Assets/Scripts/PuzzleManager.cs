@@ -25,8 +25,10 @@ public class PuzzleManager : MonoBehaviour
 
     public static PuzzleControllerInterface[] puzzleControllers; // this holds the puzzle controllers 
 
-    // HAAAAAX. As in God-mode hacks :3
+    // HAAAAAX. As in hacks :3
     public bool hack_Ulti_On;
+    public bool hack_init_tutorials;
+    public bool hack_init_everything;
 
     // Use this for initialization
     void Awake()
@@ -69,8 +71,7 @@ public class PuzzleManager : MonoBehaviour
 
         // get the controllers of each puzzle
         GetControllers();
-
-        StartFirstPuzzle();
+        
     }
 
     private void InstantiatePuzzles()
@@ -349,7 +350,7 @@ public class PuzzleManager : MonoBehaviour
 
     private void checkHacks()
     {
-        if (hack_Ulti_On == true) // turn on ultimate skill (Available to play)
+        if (hack_Ulti_On) // turn on ultimate skill (Available to play)
         {
             int[] skills = new int[3];
             // get playerPrefs current skill sets
@@ -359,6 +360,28 @@ public class PuzzleManager : MonoBehaviour
             string skillsString = Formulas.IntArrayToString(skills);
             // set back the numbers to playerPrefs
             PlayerPrefs.SetString("skillsEquipped", skillsString);
+        }
+
+        if (hack_init_tutorials) // initialize tutorials 
+        {
+            PlayerPrefs.SetInt("tutorial", 0);
+        }
+
+        if (hack_init_everything) // initialize all stats
+        {
+            PlayerPrefs.SetInt("level", 1);
+            PlayerPrefs.SetInt("exp", 0);
+            PlayerPrefs.SetInt("str", 1);
+            PlayerPrefs.SetInt("def", 1);
+            PlayerPrefs.SetInt("hp", 100);
+            PlayerPrefs.SetInt("statsPoints", 0);
+            PlayerPrefs.SetInt("skillPoints", 0);
+            PlayerPrefs.SetString("skillsLevelsUnlocked", "11000");
+            PlayerPrefs.SetString("skillsEquipped", "110");
+            PlayerPrefs.SetString("equippedSkillsLevels", "110");
+            PlayerPrefs.SetInt("stageUnlocked", 1);
+            PlayerPrefs.SetInt("stageLastPlayed", 0);
+            PlayerPrefs.SetInt("tutorial", 0);
         }
     }
 }

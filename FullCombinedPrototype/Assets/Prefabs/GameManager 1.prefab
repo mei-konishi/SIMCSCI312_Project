@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d1ffa0a22bcea744a770eb92aafcd7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puzzleDuration: 30
+  puzzleDuration: 5
 --- !u!114 &114554365726894144
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -120,6 +120,8 @@ MonoBehaviour:
   - {fileID: 1212416833350064, guid: 89d8d2afe0b4a164bb42fd6907209243, type: 2}
   - {fileID: 1212416833350064, guid: 89d8d2afe0b4a164bb42fd6907209243, type: 2}
   hack_Ulti_On: 1
+  hack_init_tutorials: 1
+  hack_init_everything: 0
 --- !u!114 &114603777807894548
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -132,6 +134,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 1904354818579846, guid: cbf58340b4c885a46a7e318549f64607, type: 2}
+  tutorials:
+  - {fileID: 1500940022132520, guid: 9567fdc2dbc336a49aa516f440cd48f5, type: 2}
+  - {fileID: 1778892797366406, guid: c8c39b08cd8d9ed40ba91a3a3c2cee6f, type: 2}
+  - {fileID: 1770911437071276, guid: 0868d53c9339cb940bbc9a44fbe0098f, type: 2}
 --- !u!114 &114974104770236442
 MonoBehaviour:
   m_ObjectHideFlags: 1
