@@ -22,8 +22,7 @@ public class GameManager : MonoBehaviour {
     private Text playerDmgedText;
     private Text winText;
 
-    // Win / Lose Panels 
-    public GameObject canvas;
+    private bool rewardOnceOnly = false;
 
     public GameObject[] tutorials; // list of all tutorials 
     private static GameObject tutorial; // current showing tutorial, if any
@@ -51,10 +50,7 @@ public class GameManager : MonoBehaviour {
 
     void Start ()
     {
-        canvas.transform.GetChild(0).gameObject.SetActive(false);
-        canvas.transform.GetChild(1).gameObject.SetActive(false);
-        //youWinPanel.SetActive(false);
-        //youLosePanel.SetActive(false);
+        
     }
 
     // set or reset stats to prepare for next round
@@ -179,27 +175,31 @@ public class GameManager : MonoBehaviour {
     {
         playerDmgedText.text = "";
     }
-    
-    
+     
     // check if either player or enemy is dead
     // returns -1 for lose, 1 for win, 0 for no one dead
     private int checkGameOver()
     {
         if (enemies[0].checkDead())
-        {          
+        { 
             stageWin = 1;
             winText.text = "YOU WIN!";
             Timer.stopTimer();
-            // ADD PANEL HERE?
-            canvas.transform.GetChild(0).gameObject.SetActive(true);
+            // ADD PANEL HERE
+            if (rewardOnceOnly == false)
+            {
+                player.gainExp(formulasScript.calculateExpGain(level));
+                rewardOnceOnly = true;
+            }         
+            GameObject.FindGameObjectWithTag("Canvas").transform.GetChild(15).gameObject.SetActive(true);
         }
         else if (player.checkDead())
-        {         
+        {    
             stageWin = -1;
             winText.text = "DEFEATED!";
             Timer.stopTimer();
-            // ADD PANEL HERE?
-            canvas.transform.GetChild(1).gameObject.SetActive(true);
+            // ADD PANEL HERE
+            GameObject.FindGameObjectWithTag("Canvas").transform.GetChild(16).gameObject.SetActive(true);
         }
         else
         {

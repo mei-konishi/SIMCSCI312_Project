@@ -43,8 +43,12 @@ public class Formulas : MonoBehaviour {
             output[1] = placeHolder / 10; // extract second digit
             placeHolder %= 10; // remove second digit
             output[2] = placeHolder; // extract last digit
-        }
-        
+        }     
+    }
+
+    public int calculateExpGain (int lvl)
+    {
+        return (int)Mathf.Floor(Mathf.Pow(lvl, 1.8f) + 50);
     }
 
     public static string IntArrayToString(int[] input)

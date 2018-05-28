@@ -48,8 +48,6 @@ public class Enemy : CharacterInterface
         // =ROUNDUP(lvl^4*0.09 + 50)
         maxHealth = (int)Mathf.Ceil(Mathf.Pow(lvl, 4) * 0.09f + 50f);
         currentHealth = maxHealth;
-        //How much exp does the enemy give,  lvl^1.8+50
-        int expGiven = (int)Mathf.Floor(Mathf.Pow(lvl, 1.8f) + 50);
         StatsUIManager.InitEnemyValues(strength, defence, maxHealth); // update UI 
     }
 

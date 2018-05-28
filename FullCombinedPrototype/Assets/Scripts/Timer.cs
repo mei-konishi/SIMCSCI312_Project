@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Timer : MonoBehaviour {
+public class Timer : MonoBehaviour
+{
 
     public static Timer instance = null; // Static instance of Timer
     public float puzzleDuration;
 
-    private float timeLeft; 
+    private float timeLeft;
     private Text timerText;
     private float splashScreenDelay = 2.0f;
     private float animationDelay = 2.0f;
@@ -22,17 +23,19 @@ public class Timer : MonoBehaviour {
     private static bool readyForNextRound; // true to start next round (used as a trigger switch)
     private static bool stop; // use for showing tutorial, or game over
 
-	// Use this for initialization
-	void Awake () {
+    // Use this for initialization
+    void Awake()
+    {
 
-        if (instance == null){ // check if instance already exists
+        if (instance == null)
+        { // check if instance already exists
             instance = this;    // if not, set instance to this
         }
 
-        else if (instance != this){ // if instance already exists and is not this
+        else if (instance != this)
+        { // if instance already exists and is not this
             Destroy(gameObject);    // then destroy it. enforcing singleton
         }
-        
         timeLeft = splashScreenDelay;
 
         timerText = GameObject.Find("Timer").GetComponent<Text>();
@@ -137,7 +140,8 @@ public class Timer : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update() {
+    void Update()
+    {
 
         // so long as timer isn't stopped
         if (!stop)
@@ -188,7 +192,7 @@ public class Timer : MonoBehaviour {
                     animationTrigger = true; // play character attack animations
                 }
             }
-            
+
             if (phase == 2) // characters attacking animation
             {
                 // count down for player's animation delay
@@ -218,7 +222,6 @@ public class Timer : MonoBehaviour {
                     }
                 }
             }
-            
         }
 
         if (stop)

@@ -11,6 +11,7 @@ public class Player : CharacterInterface {
                                  // for future, required to make either a database of exp for level, or formula
 
     public Text playerStatsText;
+    private string rewardString;
 
     private Animator animator;  //Used to store a reference to the Player's animator component.
 
@@ -38,6 +39,7 @@ public class Player : CharacterInterface {
         maxHealth = PlayerPrefs.GetInt("hp");
         currentHealth = maxHealth;
         currentExp = PlayerPrefs.GetInt("exp");
+        expForNextLevel = (int)Mathf.Ceil(Mathf.Pow(level, 3.0F) * 0.03f + Mathf.Pow(level, 2.0f) * 0.1f + level * 50);
         StatsUIManager.InitPlayerStats(strength, defence, maxHealth); // update the UI
     }
 
@@ -53,7 +55,7 @@ public class Player : CharacterInterface {
     public void gainExp(int exp)
     {
         currentExp += exp;
-
+        rewardString = "You have earned " + exp + " exp!";
         // if exp gained is enough to level up
         if (currentExp >= expForNextLevel)
         {
@@ -61,6 +63,8 @@ public class Player : CharacterInterface {
             currentExp -= expForNextLevel; 
             levelUp();
         }
+        PlayerPrefs.SetInt("exp", currentExp);
+        PlayerPrefs.SetString("rewardString", rewardString);  
     }
 
     public override void levelUp()
@@ -69,6 +73,12 @@ public class Player : CharacterInterface {
         // TODO: in future, make a exp chart database, or some algorithm to generate next exp req
         // =ROUNDUP((A2^3)*0.03+(A2^2)*0.1+50*A2)
         expForNextLevel = (int)Mathf.Ceil( Mathf.Pow(level, 3.0F) * 0.03f + Mathf.Pow(level, 2.0f) * 0.1f + level * 50);
+        PlayerPrefs.SetInt("level", level);
+        int statsPoints = PlayerPrefs.GetInt("statsPoints") + 5;
+        int skillPoints = PlayerPrefs.GetInt("skillPoints") + 2;
+        PlayerPrefs.SetInt("statsPoints", statsPoints);
+        PlayerPrefs.SetInt("skillPoints", skillPoints);
+        rewardString += "You leveled up! 5 stats points and 2 skill points added.";
     }
 
     // Update is called once per frame
