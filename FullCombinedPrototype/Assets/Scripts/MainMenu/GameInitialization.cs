@@ -11,7 +11,7 @@ public class GameInitialization : MonoBehaviour {
         // if not, create them with initialize values
         if (!PlayerPrefs.HasKey("level"))
             PlayerPrefs.SetInt("level", 1);
-        
+
         if (!PlayerPrefs.HasKey("exp"))
             PlayerPrefs.SetInt("exp", 0);
 

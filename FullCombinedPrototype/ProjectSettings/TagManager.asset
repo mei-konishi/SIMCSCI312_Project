@@ -19,6 +19,7 @@ TagManager:
   - AttackPoint
   - DefendPoint
   - Points
+  - Canvas
   layers:
   - Default
   - TransparentFX

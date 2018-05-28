@@ -47,6 +47,11 @@ public class Formulas : MonoBehaviour {
         
     }
 
+    public int calculateExpGain (int lvl)
+    {
+        return (int)Mathf.Floor(Mathf.Pow(lvl, 1.8f) + 50);
+    }
+
     // Update is called once per frame
     void Update () {
 		

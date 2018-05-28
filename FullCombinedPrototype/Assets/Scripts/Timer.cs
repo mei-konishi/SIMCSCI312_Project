@@ -29,8 +29,6 @@ public class Timer : MonoBehaviour {
             Destroy(gameObject);    // then destroy it. enforcing singleton
         }
 
-        DontDestroyOnLoad(gameObject); // don't destroy when reloading scene (need? or nah?)
-
         timeLeft = puzzleDuration;
 
         timerText = GameObject.Find("Timer").GetComponent<Text>();
