@@ -21,14 +21,21 @@ public class StatsManager : MonoBehaviour {
     public Text currentSkills;
     private int currentAvailSkills;
     private int[] extractSkillsUnlocked;
-    private int currentAtk1;
-    private int currentAtk2;
-    private int currentDef1;
-    private int currentDef2;
     public Text currentAtk1Lvl;
     public Text currentAtk2Lvl;
     public Text currentDef1Lvl;
     public Text currentDef2Lvl;
+
+    private int[] equippedSkills;
+    private int[] equippedSkillsLevel;
+    //public Text atkSkillText;
+    //public Text atkSkillLevelText;
+    //public Text defSkillText;
+    //public Text defSkillLevelText;
+    List<string> attackSkills = new List<string>();
+    List<string> defendSkills = new List<string>();
+    public Dropdown attackDropdown;
+    public Dropdown defendDropdown;
 
     // Use this for initialization
     void Start () {
@@ -48,19 +55,42 @@ public class StatsManager : MonoBehaviour {
         currentStats.text = PlayerPrefs.GetInt("statsPoints").ToString();
         currentAvailStats = PlayerPrefs.GetInt("statsPoints");
 
-        //Skills
+        //Skills - Atk1, Atk2, Def1, Def2, Ulti
         currentSkills.text = PlayerPrefs.GetInt("skillPoints").ToString();
         currentAvailSkills = PlayerPrefs.GetInt("skillPoints");
         extractSkillsUnlocked = new int[5];
         Formulas.StringToIntArray(PlayerPrefs.GetString("skillsLevelsUnlocked"), extractSkillsUnlocked);
-        currentAtk1 = extractSkillsUnlocked[0];
-        currentAtk2 = extractSkillsUnlocked[0];
-        currentDef1 = extractSkillsUnlocked[0];
-        currentDef2 = extractSkillsUnlocked[0];
-        currentAtk1Lvl.text = currentAtk1.ToString();
-        currentAtk2Lvl.text = currentAtk2.ToString();
-        currentDef1Lvl.text = currentDef1.ToString();
-        currentDef2Lvl.text = currentDef2.ToString();
+        currentAtk1Lvl.text = extractSkillsUnlocked[0].ToString();
+        currentAtk2Lvl.text = extractSkillsUnlocked[1].ToString();
+        currentDef1Lvl.text = extractSkillsUnlocked[2].ToString();
+        currentDef2Lvl.text = extractSkillsUnlocked[3].ToString();
+
+        //Equipment
+        //PlayerPrefs.SetString("skillsEquipped", "110");
+        //PlayerPrefs.SetString("equippedSkillsLevels", "110");
+        equippedSkills = new int[3];
+        equippedSkillsLevel = new int[3];
+        Formulas.StringToIntArray(PlayerPrefs.GetString("skillsEquipped"), equippedSkills);
+        Formulas.StringToIntArray(PlayerPrefs.GetString("equippedSkillsLevels"), equippedSkillsLevel);
+        /*if (equippedSkills[0] == 1)
+        {
+            atkSkillText.text = "Atk1";
+        } else if (equippedSkills[0] == 2)
+        {
+            atkSkillText.text = "Atk2";
+        }
+        if (equippedSkills[1] == 1)
+        {
+            defSkillText.text = "Def1";
+        }
+        else if (equippedSkills[1] == 2)
+        {
+            defSkillText.text = "Def2";
+        }
+        atkSkillLevelText.text = equippedSkillsLevel[0].ToString();
+        defSkillLevelText.text = equippedSkillsLevel[1].ToString();*/
+        PopulateAttackList();
+        PopulateDefendList();
     }
 	
 	// Update is called once per frame
@@ -124,30 +154,142 @@ public class StatsManager : MonoBehaviour {
 
     public void AddAtk1()
     {
-        if (currentAvailSkills > 0)
+        if (currentAvailSkills > 0 && extractSkillsUnlocked[0] < 5)
         {
-            currentAtk1++;
-
+            extractSkillsUnlocked[0]++;
+            currentAtk1Lvl.text = extractSkillsUnlocked[0].ToString();
+            string updatedSkills = "";
+            for (int i = 0; i < extractSkillsUnlocked.Length; i++)
+            {
+                updatedSkills += extractSkillsUnlocked[i].ToString();
+            }
+            PlayerPrefs.SetString("skillsLevelsUnlocked", updatedSkills);
             currentAvailSkills--;
+            PlayerPrefs.SetInt("skillPoints", currentAvailSkills);
+            currentSkills.text = PlayerPrefs.GetInt("skillPoints").ToString();
         } else
         {
             // Play sound here
         }
-
     }
 
     public void AddAtk2()
     {
-        currentAtk2
+        if (currentAvailSkills > 0 && extractSkillsUnlocked[1] < 5)
+        {
+            extractSkillsUnlocked[1]++;
+            currentAtk2Lvl.text = extractSkillsUnlocked[1].ToString();
+            string updatedSkills = "";
+            for (int i = 0; i < extractSkillsUnlocked.Length; i++)
+            {
+                updatedSkills += extractSkillsUnlocked[i].ToString();
+            }
+            PlayerPrefs.SetString("skillsLevelsUnlocked", updatedSkills);
+            currentAvailSkills--;
+            PlayerPrefs.SetInt("skillPoints", currentAvailSkills);
+            currentSkills.text = PlayerPrefs.GetInt("skillPoints").ToString();
+        }
+        else
+        {
+            // Play sound here
+        }
     }
 
     public void AddDef1()
     {
-        currentDef1
+        if (currentAvailSkills > 0 && extractSkillsUnlocked[2] < 5)
+        {
+            extractSkillsUnlocked[2]++;
+            currentDef1Lvl.text = extractSkillsUnlocked[2].ToString();
+            string updatedSkills = "";
+            for (int i = 0; i < extractSkillsUnlocked.Length; i++)
+            {
+                updatedSkills += extractSkillsUnlocked[i].ToString();
+            }
+            PlayerPrefs.SetString("skillsLevelsUnlocked", updatedSkills);
+            currentAvailSkills--;
+            PlayerPrefs.SetInt("skillPoints", currentAvailSkills);
+            currentSkills.text = PlayerPrefs.GetInt("skillPoints").ToString();
+        }
+        else
+        {
+            // Play sound here
+        }
     }
 
     public void AddDef2()
     {
-        currentDef2
+        if (currentAvailSkills > 0 && extractSkillsUnlocked[3] < 5)
+        {
+            extractSkillsUnlocked[3]++;
+            currentDef2Lvl.text = extractSkillsUnlocked[3].ToString();
+            string updatedSkills = "";
+            for (int i = 0; i < extractSkillsUnlocked.Length; i++)
+            {
+                updatedSkills += extractSkillsUnlocked[i].ToString();
+            }
+            PlayerPrefs.SetString("skillsLevelsUnlocked", updatedSkills);
+            currentAvailSkills--;
+            PlayerPrefs.SetInt("skillPoints", currentAvailSkills);
+            currentSkills.text = PlayerPrefs.GetInt("skillPoints").ToString();
+        }
+        else
+        {
+            // Play sound here
+        }
+    }
+
+    public void PopulateAttackList()
+    {
+        //attackSkills
+        if (extractSkillsUnlocked[0] != 0)
+        {
+            for (int i = 1; i <= extractSkillsUnlocked[0]; i++)
+            {
+                attackSkills.Add("SimonSays: " + i);
+                //atkchoice = 1
+                //atklevelchoice = i;
+            }       
+        }
+        if (extractSkillsUnlocked[1] != 0)
+        {
+            for (int i = 1; i <= extractSkillsUnlocked[1]; i++)
+            {
+                attackSkills.Add("FollowLeader: " + i);
+            }
+        }
+        attackDropdown.AddOptions(attackSkills);
+    }
+
+    public void PopulateDefendList()
+    {
+        //defendSkills
+        if (extractSkillsUnlocked[2] != 0)
+        {
+            for (int i = 1; i <= extractSkillsUnlocked[2]; i++)
+            {
+                defendSkills.Add("Concentration: " + i);
+
+            }
+        }
+        if (extractSkillsUnlocked[3] != 0)
+        {
+            for (int i = 1; i <= extractSkillsUnlocked[3]; i++)
+            {
+                defendSkills.Add("Fortnite: " + i);
+            }
+        }
+        defendDropdown.AddOptions(defendSkills);
+    }
+
+    public void AttackInput(int input)
+    {
+        //equippedSkills
+        //equippedSkillsLevel
+    }
+
+    public void DefendInput(int input)
+    {
+
     }
 }

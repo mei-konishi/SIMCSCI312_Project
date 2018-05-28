@@ -43,8 +43,7 @@ public class Formulas : MonoBehaviour {
             output[1] = placeHolder / 10; // extract second digit
             placeHolder %= 10; // remove second digit
             output[2] = placeHolder; // extract last digit
-        }
-        
+        }     
     }
 
     public int calculateExpGain (int lvl)
