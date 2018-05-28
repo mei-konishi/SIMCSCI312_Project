@@ -32,7 +32,7 @@ public class GameInitialization : MonoBehaviour {
 
         if (!PlayerPrefs.HasKey("skillsLevelsUnlocked"))
             PlayerPrefs.SetString("skillsLevelsUnlocked", "11000");
-        PlayerPrefs.SetString("skillsLevelsUnlocked", "34210");
+
         if (!PlayerPrefs.HasKey("skillsEquipped"))
             PlayerPrefs.SetString("skillsEquipped", "110");
 

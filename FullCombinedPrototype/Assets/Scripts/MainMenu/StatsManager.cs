@@ -28,14 +28,14 @@ public class StatsManager : MonoBehaviour {
 
     private int[] equippedSkills;
     private int[] equippedSkillsLevel;
-    //public Text atkSkillText;
-    //public Text atkSkillLevelText;
-    //public Text defSkillText;
-    //public Text defSkillLevelText;
     List<string> attackSkills = new List<string>();
     List<string> defendSkills = new List<string>();
     public Dropdown attackDropdown;
     public Dropdown defendDropdown;
+    List<int> attackChoice = new List<int>();
+    List<int> attackChoiceLevel = new List<int>();
+    List<int> defendChoice = new List<int>();
+    List<int> defendChoiceLevel = new List<int>();
 
     // Use this for initialization
     void Start () {
@@ -66,31 +66,12 @@ public class StatsManager : MonoBehaviour {
         currentDef2Lvl.text = extractSkillsUnlocked[3].ToString();
 
         //Equipment
-        //PlayerPrefs.SetString("skillsEquipped", "110");
-        //PlayerPrefs.SetString("equippedSkillsLevels", "110");
         equippedSkills = new int[3];
         equippedSkillsLevel = new int[3];
         Formulas.StringToIntArray(PlayerPrefs.GetString("skillsEquipped"), equippedSkills);
         Formulas.StringToIntArray(PlayerPrefs.GetString("equippedSkillsLevels"), equippedSkillsLevel);
-        /*if (equippedSkills[0] == 1)
-        {
-            atkSkillText.text = "Atk1";
-        } else if (equippedSkills[0] == 2)
-        {
-            atkSkillText.text = "Atk2";
-        }
-        if (equippedSkills[1] == 1)
-        {
-            defSkillText.text = "Def1";
-        }
-        else if (equippedSkills[1] == 2)
-        {
-            defSkillText.text = "Def2";
-        }
-        atkSkillLevelText.text = equippedSkillsLevel[0].ToString();
-        defSkillLevelText.text = equippedSkillsLevel[1].ToString();*/
-        PopulateAttackList();
-        PopulateDefendList();
+        //PopulateAttackList();
+        //PopulateDefendList();
     }
 	
 	// Update is called once per frame
@@ -242,13 +223,15 @@ public class StatsManager : MonoBehaviour {
     public void PopulateAttackList()
     {
         //attackSkills
+        attackDropdown.ClearOptions();
+        attackSkills.Clear();
         if (extractSkillsUnlocked[0] != 0)
         {
             for (int i = 1; i <= extractSkillsUnlocked[0]; i++)
             {
                 attackSkills.Add("SimonSays: " + i);
-                //atkchoice = 1
-                //atklevelchoice = i;
+                attackChoice.Add(1);
+                attackChoiceLevel.Add(i);
             }       
         }
         if (extractSkillsUnlocked[1] != 0)
@@ -256,6 +239,8 @@ public class StatsManager : MonoBehaviour {
             for (int i = 1; i <= extractSkillsUnlocked[1]; i++)
             {
                 attackSkills.Add("FollowLeader: " + i);
+                attackChoice.Add(2);
+                attackChoiceLevel.Add(i);
             }
         }
         attackDropdown.AddOptions(attackSkills);
@@ -264,12 +249,15 @@ public class StatsManager : MonoBehaviour {
     public void PopulateDefendList()
     {
         //defendSkills
+        defendDropdown.ClearOptions();
+        defendSkills.Clear();
         if (extractSkillsUnlocked[2] != 0)
         {
             for (int i = 1; i <= extractSkillsUnlocked[2]; i++)
             {
                 defendSkills.Add("Concentration: " + i);
-
+                defendChoice.Add(1);
+                defendChoiceLevel.Add(i);
             }
         }
         if (extractSkillsUnlocked[3] != 0)
@@ -277,6 +265,8 @@ public class StatsManager : MonoBehaviour {
             for (int i = 1; i <= extractSkillsUnlocked[3]; i++)
             {
                 defendSkills.Add("Fortnite: " + i);
+                defendChoice.Add(2);
+                defendChoiceLevel.Add(i);
             }
         }
         defendDropdown.AddOptions(defendSkills);
@@ -284,12 +274,35 @@ public class StatsManager : MonoBehaviour {
 
     public void AttackInput(int input)
     {
-        //equippedSkills
-        //equippedSkillsLevel
+        equippedSkills[0] = attackChoice[input];
+        equippedSkillsLevel[0] = attackChoiceLevel[input];
+        SaveEquip();
     }
 
     public void DefendInput(int input)
     {
+        equippedSkills[1] = defendChoice[input];
+        equippedSkillsLevel[1] = defendChoiceLevel[input];
+        SaveEquip();
+    }
 
+    public void SaveEquip()
+    {
+        string newEquip = "";
+        for (int i = 0; i < equippedSkills.Length; i++)
+        {
+            newEquip += equippedSkills[i].ToString();
+        }
+        PlayerPrefs.SetString("skillsEquipped", newEquip);
+
+        string newEquipLevel = "";
+        for (int i = 0; i < equippedSkillsLevel.Length; i++)
+        {
+            newEquipLevel += equippedSkillsLevel[i].ToString();
+        }
+        PlayerPrefs.SetString("equippedSkillsLevels", newEquipLevel);
+
+        Debug.Log(PlayerPrefs.GetString("skillsEquipped"));
+        Debug.Log(PlayerPrefs.GetString("equippedSkillsLevels"));
     }
 }
