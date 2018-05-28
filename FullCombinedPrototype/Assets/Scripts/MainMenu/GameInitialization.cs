@@ -31,7 +31,7 @@ public class GameInitialization : MonoBehaviour {
             PlayerPrefs.SetInt("skillPoints", 0);
 
         if (!PlayerPrefs.HasKey("skillsLevelsUnlocked"))
-            PlayerPrefs.SetString("skillsLevelsUnlocked", "11000");
+            PlayerPrefs.SetString("skillsLevelsUnlocked", "10100");
 
         if (!PlayerPrefs.HasKey("skillsEquipped"))
             PlayerPrefs.SetString("skillsEquipped", "110");
