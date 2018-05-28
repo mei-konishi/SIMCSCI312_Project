@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour {
     private Formulas formulasScript;            // script that holds all the formulas for RPG calculation
     private Player player;                      // hold referrence to player script
     private List<Enemy> enemies;                // hold referrence to enemies script
+    private SplashScreen splashScript;          // hold referrence to splash screen script
+    private Timer timer;                        // hold referrence to timer script
    
     public static int level = 1;      // used to keep track of stage 
     private int stageWin; // -1 for lose, 0 for ongoing, 1 for win
@@ -21,6 +23,9 @@ public class GameManager : MonoBehaviour {
     private Text winText;
 
     private bool rewardOnceOnly = false;
+
+    public GameObject[] tutorials; // list of all tutorials 
+    private static GameObject tutorial; // current showing tutorial, if any
 
     // Use this for initialization
     void Awake () {
@@ -38,6 +43,7 @@ public class GameManager : MonoBehaviour {
         boardScript = GetComponent<BoardManager>();
         puzzleManagerScript = GetComponent<PuzzleManager>();
         formulasScript = GetComponent<Formulas>();
+        timer = GetComponent<Timer>();
 
         InitGame();
 	}
@@ -78,14 +84,29 @@ public class GameManager : MonoBehaviour {
         player = script;
     }
 
+    public void AddSplashScreenToManager(SplashScreen script)
+    {
+        splashScript = script;
+    }
+
     // Update is called once per frame
     void Update () {
         
-        // during attack phase (and game still going on)
+        // when not during puzzle phase (and game still going on)
         if (!Timer.checkPuzzlePhase() && stageWin == 0)
         {
             // enemy AI calculate dmg 
             enemyAI();
+
+            if (Timer.checkAnimationTriggered("splashPuzzle"))
+            {
+                splashScript.splashPuzzleScreen(); 
+            }
+
+            if (Timer.checkAnimationTriggered("splashAttack"))
+            {
+                splashScript.splashAttackScreen();
+            }
 
             if (Timer.checkAnimationTriggered("player"))
             {
@@ -191,6 +212,20 @@ public class GameManager : MonoBehaviour {
     {
         return level;
     }
+
+    public void showTutorial(int number)
+    {
+        tutorial = tutorials[number - 1];
+        Instantiate(tutorial);
+    }
+    
+    public void closeTutorial(int number)
+    {
+        timer.startPuzzle();
+        tutorial = GameObject.FindGameObjectWithTag("Tutorial");
+        Destroy(tutorial);
+    }
+
 }
 
 

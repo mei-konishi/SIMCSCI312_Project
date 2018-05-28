@@ -36,13 +36,12 @@ public class Timer : MonoBehaviour
         { // if instance already exists and is not this
             Destroy(gameObject);    // then destroy it. enforcing singleton
         }
-
         timeLeft = splashScreenDelay;
 
         timerText = GameObject.Find("Timer").GetComponent<Text>();
         gameManager = FindObjectOfType<GameManager>();
 
-        phase = 3;
+        phase = 3;   
         playerAtkTurn = true;
         animationTrigger = true;
         readyForNextRound = false;
@@ -223,12 +222,11 @@ public class Timer : MonoBehaviour
                     }
                 }
             }
-
         }
 
         if (stop)
         {
-            //  timerText.text = "";
+          //  timerText.text = "";
         }
     }
 

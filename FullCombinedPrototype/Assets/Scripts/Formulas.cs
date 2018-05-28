@@ -51,6 +51,12 @@ public class Formulas : MonoBehaviour {
         return (int)Mathf.Floor(Mathf.Pow(lvl, 1.8f) + 50);
     }
 
+    public static string IntArrayToString(int[] input)
+    {
+        string output = "" + input[0].ToString() + input[1].ToString() + input[2].ToString();
+        return output;
+    }
+
     // Update is called once per frame
     void Update () {
 		

@@ -1,0 +1,402 @@
+fileFormatVersion: 2
+guid: 4ad271718697597489b3dac7867c1cac
+timeCreated: 1527491223
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: PuzzlePhaseSpritesheet_0
+    21300002: PuzzlePhaseSpritesheet_1
+    21300004: PuzzlePhaseSpritesheet_2
+    21300006: PuzzlePhaseSpritesheet_3
+    21300008: PuzzlePhaseSpritesheet_4
+    21300010: PuzzlePhaseSpritesheet_5
+    21300012: PuzzlePhaseSpritesheet_6
+    21300014: PuzzlePhaseSpritesheet_7
+    21300016: PuzzlePhaseSpritesheet_8
+    21300018: PuzzlePhaseSpritesheet_9
+    21300020: PuzzlePhaseSpritesheet_10
+    21300022: PuzzlePhaseSpritesheet_11
+    21300024: PuzzlePhaseSpritesheet_12
+    21300026: PuzzlePhaseSpritesheet_13
+    21300028: PuzzlePhaseSpritesheet_14
+    21300030: PuzzlePhaseSpritesheet_15
+    21300032: PuzzlePhaseSpritesheet_16
+    21300034: PuzzlePhaseSpritesheet_17
+    21300036: PuzzlePhaseSpritesheet_18
+  externalObjects: {}
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: PuzzlePhaseSpritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 5436.5264
+        width: 1125
+        height: 291.4737
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PuzzlePhaseSpritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 5135.5264
+        width: 1125
+        height: 291.4737
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PuzzlePhaseSpritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4834.5264
+        width: 1125
+        height: 291.4737
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PuzzlePhaseSpritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4531
+        width: 1125
+        height: 291
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PuzzlePhaseSpritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4230
+        width: 1125
+        height: 291
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PuzzlePhaseSpritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3926
+        width: 1125
+        height: 291
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PuzzlePhaseSpritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3626
+        width: 1125
+        height: 291
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PuzzlePhaseSpritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3327
+        width: 1125
+        height: 291
+      alignment: 9
+      pivot: {x: 0.5, y: 0.48196033}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PuzzlePhaseSpritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3021
+        width: 1125
+        height: 291
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PuzzlePhaseSpritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2717
+        width: 1125
+        height: 291
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PuzzlePhaseSpritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2416
+        width: 1125
+        height: 291
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PuzzlePhaseSpritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2120
+        width: 1125
+        height: 291
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PuzzlePhaseSpritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1812
+        width: 1125
+        height: 291
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PuzzlePhaseSpritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1505
+        width: 1125
+        height: 291
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PuzzlePhaseSpritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1204
+        width: 1125
+        height: 291
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PuzzlePhaseSpritesheet_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 906
+        width: 1125
+        height: 291
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PuzzlePhaseSpritesheet_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 608
+        width: 1125
+        height: 291
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PuzzlePhaseSpritesheet_17
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 299
+        width: 1125
+        height: 291
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: PuzzlePhaseSpritesheet_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1125
+        height: 291
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

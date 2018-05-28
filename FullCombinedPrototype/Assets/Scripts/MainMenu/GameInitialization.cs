@@ -44,6 +44,9 @@ public class GameInitialization : MonoBehaviour {
 
         if (!PlayerPrefs.HasKey("stageLastPlayed"))
             PlayerPrefs.SetInt("stageLastPlayed", 0);
+
+        if (!PlayerPrefs.HasKey("tutorial"))
+            PlayerPrefs.SetInt("tutorial", 0);
     }
 	
 	// Update is called once per frame
