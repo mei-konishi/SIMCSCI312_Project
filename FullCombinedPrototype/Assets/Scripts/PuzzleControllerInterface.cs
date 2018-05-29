@@ -32,5 +32,9 @@ public abstract class PuzzleControllerInterface : MonoBehaviour {
         active = false;
     }
 
+    public void SetDifficulty(int diff)
+    {
+        puzzleDifficulty = diff;
+    }
 
 }

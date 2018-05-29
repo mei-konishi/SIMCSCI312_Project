@@ -25,7 +25,7 @@ public class MemoryPuzzleController : PuzzleControllerInterface {
 
         base.Start();
         puzzleType = 2; // this puzzle is a defence type
-        puzzleDifficulty = 1; // set puzzle difficulty to 1 first
+        puzzleDifficulty = 1;
         
         Vector3 startPos = originalCard.transform.position;
 

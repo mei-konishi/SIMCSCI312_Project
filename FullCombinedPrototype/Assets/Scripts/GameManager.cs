@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour {
     private SplashScreen splashScript;          // hold referrence to splash screen script
     private Timer timer;                        // hold referrence to timer script
    
-    public static int level = 1;      // used to keep track of stage 
+    public static int level;      // used to keep track of stage 
     private int stageWin; // -1 for lose, 0 for ongoing, 1 for win
     
     private Text enemyDmgedText;
@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour {
         puzzleManagerScript = GetComponent<PuzzleManager>();
         formulasScript = GetComponent<Formulas>();
         timer = GetComponent<Timer>();
+        level = PlayerPrefs.GetInt("stageSelected");
 
         InitGame();
 	}

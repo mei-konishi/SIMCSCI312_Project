@@ -45,6 +45,9 @@ public class GameInitialization : MonoBehaviour {
         if (!PlayerPrefs.HasKey("stageLastPlayed"))
             PlayerPrefs.SetInt("stageLastPlayed", 0);
 
+        if (!PlayerPrefs.HasKey("stageSelected"))
+            PlayerPrefs.SetInt("stageSelected", 1);
+
         if (!PlayerPrefs.HasKey("tutorial"))
             PlayerPrefs.SetInt("tutorial", 0);
     }

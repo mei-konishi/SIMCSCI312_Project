@@ -33,7 +33,7 @@ public class Player : CharacterInterface {
     private void initializeStats()
     {
         level = PlayerPrefs.GetInt("level");
-        strength = 8; // PlayerPrefs.GetInt("str");
+        strength = PlayerPrefs.GetInt("str");
         defence = PlayerPrefs.GetInt("def");
         maxHealth = PlayerPrefs.GetInt("hp");
         currentHealth = maxHealth;

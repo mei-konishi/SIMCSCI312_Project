@@ -41,12 +41,6 @@ public class SimonSaysGameController : PuzzleControllerInterface
     {
         base.Start();
         puzzleType = 1; // this puzzle is an attack type
-        puzzleDifficulty = GameManager.level; // difficulty set to current level
-    }
-
-    public void SetDifficulty(int difficulty)
-    {
-        puzzleDifficulty = difficulty;
     }
 
     // Update is called once per frame
