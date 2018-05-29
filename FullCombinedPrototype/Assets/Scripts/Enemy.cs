@@ -5,14 +5,21 @@ using UnityEngine.UI;
 
 public class Enemy : CharacterInterface
 {
-
     private Animator animator;
+    private PuzzleManager puzzleManager;
 
-    public Text enemyStatsText;
+    private float solvingSpeed; // the speed at which the enemy attempts to solve a puzzle
+    private int solvingRate; // the chance of solving the puzzle
+    private int puzzlePreferrence; // chance of solving attack puzzle over defence 
+
+    private bool isTurn; // when the enemy can attempt to solve puzzle
+    private bool moved = false; // a trigger to flip for starting coroutine 
 
     // Use this for initialization
     protected override void Start()
     {
+        base.Start();
+
         setLevel(GameManager.getLevel());
 
         //Register this enemy with our instance of GameManager by adding it to a list of Enemy objects. 
@@ -22,14 +29,7 @@ public class Enemy : CharacterInterface
         //Get and store a reference to the attached Animator component.
         animator = GetComponent<Animator>();
 
- //       enemyStatsText = GameObject.Find("EnemyStatsText").GetComponent<Text>();
-
-        base.Start();
-        /*
-        statsText.text = "Str: " + strength + " \n"
-                             + "Def: " + defence + "\n"
-                             + "Health: " + currentHealth + "/" + maxHealth;
-                             */
+        puzzleManager = FindObjectOfType<PuzzleManager>();
     }
 
     public override void updateStats()
@@ -39,6 +39,7 @@ public class Enemy : CharacterInterface
 
     public void setLevel(int lvl)
     {
+        level = lvl;
         // this is just for prototype. 
         // TODO : in future, make stats database, or some formula
         // =ROUNDDOWN(lvl^3*0.09 + lvl^2*0.08 + 1)
@@ -46,19 +47,58 @@ public class Enemy : CharacterInterface
         // =ROUNDDOWN(lvl^3*0.08 + lvl^2*0.07 + 1)
         defence = (int)Mathf.Floor(Mathf.Pow(lvl, 3) * 0.08f + Mathf.Pow(lvl, 2) * 0.07f + 1f);
         // =ROUNDUP(lvl^4*0.09 + 50)
-        maxHealth = (int)Mathf.Ceil(Mathf.Pow(lvl, 4) * 0.09f + 50f);
+        maxHealth = (int)Mathf.Ceil(Mathf.Pow(lvl, 4) * 0.09f + 18f);
         currentHealth = maxHealth;
         StatsUIManager.InitEnemyValues(strength, defence, maxHealth); // update UI 
+
+        // setting hard values for now. will need to come up with formula or something later
+        solvingSpeed = 8.0f; // attemps to solve at every 8 second
+        solvingRate = 80; // has a 80% chance to solve the puzzle at every attempt.
+        puzzlePreferrence = 80; // has a 80% chance to solve attack puzzle and 20% for defence
     }
 
     // Update is called once per frame
     void Update () {
-        /*
-        enemyStatsText.text = "Str: " + strength + " \n"
-                             + "Def: " + defence + "\n"
-                             + "Health: " + currentHealth + "/" + maxHealth;
-                             */
+
+        if (!isTurn) // when not turn 
+        {
+            StopCoroutine(SolvePuzzle()); // stop solving puzzles
+        }
+        else if (!moved) // when is turn, but haven't moved
+        {
+            moved = true; // set this to true to stop infinite move
+            StartCoroutine(SolvePuzzle()); // start solving puzzles
+        }
+        
         StatsUIManager.UpdateEnemyHealth(currentHealth); // update UI
+    }
+
+    IEnumerator SolvePuzzle()
+    {
+        // take time to solve puzzle
+        yield return new WaitForSeconds(solvingSpeed);
+        // check if puzzle is solved 
+        bool puzzleSolved = Random.Range(0, 100) <= solvingRate ? true : false;
+        // check if attack puzzle solved or defence
+        bool attackPuzzle = Random.Range(0, 100) <= puzzlePreferrence ? true : false;
+        // if puzzle is solved, update the puzzle manager
+        if (puzzleSolved)
+        {
+            if (attackPuzzle)
+            {
+                puzzleManager.EnemyAtkPuzzleSolved();
+            }
+            else
+            {
+                puzzleManager.EnemyDefPuzzleSolved();
+            }
+        }
+        moved = false; // set this back to false again to start next move
+    }
+
+    public void SetIsTurn(bool turn)
+    {
+        isTurn = turn;
     }
 
     public void doHitAnimation()
