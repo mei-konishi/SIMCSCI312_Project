@@ -7,6 +7,7 @@ public class Enemy : CharacterInterface
 {
     private Animator animator;
     private PuzzleManager puzzleManager;
+    private StatsUIManager statsUIManager;
 
     private float solvingSpeed; // the speed at which the enemy attempts to solve a puzzle
     private int solvingRate; // the chance of solving the puzzle
@@ -30,11 +31,19 @@ public class Enemy : CharacterInterface
         animator = GetComponent<Animator>();
 
         puzzleManager = FindObjectOfType<PuzzleManager>();
+        statsUIManager = FindObjectOfType<StatsUIManager>();
     }
 
     public override void updateStats()
     {
         base.updateStats();
+    }
+
+    public override void receiveDamage(int dmg)
+    {
+        base.receiveDamage(dmg);
+
+        statsUIManager.UpdateEnemyHealth(currentHealth); // update UI
     }
 
     public void setLevel(int lvl)
@@ -53,8 +62,8 @@ public class Enemy : CharacterInterface
 
         // setting hard values for now. will need to come up with formula or something later
         solvingSpeed = 8.0f; // attemps to solve at every 8 second
-        solvingRate = 80; // has a 80% chance to solve the puzzle at every attempt.
-        puzzlePreferrence = 80; // has a 80% chance to solve attack puzzle and 20% for defence
+        solvingRate = 100; // has a 100% chance to solve the puzzle at every attempt.
+        puzzlePreferrence = 90; // has a 90% chance to solve attack puzzle and 10% for defence
     }
 
     // Update is called once per frame
@@ -69,8 +78,6 @@ public class Enemy : CharacterInterface
             moved = true; // set this to true to stop infinite move
             StartCoroutine(SolvePuzzle()); // start solving puzzles
         }
-        
-        StatsUIManager.UpdateEnemyHealth(currentHealth); // update UI
     }
 
     IEnumerator SolvePuzzle()

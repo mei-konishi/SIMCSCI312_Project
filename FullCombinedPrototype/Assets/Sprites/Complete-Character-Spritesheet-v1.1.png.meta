@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 8005670719cb3984683a064fada58795
-timeCreated: 1526469661
+timeCreated: 1527565381
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -606,10 +606,10 @@ TextureImporter:
       name: Complete-Character-Spritesheet-v1.1_28
       rect:
         serializedVersion: 2
-        x: 30
+        x: 5
         y: 3595
-        width: 198
-        height: 161
+        width: 223
+        height: 171
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -620,10 +620,10 @@ TextureImporter:
       name: Complete-Character-Spritesheet-v1.1_29
       rect:
         serializedVersion: 2
-        x: 239
+        x: 228
         y: 3595
-        width: 193
-        height: 161
+        width: 204
+        height: 169
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -634,10 +634,10 @@ TextureImporter:
       name: Complete-Character-Spritesheet-v1.1_30
       rect:
         serializedVersion: 2
-        x: 452
+        x: 439
         y: 3595
-        width: 193
-        height: 159
+        width: 206
+        height: 167
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -648,10 +648,10 @@ TextureImporter:
       name: Complete-Character-Spritesheet-v1.1_31
       rect:
         serializedVersion: 2
-        x: 30
+        x: 17
         y: 3402
-        width: 198
-        height: 163
+        width: 210
+        height: 176
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -662,10 +662,10 @@ TextureImporter:
       name: Complete-Character-Spritesheet-v1.1_32
       rect:
         serializedVersion: 2
-        x: 240
+        x: 239
         y: 3402
-        width: 227
-        height: 163
+        width: 228
+        height: 178
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -679,7 +679,7 @@ TextureImporter:
         x: 482
         y: 3402
         width: 255
-        height: 163
+        height: 177
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

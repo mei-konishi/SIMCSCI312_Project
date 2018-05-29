@@ -169,7 +169,7 @@ public class PuzzleManager : MonoBehaviour
     public void EnemyDefPuzzleSolved()
     {
         enemyDefPuzSolved++;
-        statsUIManagerScript.UpdateEnemyAtkPuzSolved(enemyDefPuzSolved);
+        statsUIManagerScript.UpdateEnemyDefPuzSolved(enemyDefPuzSolved);
     }
 
     public void ResetScore()
@@ -180,14 +180,7 @@ public class PuzzleManager : MonoBehaviour
         enemyDefPuzSolved = 0;
         statsUIManagerScript.ClearPoints(); // clear UI
     }
-/*
-    // temp AI, will change next time to real time update
-    public void EnemyAI()
-    {
-        enemyAtkPuzSolved = Random.Range(5, 10);
-        enemyDefPuzSolved = Random.Range(0, 3);
-    }
-*/
+
     // getters ===============================================
     public int GetPlayerAtkScore()
     {

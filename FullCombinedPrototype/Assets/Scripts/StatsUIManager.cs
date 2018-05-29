@@ -20,6 +20,9 @@ public class StatsUIManager : MonoBehaviour {
     public GameObject defendPoint;
     public GameObject healthBar;
 
+    private GameObject playerHPBar;
+    private GameObject enemyHPBar;
+
     private Text playerAttackText;
     private Text playerDefendText;
     private Text playerHealthText;
@@ -28,6 +31,7 @@ public class StatsUIManager : MonoBehaviour {
     private Text enemyHealthText;
 
     static private int playerAtk, playerDef, playerHp, enemyAtk, enemyDef, enemyHp;
+    static private int playerMaxHP, enemyMaxHP;
 
     // Use this for creating the important icons
     public void Setup() {
@@ -35,7 +39,7 @@ public class StatsUIManager : MonoBehaviour {
         Instantiate(attackIcon, new Vector3(0.9f, ATK_UI_HEIGHT, 0f), Quaternion.identity);
         Instantiate(defendIcon, new Vector3(0.9f, DEF_UI_HEIGHT, 0f), Quaternion.identity);
         Instantiate(healthIcon, new Vector3(0.9f, HP_UI_HEIGHT, 0f), Quaternion.identity);
-        Instantiate(healthBar, new Vector3(1.5f, HP_UI_HEIGHT, 0f), Quaternion.identity);
+        playerHPBar = Instantiate(healthBar, new Vector3(1.5f, HP_UI_HEIGHT, 0f), Quaternion.identity) as GameObject;
 
         for (int i = 0; i < MAX_PUZZLE_POINT; i++)
         {
@@ -47,7 +51,7 @@ public class StatsUIManager : MonoBehaviour {
         Instantiate(attackIcon, new Vector3(3.7f, ATK_UI_HEIGHT, 0f), Quaternion.identity);
         Instantiate(defendIcon, new Vector3(3.7f, DEF_UI_HEIGHT, 0f), Quaternion.identity);
         Instantiate(healthIcon, new Vector3(3.7f, 4.4f, 0f), Quaternion.identity);
-        Instantiate(healthBar, new Vector3(4.3f, 4.4f, 0f), Quaternion.identity);
+        enemyHPBar = Instantiate(healthBar, new Vector3(4.3f, 4.4f, 0f), Quaternion.identity) as GameObject;
 
         for (int i = 0; i < MAX_PUZZLE_POINT; i++)
         {
@@ -71,6 +75,7 @@ public class StatsUIManager : MonoBehaviour {
         playerAtk = atk;
         playerDef = def;
         playerHp = hp;
+        playerMaxHP = hp;
     }
 
     public static void InitEnemyValues(int atk, int def, int hp)
@@ -78,6 +83,7 @@ public class StatsUIManager : MonoBehaviour {
         enemyAtk = atk;
         enemyDef = def;
         enemyHp = hp;
+        enemyMaxHP = hp;
     }
 
     // use these functions to update the number of puzzles solved
@@ -112,14 +118,28 @@ public class StatsUIManager : MonoBehaviour {
     }
 
     // use these functions to update health 
-    public static void UpdatePlayerHealth(int hp)
+    public void UpdatePlayerHealth(int hp)
     {
         playerHp = hp;
+        float difference = (1.00f * hp) / playerMaxHP; // get the difference 
+        // get the scale of the bar, replace the x scale, and put it back 
+        Vector3 temp = playerHPBar.gameObject.transform.GetChild(0).GetComponent<Transform>().localScale;
+        temp.x = difference;
+        playerHPBar.gameObject.transform.GetChild(0).GetComponent<Transform>().localScale = temp;
+        // move the scaled hp left by ........
+        playerHPBar.gameObject.transform.GetChild(0).GetComponent<Transform>().localPosition += new Vector3(-(1-difference) * 10, 0, 0);
     }
 
-    public static void UpdateEnemyHealth(int hp)
+    public void UpdateEnemyHealth(int hp)
     {
         enemyHp = hp;
+        float difference = (1.00f * hp) / enemyMaxHP; // get the difference 
+        // get the scale of the bar, replace the x scale, and put it back 
+        Vector3 temp = enemyHPBar.gameObject.transform.GetChild(0).GetComponent<Transform>().localScale;
+        temp.x = difference;
+        enemyHPBar.gameObject.transform.GetChild(0).GetComponent<Transform>().localScale = temp;
+        // move the scaled hp left by ........
+        enemyHPBar.gameObject.transform.GetChild(0).GetComponent<Transform>().localPosition += new Vector3(-(1-difference) * 10, 0, 0);
     }
 	
 	// Update is called once per frame

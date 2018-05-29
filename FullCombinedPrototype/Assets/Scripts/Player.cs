@@ -15,6 +15,8 @@ public class Player : CharacterInterface {
 
     private Animator animator;  //Used to store a reference to the Player's animator component.
 
+    private StatsUIManager statsUIManager;
+
     // Use this for initialization
     protected override void Start () {
 
@@ -23,13 +25,15 @@ public class Player : CharacterInterface {
         //Get a component reference to the Player's animator component
         animator = GetComponent<Animator>();
 
+        statsUIManager = FindObjectOfType<StatsUIManager>();
+
         initializeStats();
     }
 
     private void initializeStats()
     {
         level = PlayerPrefs.GetInt("level");
-        strength = PlayerPrefs.GetInt("str");
+        strength = 8; // PlayerPrefs.GetInt("str");
         defence = PlayerPrefs.GetInt("def");
         maxHealth = PlayerPrefs.GetInt("hp");
         currentHealth = maxHealth;
@@ -40,7 +44,14 @@ public class Player : CharacterInterface {
 
     public override void updateStats()
     {
-        StatsUIManager.UpdatePlayerHealth(currentHealth); // update UI on health
+        
+    }
+
+    public override void receiveDamage(int dmg)
+    {
+        base.receiveDamage(dmg);
+
+        statsUIManager.UpdatePlayerHealth(currentHealth); // update UI
     }
 
     public void gainExp(int exp)
@@ -74,8 +85,6 @@ public class Player : CharacterInterface {
 
     // Update is called once per frame
     void Update () {
-
-        updateStats();
 
         if (Input.touchCount > 0){ // check for touches
             Touch myTouch = Input.touches[0]; // get touch
