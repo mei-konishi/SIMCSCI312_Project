@@ -93,12 +93,18 @@ public class GameManager : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         
+        // during puzzle phase
+        if (Timer.checkPuzzlePhase())
+        {
+            enemies[0].SetIsTurn(true); // allow enemy to start solving puzzles
+        }
+
         // when not during puzzle phase (and game still going on)
         if (!Timer.checkPuzzlePhase() && stageWin == 0)
         {
-            // enemy AI calculate dmg 
-            enemyAI();
+            enemies[0].SetIsTurn(false); // stop enemy from solving puzzles
 
+            // check with timer if it's time to play certain animations
             if (Timer.checkAnimationTriggered("splashPuzzle"))
             {
                 splashScript.splashPuzzleScreen(); 
@@ -120,6 +126,7 @@ public class GameManager : MonoBehaviour {
                 StartCoroutine(GetAttacked());
                 enemies[0].doHitAnimation();
             }
+            
         }
 
         // check if game is over or not. if not, reset stats for next round
@@ -128,13 +135,6 @@ public class GameManager : MonoBehaviour {
             startNextRound();
         }
 
-    }
-
-    // this function should have a good algorithm to calculate a random dmg and atk 
-    // appropriate for the level of the stage. 
-    private void enemyAI()
-    {
-        puzzleManagerScript.EnemyAI();
     }
 
     IEnumerator AttackEnemy()

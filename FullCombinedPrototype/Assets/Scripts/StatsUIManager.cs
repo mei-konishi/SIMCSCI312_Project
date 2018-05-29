@@ -91,6 +91,16 @@ public class StatsUIManager : MonoBehaviour {
         Instantiate(defendPoint, new Vector3(1.4f + ((num -1) * 0.18f), DEF_UI_HEIGHT, 0f), Quaternion.identity);
     }
 
+    public void UpdateEnemyAtkPuzSolved(int num)
+    {
+        Instantiate(attackPoint, new Vector3(4.2f + ((num - 1) * 0.18f), ATK_UI_HEIGHT, 0f), Quaternion.identity);
+    }
+
+    public void UpdateEnemyDefPuzSolved(int num)
+    {
+        Instantiate(defendPoint, new Vector3(4.2f + ((num - 1) * 0.18f), DEF_UI_HEIGHT, 0f), Quaternion.identity);
+    }
+
     // use this to clear out all points gained
     public void ClearPoints()
     {

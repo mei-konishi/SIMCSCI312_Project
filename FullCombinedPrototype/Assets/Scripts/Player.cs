@@ -24,11 +24,6 @@ public class Player : CharacterInterface {
         animator = GetComponent<Animator>();
 
         initializeStats();
-
- /*       playerStatsText.text = "Str: " + strength + " \n"
-                             + "Def: " + defence + "\n"
-                             + "Health: " + currentHealth + "/" + maxHealth;
-                             */
     }
 
     private void initializeStats()
@@ -45,10 +40,6 @@ public class Player : CharacterInterface {
 
     public override void updateStats()
     {
- /*       playerStatsText.text = "Str: " + strength + " \n"
-                             + "Def: " + defence + "\n"
-                             + "Health: " + currentHealth + "/" + maxHealth;
-*/
         StatsUIManager.UpdatePlayerHealth(currentHealth); // update UI on health
     }
 

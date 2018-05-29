@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d1ffa0a22bcea744a770eb92aafcd7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puzzleDuration: 5
+  puzzleDuration: 30
 --- !u!114 &114554365726894144
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -133,7 +133,7 @@ MonoBehaviour:
   - {fileID: 1212416833350064, guid: 89d8d2afe0b4a164bb42fd6907209243, type: 2}
   hack_Ulti_On: 1
   hack_init_tutorials: 1
-  hack_init_everything: 0
+  hack_init_everything: 1
 --- !u!114 &114603777807894548
 MonoBehaviour:
   m_ObjectHideFlags: 1
