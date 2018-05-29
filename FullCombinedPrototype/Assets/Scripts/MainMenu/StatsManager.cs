@@ -301,8 +301,5 @@ public class StatsManager : MonoBehaviour {
             newEquipLevel += equippedSkillsLevel[i].ToString();
         }
         PlayerPrefs.SetString("equippedSkillsLevels", newEquipLevel);
-
-        Debug.Log(PlayerPrefs.GetString("skillsEquipped"));
-        Debug.Log(PlayerPrefs.GetString("equippedSkillsLevels"));
     }
 }

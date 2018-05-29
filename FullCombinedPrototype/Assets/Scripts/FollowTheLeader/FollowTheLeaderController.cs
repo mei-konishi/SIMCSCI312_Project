@@ -21,7 +21,7 @@ public class FollowTheLeaderController : PuzzleControllerInterface
     public override void Start () {
 
         base.Start();
-        puzzleType = 2; // this puzzle is a defence type
+        puzzleType = 1; // this puzzle is a attack type
         puzzleDifficulty = 1; // set puzzle difficulty to 1 first
 
         //SetupCards();

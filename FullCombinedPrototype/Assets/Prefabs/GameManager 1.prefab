@@ -132,8 +132,8 @@ MonoBehaviour:
   - {fileID: 1212416833350064, guid: 89d8d2afe0b4a164bb42fd6907209243, type: 2}
   - {fileID: 1212416833350064, guid: 89d8d2afe0b4a164bb42fd6907209243, type: 2}
   hack_Ulti_On: 1
-  hack_init_tutorials: 1
-  hack_init_everything: 1
+  hack_init_tutorials: 0
+  hack_init_everything: 0
 --- !u!114 &114603777807894548
 MonoBehaviour:
   m_ObjectHideFlags: 1
