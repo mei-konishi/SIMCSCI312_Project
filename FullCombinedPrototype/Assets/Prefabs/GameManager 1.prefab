@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d1ffa0a22bcea744a770eb92aafcd7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puzzleDuration: 30
+  puzzleDuration: 10
 --- !u!114 &114554365726894144
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -129,6 +129,11 @@ MonoBehaviour:
   - {fileID: 1765263334277986, guid: 15cee55b31c9a59408ddb66b3466d51e, type: 2}
   - {fileID: 1241188519039688, guid: 379b36b1e32462744b7c01c05942ee68, type: 2}
   - {fileID: 1605090663177072, guid: e61c37d263eed6e4ea3e5dfc87e0ac20, type: 2}
+  - {fileID: 1212416833350064, guid: 89d8d2afe0b4a164bb42fd6907209243, type: 2}
+  - {fileID: 1212416833350064, guid: 89d8d2afe0b4a164bb42fd6907209243, type: 2}
+  - {fileID: 1212416833350064, guid: 89d8d2afe0b4a164bb42fd6907209243, type: 2}
+  - {fileID: 1212416833350064, guid: 89d8d2afe0b4a164bb42fd6907209243, type: 2}
+  - {fileID: 1212416833350064, guid: 89d8d2afe0b4a164bb42fd6907209243, type: 2}
   - {fileID: 1212416833350064, guid: 89d8d2afe0b4a164bb42fd6907209243, type: 2}
   - {fileID: 1212416833350064, guid: 89d8d2afe0b4a164bb42fd6907209243, type: 2}
   hack_Ulti_On: 1
@@ -169,4 +174,4 @@ MonoBehaviour:
     type: 2}
   defendPoint: {fileID: 1783937049747352, guid: efff1e8eb317b6c418ffb1dd1e1ee6ce,
     type: 2}
-  healthBar: {fileID: 1932521050575090, guid: 26bb1d1097c641b408b09f81523e2950, type: 2}
+  healthBar: {fileID: 1057138392701400, guid: b30166d40879ae44d8ff5d3175262f40, type: 2}

@@ -17,6 +17,9 @@ TagManager:
   - DefendPoint
   - Points
   - Tutorial
+  - Canvas
+  - playerHP
+  - enemyHP
   layers:
   - Default
   - TransparentFX

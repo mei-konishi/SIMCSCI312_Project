@@ -42,7 +42,7 @@ public abstract class CharacterInterface : MonoBehaviour {
         level++;
     }
 
-    public void receiveDamage(int dmg)
+    public virtual void receiveDamage(int dmg)
     {
         if (dmg >= currentHealth)
         {
