@@ -29,8 +29,9 @@ public class GameManager : MonoBehaviour {
 
     // Use this for initialization
     void Awake () {
+        level = PlayerPrefs.GetInt("playingLevel");
 
-		if (instance == null){ // check if instance already exists
+        if (instance == null){ // check if instance already exists
             instance = this;    // if not, set instance to this
         }
 

@@ -76,4 +76,9 @@ public class ButtonManager : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void SetPlayedLevel(int level)
+    {
+        PlayerPrefs.SetInt("playingLevel", level);
+    }
 }
