@@ -77,8 +77,16 @@ MonoBehaviour:
   - {fileID: 1846445048020230, guid: d629f64a914d01a4992c2bcd9d34dfb3, type: 2}
   - {fileID: 1320575419959698, guid: a7f5c650b26592b40a964f99b17ac7ee, type: 2}
   enemyTiles:
-  - {fileID: 1550933212087944, guid: 6365a2e1aff4f1749b30c911fc5fb281, type: 2}
-  - {fileID: 1751910441343876, guid: d7809fadd4b55dd4594b7127c5eb4c38, type: 2}
+  - {fileID: 1104255525531066, guid: 6365a2e1aff4f1749b30c911fc5fb281, type: 2}
+  - {fileID: 1452772777882246, guid: d7809fadd4b55dd4594b7127c5eb4c38, type: 2}
+  - {fileID: 1826264404571894, guid: b7ee35c9688c27d4e9a5b301dbdcacd0, type: 2}
+  - {fileID: 1789933797643644, guid: e1ddd02b6e45d694fa344b75a7a007ab, type: 2}
+  - {fileID: 1436485437694438, guid: 4aea52d9988c08e4c8a24b4cb18a9694, type: 2}
+  - {fileID: 1079813317013298, guid: acdb22222e510ee489d366067768046b, type: 2}
+  - {fileID: 1165837721087974, guid: 24848203318a9414c923411b69a1f46e, type: 2}
+  - {fileID: 1392528834488590, guid: 074dc5d92b9daa444b6392517f0a2f85, type: 2}
+  - {fileID: 1593435649962046, guid: b7bbf46fde000b34dbef5fa7aa63c676, type: 2}
+  - {fileID: 1940137072776624, guid: 3aea188d7237919458b75e013550506c, type: 2}
   winPanels:
   - {fileID: 1747914630593044, guid: fe5e047ea3d4ef14db5f7796627a1f2e, type: 2}
   - {fileID: 1747914630593044, guid: 95dcde7eeeb6d73428721757f9189fcc, type: 2}

@@ -8,7 +8,7 @@ AnimatorController:
   m_Name: Player
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: PlayerDamaged
+  - m_Name: PlayerDamage
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -41,7 +41,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: PlayerDamaged
+    m_ConditionEvent: PlayerDamage
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102784818894250458}

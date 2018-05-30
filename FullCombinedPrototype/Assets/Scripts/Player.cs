@@ -27,10 +27,10 @@ public class Player : CharacterInterface {
 
         statsUIManager = FindObjectOfType<StatsUIManager>();
 
-        initializeStats();
+        InitializeStats();
     }
 
-    private void initializeStats()
+    private void InitializeStats()
     {
         level = PlayerPrefs.GetInt("level");
         strength = PlayerPrefs.GetInt("str");
@@ -42,19 +42,19 @@ public class Player : CharacterInterface {
         StatsUIManager.InitPlayerStats(strength, defence, maxHealth); // update the UI
     }
 
-    public override void updateStats()
+    public override void UpdateStats()
     {
         
     }
 
-    public override void receiveDamage(int dmg)
+    public override void ReceiveDamage(int dmg)
     {
-        base.receiveDamage(dmg);
+        base.ReceiveDamage(dmg);
 
         statsUIManager.UpdatePlayerHealth(currentHealth); // update UI
     }
 
-    public void gainExp(int exp)
+    public void GainExp(int exp)
     {
         currentExp += exp;
         rewardString = "You have earned " + exp + " exp!";
@@ -63,15 +63,15 @@ public class Player : CharacterInterface {
         {
             // remove exp used for level up
             currentExp -= expForNextLevel; 
-            levelUp();
+            LevelUp();
         }
         PlayerPrefs.SetInt("exp", currentExp);
         PlayerPrefs.SetString("rewardString", rewardString);  
     }
 
-    public override void levelUp()
+    public override void LevelUp()
     {
-        base.levelUp();
+        base.LevelUp();
         // TODO: in future, make a exp chart database, or some algorithm to generate next exp req
         // =ROUNDUP((A2^3)*0.03+(A2^2)*0.1+50*A2)
         expForNextLevel = (int)Mathf.Ceil( Mathf.Pow(level, 3.0F) * 0.03f + Mathf.Pow(level, 2.0f) * 0.1f + level * 50);
@@ -91,8 +91,13 @@ public class Player : CharacterInterface {
         }
 	}
 
-    public void doHitAnimation()
+    public void DoHitAnimation()
     {
         animator.SetTrigger("PlayerAttack");
+    }
+
+    public void DoDmgedAnimation()
+    {
+        animator.SetTrigger("PlayerDamage");
     }
 }

@@ -108,24 +108,26 @@ public class GameManager : MonoBehaviour {
             // check with timer if it's time to play certain animations
             if (Timer.checkAnimationTriggered("splashPuzzle"))
             {
-                splashScript.splashPuzzleScreen(); 
+                splashScript.SplashPuzzleScreen(); 
             }
 
             if (Timer.checkAnimationTriggered("splashAttack"))
             {
-                splashScript.splashAttackScreen();
+                splashScript.SplashAttackScreen();
             }
 
             if (Timer.checkAnimationTriggered("player"))
             {
                 StartCoroutine(AttackEnemy());
-                player.doHitAnimation();
+                player.DoHitAnimation();
+                enemies[0].DoDmgedAnimation();
             }
 
             if (Timer.checkAnimationTriggered("enemy"))
             {
                 StartCoroutine(GetAttacked());
-                enemies[0].doHitAnimation();
+                enemies[0].DoHitAnimation();
+                player.DoDmgedAnimation();
             }
             
         }
@@ -142,12 +144,12 @@ public class GameManager : MonoBehaviour {
     {
         // calculate damage dealt to enemy
         int enemyDmgReceived = formulasScript.calculateDmg(
-                            puzzleManagerScript.GetPlayerAtkScore() * player.getStrength(),
-                            puzzleManagerScript.GetEnemyDefScore() * enemies[0].getDefence());
+                            puzzleManagerScript.GetPlayerAtkScore() * player.GetStrength(),
+                            puzzleManagerScript.GetEnemyDefScore() * enemies[0].GetDefence());
 
         // deal damage to enemy
         enemyDmgedText.text = (enemyDmgReceived) + "!"; // show dmg text
-        enemies[0].receiveDamage(enemyDmgReceived); // update health
+        enemies[0].ReceiveDamage(enemyDmgReceived); // update health
         // hold for a while
         Invoke("HideDamageEnemy", 2f);
         yield return new WaitForSeconds(2f);
@@ -157,12 +159,12 @@ public class GameManager : MonoBehaviour {
     {
         // calculate damage received
         int playerDmgReceived = formulasScript.calculateDmg(
-                                puzzleManagerScript.GetEnemyAtkScore() * enemies[0].getStrength(),
-                                puzzleManagerScript.GetPlayerDefScore() * player.getDefence());
+                                puzzleManagerScript.GetEnemyAtkScore() * enemies[0].GetStrength(),
+                                puzzleManagerScript.GetPlayerDefScore() * player.GetDefence());
 
         // receive damage 
         playerDmgedText.text = playerDmgReceived + "!"; // show dmg text
-        player.receiveDamage(playerDmgReceived); // update health
+        player.ReceiveDamage(playerDmgReceived); // update health
         // hold for a while
         Invoke("HideDamagePlayer", 2f);
         yield return new WaitForSeconds(2f);
@@ -182,7 +184,7 @@ public class GameManager : MonoBehaviour {
     // returns -1 for lose, 1 for win, 0 for no one dead
     private int checkGameOver()
     {
-        if (enemies[0].checkDead())
+        if (enemies[0].CheckDead())
         { 
             stageWin = 1;
             winText.text = "YOU WIN!";
@@ -190,12 +192,12 @@ public class GameManager : MonoBehaviour {
             // ADD PANEL HERE
             if (rewardOnceOnly == false)
             {
-                player.gainExp(formulasScript.calculateExpGain(level));
+                player.GainExp(formulasScript.calculateExpGain(level));
                 rewardOnceOnly = true;
             }         
             GameObject.FindGameObjectWithTag("Canvas").transform.GetChild(14).gameObject.SetActive(true);
         }
-        else if (player.checkDead())
+        else if (player.CheckDead())
         {    
             stageWin = -1;
             winText.text = "DEFEATED!";

@@ -19,12 +19,12 @@ public class SplashScreen : MonoBehaviour {
 		
 	}
 
-    public void splashAttackScreen()
+    public void SplashAttackScreen()
     {
         animator.SetTrigger("SplashAttack");
     }
 
-    public void splashPuzzleScreen()
+    public void SplashPuzzleScreen()
     {
         animator.SetTrigger("SplashPuzzle");
     }

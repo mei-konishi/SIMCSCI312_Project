@@ -18,17 +18,17 @@ public abstract class CharacterInterface : MonoBehaviour {
 		
 	}
 
-    public int getStrength()
+    public int GetStrength()
     {
         return strength;
     }
 
-    public int getDefence()
+    public int GetDefence()
     {
         return defence;
     }
 
-    public virtual void updateStats ()
+    public virtual void UpdateStats ()
     {
         /*
         statsText.text = "Str: " + strength + " \n"
@@ -37,12 +37,12 @@ public abstract class CharacterInterface : MonoBehaviour {
                         */
     }
 
-    public virtual void levelUp()
+    public virtual void LevelUp()
     {
         level++;
     }
 
-    public virtual void receiveDamage(int dmg)
+    public virtual void ReceiveDamage(int dmg)
     {
         if (dmg >= currentHealth)
         {
@@ -55,7 +55,7 @@ public abstract class CharacterInterface : MonoBehaviour {
         }
     }
 
-    public bool checkDead()
+    public bool CheckDead()
     {
         return statusDead;
     }

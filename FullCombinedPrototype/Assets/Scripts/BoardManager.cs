@@ -29,7 +29,7 @@ public class BoardManager : MonoBehaviour {
         Instantiate(backgrounds[level -1], new Vector3(3.0f, 3.5f, 0), Quaternion.identity);
 
         // create enemy for level
-        Instantiate(enemyTiles[level -1], new Vector3(4.5f, 3.4f, 0f), Quaternion.identity);
+        Instantiate(enemyTiles[level -1], new Vector3(5.2f, 2.7f, 0f), Quaternion.identity);
 
         // create panels for level
         GameObject theWinPanel = Instantiate(winPanels[level - 1], new Vector3(0f, 0f, 0f), Quaternion.identity);

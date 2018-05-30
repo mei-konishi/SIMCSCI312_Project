@@ -21,7 +21,7 @@ public class Enemy : CharacterInterface
     {
         base.Start();
 
-        setLevel(GameManager.getLevel());
+        SetLevel(GameManager.getLevel());
 
         //Register this enemy with our instance of GameManager by adding it to a list of Enemy objects. 
         //This allows the GameManager to issue movement commands.
@@ -34,19 +34,19 @@ public class Enemy : CharacterInterface
         statsUIManager = FindObjectOfType<StatsUIManager>();
     }
 
-    public override void updateStats()
+    public override void UpdateStats()
     {
-        base.updateStats();
+        base.UpdateStats();
     }
 
-    public override void receiveDamage(int dmg)
+    public override void ReceiveDamage(int dmg)
     {
-        base.receiveDamage(dmg);
+        base.ReceiveDamage(dmg);
 
         statsUIManager.UpdateEnemyHealth(currentHealth); // update UI
     }
 
-    public void setLevel(int lvl)
+    public void SetLevel(int lvl)
     {
         level = lvl;
         // this is just for prototype. 
@@ -108,8 +108,13 @@ public class Enemy : CharacterInterface
         isTurn = turn;
     }
 
-    public void doHitAnimation()
+    public void DoHitAnimation()
     {
         animator.SetTrigger("EnemyAttack");
+    }
+
+    public void DoDmgedAnimation()
+    {
+        animator.SetTrigger("EnemyDamage");
     }
 }
