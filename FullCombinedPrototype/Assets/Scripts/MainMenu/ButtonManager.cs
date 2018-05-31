@@ -79,6 +79,6 @@ public class ButtonManager : MonoBehaviour
 
     public void SetPlayedLevel(int level)
     {
-        PlayerPrefs.SetInt("playingLevel", level);
+        PlayerPrefs.SetInt("stageSelected", level);
     }
 }

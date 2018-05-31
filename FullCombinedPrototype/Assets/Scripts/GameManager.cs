@@ -195,7 +195,7 @@ public class GameManager : MonoBehaviour {
                 player.GainExp(formulasScript.calculateExpGain(level));
                 rewardOnceOnly = true;
             }         
-            GameObject.FindGameObjectWithTag("Canvas").transform.GetChild(14).gameObject.SetActive(true);
+            GameObject.FindGameObjectWithTag("Canvas").transform.GetChild(13).gameObject.SetActive(true);
         }
         else if (player.CheckDead())
         {    
@@ -203,7 +203,7 @@ public class GameManager : MonoBehaviour {
             winText.text = "DEFEATED!";
             Timer.stopTimer();
             // ADD PANEL HERE
-            GameObject.FindGameObjectWithTag("Canvas").transform.GetChild(15).gameObject.SetActive(true);
+            GameObject.FindGameObjectWithTag("Canvas").transform.GetChild(14).gameObject.SetActive(true);
         }
         else
         {

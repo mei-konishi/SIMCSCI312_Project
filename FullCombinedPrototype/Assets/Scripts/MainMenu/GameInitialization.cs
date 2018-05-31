@@ -50,6 +50,15 @@ public class GameInitialization : MonoBehaviour {
 
         if (!PlayerPrefs.HasKey("tutorial"))
             PlayerPrefs.SetInt("tutorial", 0);
+
+        if (!PlayerPrefs.HasKey("masterVolume"))
+            PlayerPrefs.SetFloat("masterVolume", 0.7f);
+
+        if (!PlayerPrefs.HasKey("sfxVolume"))
+            PlayerPrefs.SetFloat("sfxVolume", 0.7f);
+
+        if (!PlayerPrefs.HasKey("bgmVolume"))
+            PlayerPrefs.SetFloat("bgmVolume", 0.7f);
     }
 	
 	// Update is called once per frame
