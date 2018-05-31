@@ -9,7 +9,7 @@ public class MemoryPuzzleController : PuzzleControllerInterface {
     private int gridCols;
     private int arrayAmt;
     public const float offsetX = 1.35f;
-    public const float offsetY = 1.3f;
+    public const float offsetY = 1.4f;
 
     public bool IsEnable = false;
     
@@ -123,7 +123,7 @@ public class MemoryPuzzleController : PuzzleControllerInterface {
     private MainCard _secondRevealed;
 
     private int _score = 0;
-  
+    [SerializeField] private TextMesh scoreLabel;
 
     public bool canReveal
     {

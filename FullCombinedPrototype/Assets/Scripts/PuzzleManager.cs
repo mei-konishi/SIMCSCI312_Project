@@ -16,6 +16,7 @@ public class PuzzleManager : MonoBehaviour
     private static int enemyDefPuzSolved;
 
     private StatsUIManager statsUIManagerScript;
+    private GameManager gameManager;
 
     private int[] puzzles; // an array of 3 int, with each int telling us which puzzle is to be loaded
     private int noOfPuzzles; // whether there's 2 or 3 puzzles
@@ -34,12 +35,12 @@ public class PuzzleManager : MonoBehaviour
     void Awake()
     {
         if (instance == null) // check if instance already exists
-        {
+        { 
             instance = this;    // if not, set instance to this
         }
 
         else if (instance != this) // if instance already exists and is not this
-        {
+        { 
             Destroy(gameObject);    // then destroy it. enforcing singleton
         }
 
@@ -69,9 +70,11 @@ public class PuzzleManager : MonoBehaviour
         statsUIManagerScript = GetComponent<StatsUIManager>();
         statsUIManagerScript.Setup();
 
+        gameManager = FindObjectOfType<GameManager>();
+
         // get the controllers of each puzzle
         GetControllers();
-
+        
     }
 
     private void InstantiatePuzzles()
@@ -129,8 +132,7 @@ public class PuzzleManager : MonoBehaviour
         {
             puzzleControllers[2] = FindObjectOfType<UltimatePuzzleController>(); // load ultimate puzzle
         }
-
-
+        
     }
 
     private void StartFirstPuzzle()
@@ -143,22 +145,19 @@ public class PuzzleManager : MonoBehaviour
     {
         switch (puzType)
         {
-            case 1:
-                if (playerAtkPuzSolved < MAX_PUZ_SOLVE) // if max not reached
-                {
+            case 1: if (playerAtkPuzSolved < MAX_PUZ_SOLVE) // if max not reached
+                { 
                     playerAtkPuzSolved++;   // increment attack puzzle count
                     statsUIManagerScript.UpdateAtkPuzzleSolved(playerAtkPuzSolved); // update UI
                 }
                 break;
-            case 2:
-                if (playerDefPuzSolved < MAX_PUZ_SOLVE)// if max not reached
-                {
+            case 2: if (playerDefPuzSolved < MAX_PUZ_SOLVE)// if max not reached
+                { 
                     playerDefPuzSolved++; // increment defence puzzle count
                     statsUIManagerScript.UpdateDefPuzzleSolved(playerDefPuzSolved); // update UI
                 }
                 break;
-            case 3:
-                playerUltiPuzSolved = true;
+            case 3: playerUltiPuzSolved = true;
                 break;
         }
     }
@@ -227,23 +226,41 @@ public class PuzzleManager : MonoBehaviour
             // activate and deactivate puzzles 
             switch (puzzleNumber)
             {
-                case 1:
+                case 1: // attack button
                     puzzleControllers[0].Play();
                     puzzleControllers[1].Stop();
                     if (noOfPuzzles == 3)
                         puzzleControllers[2].Stop();
                     break;
-                case 2:
+                case 2: // defend button
                     puzzleControllers[0].Stop();
                     puzzleControllers[1].Play();
                     if (noOfPuzzles == 3)
                         puzzleControllers[2].Stop();
-                    break;
-                case 3:
+                    // check if player has ever played the second puzzle before (first defence puzzle)
+                    if (PlayerPrefs.GetInt("tutorial") == 1) // if not, show tutorial
+                    {
+                        PlayerPrefs.SetInt("tutorial", 2); // set tutorial seen to 2
+                        gameManager.showTutorial(2); // show tutorial 2
+                    }
+                    // check if player has ever played the forth puzzle before (second defence puzzle)
+                    if (PlayerPrefs.GetInt("tutorial") == 3 && puzzles[1] == 2)
+                    {
+                        PlayerPrefs.SetInt("tutorial", 4); // set tutorial seen to 4
+                        gameManager.showTutorial(4);
+                    }
+                        break;
+                case 3: // ultimate button
                     puzzleControllers[0].Stop();
                     puzzleControllers[1].Stop();
                     if (noOfPuzzles == 3)
                         puzzleControllers[2].Play();
+                    // check if player has ever played the fith puzzle before (the ultimate puzzle)
+                    if (PlayerPrefs.GetInt("tutorial") == 4)
+                    {
+                        PlayerPrefs.SetInt("tutorial", 5); // set tutorial seen to 5
+                        gameManager.showTutorial(5);
+                    }
                     break;
             }
         }
@@ -277,7 +294,7 @@ public class PuzzleManager : MonoBehaviour
                 playerDefPuzSolved++;
             }
         }
-
+        
     }
 
     // check current active puzzle being selected, and make sure the layer is being set right
@@ -357,14 +374,11 @@ public class PuzzleManager : MonoBehaviour
 
         switch (puzzleType)
         {
-            case 1:
-                return puzzleLevels[0];
+            case 1: return puzzleLevels[0];
                 break;
-            case 2:
-                return puzzleLevels[1];
+            case 2: return puzzleLevels[1];
                 break;
-            case 3:
-                return puzzleLevels[2];
+            case 3: return puzzleLevels[2];
                 break;
             default: return 0;
         }

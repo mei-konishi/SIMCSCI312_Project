@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 39ed44e4979280a40b3180474bd738cc
-timeCreated: 1527684575
+timeCreated: 1527756246
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -15,6 +15,8 @@ TextureImporter:
     21300016: Alien10_8
     21300018: Alien10_9
     21300020: Alien10_10
+    21300022: Alien10_11
+    21300024: Alien10_12
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -270,6 +272,34 @@ TextureImporter:
         height: 596.6667
       alignment: 8
       pivot: {x: 1, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Alien10_11
+      rect:
+        serializedVersion: 2
+        x: 2847
+        y: 1251
+        width: 803
+        height: 549
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Alien10_12
+      rect:
+        serializedVersion: 2
+        x: 3766
+        y: 1247
+        width: 886
+        height: 549
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

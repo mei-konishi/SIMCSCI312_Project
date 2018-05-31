@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114108530890989398}
   - component: {fileID: 114113563098273514}
   - component: {fileID: 114251529515046724}
-  - component: {fileID: 114746650662922930}
+  - component: {fileID: 114554365726894144}
   - component: {fileID: 114974104770236442}
   m_Layer: 0
   m_Name: GameManager 1
@@ -67,15 +67,6 @@ MonoBehaviour:
   - {fileID: 1603532191916510, guid: a4b8f5f6063f05942b4160cd9d5cc106, type: 2}
   - {fileID: 1983354653763706, guid: 21c3ab6205e76104fbf97adf8498810e, type: 2}
   - {fileID: 1841058567014368, guid: 24dde76d38097d348b9dec5ee7d096a9, type: 2}
-  floorTiles:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   enemyTiles:
   - {fileID: 1104255525531066, guid: 6365a2e1aff4f1749b30c911fc5fb281, type: 2}
   - {fileID: 1452772777882246, guid: d7809fadd4b55dd4594b7127c5eb4c38, type: 2}
@@ -122,6 +113,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   puzzleDuration: 10
+--- !u!114 &114554365726894144
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1615325242237304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4fc4efaa685c444885cea92849c84c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  puzzleObjects:
+  - {fileID: 1765263334277986, guid: 15cee55b31c9a59408ddb66b3466d51e, type: 2}
+  - {fileID: 1241188519039688, guid: 379b36b1e32462744b7c01c05942ee68, type: 2}
+  - {fileID: 1605090663177072, guid: e61c37d263eed6e4ea3e5dfc87e0ac20, type: 2}
+  - {fileID: 1212416833350064, guid: 89d8d2afe0b4a164bb42fd6907209243, type: 2}
+  - {fileID: 1212416833350064, guid: 89d8d2afe0b4a164bb42fd6907209243, type: 2}
+  - {fileID: 1212416833350064, guid: 89d8d2afe0b4a164bb42fd6907209243, type: 2}
+  - {fileID: 1212416833350064, guid: 89d8d2afe0b4a164bb42fd6907209243, type: 2}
+  - {fileID: 1212416833350064, guid: 89d8d2afe0b4a164bb42fd6907209243, type: 2}
+  - {fileID: 1212416833350064, guid: 89d8d2afe0b4a164bb42fd6907209243, type: 2}
+  - {fileID: 1212416833350064, guid: 89d8d2afe0b4a164bb42fd6907209243, type: 2}
+  hack_Ulti_On: 1
+  hack_init_tutorials: 0
+  hack_init_everything: 0
 --- !u!114 &114603777807894548
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -136,27 +152,9 @@ MonoBehaviour:
   tutorials:
   - {fileID: 1500940022132520, guid: 9567fdc2dbc336a49aa516f440cd48f5, type: 2}
   - {fileID: 1778892797366406, guid: c8c39b08cd8d9ed40ba91a3a3c2cee6f, type: 2}
+  - {fileID: 1883942687401608, guid: c1f7fbb94f22563469a6d80c8c791196, type: 2}
+  - {fileID: 1223440851542990, guid: 64613224312a2bc498e3a73e872cf4d5, type: 2}
   - {fileID: 1770911437071276, guid: 0868d53c9339cb940bbc9a44fbe0098f, type: 2}
---- !u!114 &114746650662922930
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1615325242237304}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ba19adb6fcc79b45a22bd4caeb50d3e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  puzzleObjects:
-  - {fileID: 1765263334277986, guid: 15cee55b31c9a59408ddb66b3466d51e, type: 2}
-  - {fileID: 1241188519039688, guid: 379b36b1e32462744b7c01c05942ee68, type: 2}
-  - {fileID: 1605090663177072, guid: e61c37d263eed6e4ea3e5dfc87e0ac20, type: 2}
-  - {fileID: 1212416833350064, guid: 89d8d2afe0b4a164bb42fd6907209243, type: 2}
-  - {fileID: 1212416833350064, guid: 89d8d2afe0b4a164bb42fd6907209243, type: 2}
-  hack_Ulti_On: 1
-  hack_init_tutorials: 0
-  hack_init_everything: 0
 --- !u!114 &114974104770236442
 MonoBehaviour:
   m_ObjectHideFlags: 1
