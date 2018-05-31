@@ -122,4 +122,9 @@ public class Enemy : CharacterInterface
     {
         animator.SetTrigger("BossAppear");
     }
+
+    public void BossDie()
+    {
+        animator.SetTrigger("BossDie");
+    }
 }

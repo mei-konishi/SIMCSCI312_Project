@@ -27,10 +27,11 @@ public class GameManager : MonoBehaviour {
     public GameObject[] tutorials; // list of all tutorials 
     private static GameObject tutorial; // current showing tutorial, if any
 
+    public GameObject warningLogo; // just the boss level warning logo
+    public GameObject winningScreen; // winning screen animation
+
     // Use this for initialization
     void Awake () {
-        level = PlayerPrefs.GetInt("playingLevel");
-
         if (instance == null){ // check if instance already exists
             instance = this;    // if not, set instance to this
         }
@@ -46,6 +47,11 @@ public class GameManager : MonoBehaviour {
         formulasScript = GetComponent<Formulas>();
         timer = GetComponent<Timer>();
         level = PlayerPrefs.GetInt("stageSelected");
+
+        if (level == 10) // if boss level, create warning sign
+        {
+            Instantiate(warningLogo, new Vector3(3f, 0f, 0f), Quaternion.identity);
+        }
 
         InitGame();
 	}
@@ -202,6 +208,12 @@ public class GameManager : MonoBehaviour {
                 rewardOnceOnly = true;
             }         
             GameObject.FindGameObjectWithTag("Canvas").transform.GetChild(13).gameObject.SetActive(true);
+            if (level == 10)
+            {
+                // BOSS DIE HERE 
+                // SPECIAL WIN PANEL TOO
+                // might want to encase the stuff ontop with an IF case too
+            }
         }
         else if (player.CheckDead())
         {    

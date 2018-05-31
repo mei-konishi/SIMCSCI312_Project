@@ -100,7 +100,7 @@ public class Timer : MonoBehaviour
     {
         // do separately for all animations...
         // i'm sorry I dunno how to make this neater ToT 
-        if (name == "player" && playerAtkTurn)
+        if (name == "player" && phase == 2 && playerAtkTurn)
         {
             // if animation trigger is on, flip it back off and return true to trigger
             if (animationTrigger)
@@ -112,7 +112,7 @@ public class Timer : MonoBehaviour
             else return false;
         }
 
-        if (name == "enemy" && !playerAtkTurn)
+        if (name == "enemy" && phase == 2 && !playerAtkTurn)
         {
             // if animation trigger is on, flip it back off and return true to trigger
             if (animationTrigger)
@@ -262,6 +262,7 @@ public class Timer : MonoBehaviour
 
             if (phase == 6) // boss appearance animation
             {
+                
                 timeLeft -= Time.deltaTime;
                 if (timeLeft <= 0)
                 {

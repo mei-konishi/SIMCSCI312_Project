@@ -155,6 +155,10 @@ MonoBehaviour:
   - {fileID: 1883942687401608, guid: c1f7fbb94f22563469a6d80c8c791196, type: 2}
   - {fileID: 1223440851542990, guid: 64613224312a2bc498e3a73e872cf4d5, type: 2}
   - {fileID: 1770911437071276, guid: 0868d53c9339cb940bbc9a44fbe0098f, type: 2}
+  warningLogo: {fileID: 1994116157696272, guid: 5c8fc1bcd3c33cf4ca4ca4d45c1b7411,
+    type: 2}
+  winningScreen: {fileID: 1162374303417566, guid: ba92386a890d69a47a6534ebaac9e2de,
+    type: 2}
 --- !u!114 &114974104770236442
 MonoBehaviour:
   m_ObjectHideFlags: 1
