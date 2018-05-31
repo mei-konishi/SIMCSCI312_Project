@@ -14,7 +14,6 @@ public class BoardManager : MonoBehaviour {
     private Transform boardHolder;
 
     public GameObject[] backgrounds;
-    public GameObject[] floorTiles;
     public GameObject[] enemyTiles;
     public GameObject[] winPanels;
     public GameObject losePanel;

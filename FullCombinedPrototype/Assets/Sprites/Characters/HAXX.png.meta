@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 0c8ab93ef635f594693c8dc25dda6aa1
-timeCreated: 1527686868
+timeCreated: 1527748926
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -100,50 +100,50 @@ TextureImporter:
   textureFormatSet: 0
   platformSettings:
   - buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
+    maxTextureSize: 4096
+    resizeAlgorithm: 1
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
   - buildTarget: Standalone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
+    maxTextureSize: 4096
+    resizeAlgorithm: 1
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
   - buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
+    maxTextureSize: 4096
+    resizeAlgorithm: 1
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
   - buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
+    maxTextureSize: 4096
+    resizeAlgorithm: 1
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
   - buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
+    maxTextureSize: 4096
+    resizeAlgorithm: 1
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -156,12 +156,12 @@ TextureImporter:
       name: HAXX_0
       rect:
         serializedVersion: 2
-        x: 138
-        y: 2326
-        width: 199
-        height: 363
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 0
+        y: 1487.5
+        width: 987.0909
+        height: 482.5
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -170,12 +170,12 @@ TextureImporter:
       name: HAXX_1
       rect:
         serializedVersion: 2
-        x: 358
-        y: 2326
-        width: 199
-        height: 363
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 997
+        y: 1487.5
+        width: 987.0909
+        height: 482.5
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -184,12 +184,12 @@ TextureImporter:
       name: HAXX_2
       rect:
         serializedVersion: 2
-        x: 572
-        y: 2326
-        width: 200
-        height: 363
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 1994
+        y: 1487.5
+        width: 987.0909
+        height: 482.5
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -198,12 +198,12 @@ TextureImporter:
       name: HAXX_3
       rect:
         serializedVersion: 2
-        x: 792
-        y: 2326
-        width: 200
-        height: 363
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 2991
+        y: 1487.5
+        width: 987.0909
+        height: 482.5
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -212,12 +212,12 @@ TextureImporter:
       name: HAXX_4
       rect:
         serializedVersion: 2
-        x: 1011
-        y: 2326
-        width: 199
-        height: 363
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 3988
+        y: 1487.5
+        width: 987.0909
+        height: 482.5
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -226,12 +226,12 @@ TextureImporter:
       name: HAXX_5
       rect:
         serializedVersion: 2
-        x: 1231
-        y: 2326
-        width: 199
-        height: 363
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 4985
+        y: 1487.5
+        width: 987.0909
+        height: 482.5
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -240,12 +240,12 @@ TextureImporter:
       name: HAXX_6
       rect:
         serializedVersion: 2
-        x: 1454
-        y: 2326
-        width: 200
-        height: 363
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 5982
+        y: 1487.5
+        width: 987.0909
+        height: 482.5
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -254,12 +254,12 @@ TextureImporter:
       name: HAXX_7
       rect:
         serializedVersion: 2
-        x: 138
-        y: 1907
-        width: 199
-        height: 364
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 0
+        y: 995.5
+        width: 987.0909
+        height: 482.5
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -268,12 +268,12 @@ TextureImporter:
       name: HAXX_8
       rect:
         serializedVersion: 2
-        x: 368
-        y: 1907
-        width: 199
-        height: 364
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 997
+        y: 995.5
+        width: 987.0909
+        height: 482.5
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -282,12 +282,12 @@ TextureImporter:
       name: HAXX_9
       rect:
         serializedVersion: 2
-        x: 597
-        y: 1907
-        width: 198
-        height: 364
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 1994
+        y: 995.5
+        width: 987.0909
+        height: 482.5
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -296,12 +296,12 @@ TextureImporter:
       name: HAXX_10
       rect:
         serializedVersion: 2
-        x: 827
-        y: 1907
-        width: 198
-        height: 364
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 2991
+        y: 995.5
+        width: 987.0909
+        height: 482.5
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -310,12 +310,12 @@ TextureImporter:
       name: HAXX_11
       rect:
         serializedVersion: 2
-        x: 1061
-        y: 1907
-        width: 238
-        height: 364
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 3988
+        y: 995.5
+        width: 987.0909
+        height: 482.5
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -324,12 +324,12 @@ TextureImporter:
       name: HAXX_12
       rect:
         serializedVersion: 2
-        x: 1303
-        y: 1907
-        width: 330
-        height: 364
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 4985
+        y: 995.5
+        width: 987.0909
+        height: 482.5
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -338,12 +338,12 @@ TextureImporter:
       name: HAXX_13
       rect:
         serializedVersion: 2
-        x: 83
-        y: 1496
-        width: 206
-        height: 366
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 5982
+        y: 995.5
+        width: 987.0909
+        height: 482.5
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -352,12 +352,12 @@ TextureImporter:
       name: HAXX_14
       rect:
         serializedVersion: 2
-        x: 303
-        y: 1738
-        width: 222
-        height: 73
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 6979
+        y: 995.5
+        width: 987.0909
+        height: 482.5
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -366,12 +366,12 @@ TextureImporter:
       name: HAXX_15
       rect:
         serializedVersion: 2
-        x: 528
-        y: 1496
-        width: 206
-        height: 366
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 7976
+        y: 995.5
+        width: 987.0909
+        height: 482.5
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -380,12 +380,12 @@ TextureImporter:
       name: HAXX_16
       rect:
         serializedVersion: 2
-        x: 772
-        y: 1496
-        width: 204
-        height: 362
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 8973
+        y: 995.5
+        width: 987.0909
+        height: 482.5
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -394,12 +394,12 @@ TextureImporter:
       name: HAXX_17
       rect:
         serializedVersion: 2
-        x: 1010
-        y: 1496
-        width: 198
-        height: 362
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 0
+        y: 503.5
+        width: 987.0909
+        height: 482.5
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -408,12 +408,12 @@ TextureImporter:
       name: HAXX_18
       rect:
         serializedVersion: 2
-        x: 1249
-        y: 1496
-        width: 198
-        height: 364
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 997
+        y: 503.5
+        width: 987.0909
+        height: 482.5
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -422,12 +422,12 @@ TextureImporter:
       name: HAXX_19
       rect:
         serializedVersion: 2
-        x: 1468
-        y: 1496
-        width: 197
-        height: 366
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 1994
+        y: 503.5
+        width: 987.0909
+        height: 482.5
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -436,12 +436,12 @@ TextureImporter:
       name: HAXX_20
       rect:
         serializedVersion: 2
-        x: 1688
-        y: 1496
-        width: 198
-        height: 364
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 2991
+        y: 503.5
+        width: 987.0909
+        height: 482.5
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -450,12 +450,12 @@ TextureImporter:
       name: HAXX_21
       rect:
         serializedVersion: 2
-        x: 138
-        y: 1055
-        width: 199
-        height: 366
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 3988
+        y: 503.5
+        width: 987.0909
+        height: 482.5
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -464,12 +464,12 @@ TextureImporter:
       name: HAXX_22
       rect:
         serializedVersion: 2
-        x: 368
-        y: 1055
-        width: 199
-        height: 366
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 4985
+        y: 503.5
+        width: 987.0909
+        height: 482.5
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -478,12 +478,12 @@ TextureImporter:
       name: HAXX_23
       rect:
         serializedVersion: 2
-        x: 597
-        y: 1055
-        width: 198
-        height: 366
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 5982
+        y: 503.5
+        width: 987.0909
+        height: 482.5
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -492,12 +492,12 @@ TextureImporter:
       name: HAXX_24
       rect:
         serializedVersion: 2
-        x: 827
-        y: 1057
-        width: 198
-        height: 364
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 6979
+        y: 503.5
+        width: 987.0909
+        height: 482.5
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -506,12 +506,12 @@ TextureImporter:
       name: HAXX_25
       rect:
         serializedVersion: 2
-        x: 1061
-        y: 1057
-        width: 216
-        height: 364
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 7976
+        y: 503.5
+        width: 987.0909
+        height: 482.5
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -520,12 +520,12 @@ TextureImporter:
       name: HAXX_26
       rect:
         serializedVersion: 2
-        x: 1305
-        y: 1055
-        width: 378
-        height: 366
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 8973
+        y: 503.5
+        width: 987.0909
+        height: 482.5
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -534,12 +534,12 @@ TextureImporter:
       name: HAXX_27
       rect:
         serializedVersion: 2
-        x: 1901
-        y: 778
-        width: 565
-        height: 288
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 9970
+        y: 503.5
+        width: 987.0909
+        height: 482.5
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -548,12 +548,12 @@ TextureImporter:
       name: HAXX_28
       rect:
         serializedVersion: 2
-        x: 83
-        y: 646
-        width: 594
-        height: 399
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 0
+        y: 11.5
+        width: 987.0909
+        height: 482.5
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -562,12 +562,12 @@ TextureImporter:
       name: HAXX_29
       rect:
         serializedVersion: 2
-        x: 709
-        y: 646
-        width: 204
-        height: 363
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 997
+        y: 11.5
+        width: 987.0909
+        height: 482.5
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -576,12 +576,12 @@ TextureImporter:
       name: HAXX_30
       rect:
         serializedVersion: 2
-        x: 945
-        y: 793
-        width: 506
-        height: 258
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 1994
+        y: 11.5
+        width: 987.0909
+        height: 482.5
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -590,12 +590,12 @@ TextureImporter:
       name: HAXX_31
       rect:
         serializedVersion: 2
-        x: 1563
-        y: 646
-        width: 206
-        height: 362
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 2991
+        y: 11.5
+        width: 987.0909
+        height: 482.5
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -604,12 +604,12 @@ TextureImporter:
       name: HAXX_32
       rect:
         serializedVersion: 2
-        x: 2591
-        y: 646
-        width: 199
-        height: 362
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 3988
+        y: 11.5
+        width: 987.0909
+        height: 482.5
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -618,138 +618,12 @@ TextureImporter:
       name: HAXX_33
       rect:
         serializedVersion: 2
-        x: 2830
-        y: 646
-        width: 199
-        height: 362
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: HAXX_34
-      rect:
-        serializedVersion: 2
-        x: 3050
-        y: 646
-        width: 197
-        height: 363
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: HAXX_35
-      rect:
-        serializedVersion: 2
-        x: 3270
-        y: 646
-        width: 199
-        height: 363
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: HAXX_36
-      rect:
-        serializedVersion: 2
-        x: 134
-        y: 134
-        width: 208
-        height: 373
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: HAXX_37
-      rect:
-        serializedVersion: 2
-        x: 352
-        y: 134
-        width: 209
-        height: 373
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: HAXX_38
-      rect:
-        serializedVersion: 2
-        x: 568
-        y: 134
-        width: 208
-        height: 373
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: HAXX_39
-      rect:
-        serializedVersion: 2
-        x: 788
-        y: 134
-        width: 208
-        height: 373
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: HAXX_40
-      rect:
-        serializedVersion: 2
-        x: 1006
-        y: 134
-        width: 209
-        height: 373
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: HAXX_41
-      rect:
-        serializedVersion: 2
-        x: 1227
-        y: 134
-        width: 208
-        height: 373
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: HAXX_42
-      rect:
-        serializedVersion: 2
-        x: 1451
-        y: 134
-        width: 207
-        height: 373
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 4985
+        y: 11.5
+        width: 987.0909
+        height: 482.5
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

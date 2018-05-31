@@ -51,7 +51,7 @@ Animator:
   m_GameObject: {fileID: 1940137072776624}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: ab0db6601a813bb4598fc56c85871028, type: 2}
+  m_Controller: {fileID: 9100000, guid: 792b504ebd7e2e245b22cbe3803c5cf1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -59,7 +59,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114362079288348510
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -84,7 +83,6 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:

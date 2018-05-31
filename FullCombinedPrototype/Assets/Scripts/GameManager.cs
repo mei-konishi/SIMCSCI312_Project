@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour {
 
     // Use this for initialization
     void Awake () {
+        level = PlayerPrefs.GetInt("playingLevel");
 
         if (instance == null){ // check if instance already exists
             instance = this;    // if not, set instance to this
@@ -127,6 +128,12 @@ public class GameManager : MonoBehaviour {
                 StartCoroutine(GetAttacked());
                 enemies[0].DoHitAnimation();
                 player.DoDmgedAnimation();
+            }
+
+            if (Timer.checkAnimationTriggered("bossAppearance"))
+            {
+                enemies[0].BossAppearance();
+                Destroy(GameObject.FindGameObjectWithTag("Warning"));
             }
             
         }

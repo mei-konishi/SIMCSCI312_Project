@@ -8,12 +8,12 @@ public class FollowTheLeaderController : PuzzleControllerInterface
     public bool IsEnable = false;
 
     // Variables
-    public List<FTLCard> cards;                         //stores the 9 cards in position
+    public List<FTLCard> cards;
 
-    private bool[] gameStateCheck = new bool[9];        //default is false
-    private List<int> cardList = new List<int>();       //Store remaining cards
-    private Queue<int> cardsToTap = new Queue<int>();   //cards left to tap to win
-    private int cardsLeftToLight = 0;                   //how many cards left to pop up
+    private bool[] gameStateCheck = new bool[9]; //default is false
+    private List<int> cardList = new List<int>();
+    private Queue<int> cardsToTap = new Queue<int>();   
+    private int cardsLeftToLight = 0;
 
 
     // Override Functions
@@ -35,8 +35,6 @@ public class FollowTheLeaderController : PuzzleControllerInterface
     public override void Stop()
     {
         IsEnable = false;
-        cardsToTap.Clear();
-        cardList.Clear();
     }
 
     // Update is called once per frame
@@ -65,7 +63,7 @@ public class FollowTheLeaderController : PuzzleControllerInterface
 
             // HOW TO MAKE CARD BECOME ACTIVE
             cards[index].gameObject.SetActive(true);
-            yield return new WaitForSecondsRealtime(0.4f);
+            yield return new WaitForSecondsRealtime(1);
 
             cardsLeftToLight--;
         }      
@@ -96,6 +94,8 @@ public class FollowTheLeaderController : PuzzleControllerInterface
             }
             // Reset number of cards for next round if true
             puzzleManagerScript.PuzzleSolved(puzzleType);
+            //SetupCards();
+            //StartGame();
             return true;
         } else
         {

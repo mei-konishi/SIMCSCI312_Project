@@ -13,11 +13,14 @@ public class Timer : MonoBehaviour
     private Text timerText;
     private float splashScreenDelay = 2.0f;
     private float animationDelay = 2.0f;
+    private float warningAnimationDuration = 4.0f;
+    private float bossAppearAnimationDuration = 4.0f;
 
     private GameManager gameManager;
 
     private static int phase;   // 1 for puzzle phase, 2 for attack phase, 0 for tutorial, 
                                 // 3 for puzzle splash screen, 4 for attack splash screen
+                                // 5 for warning, 6 for boss appear
     private static bool playerAtkTurn; // true for player's turn, false for enemy's turn
     private static bool animationTrigger; // true for animation to play (used as trigger switch)
     private static bool readyForNextRound; // true to start next round (used as a trigger switch)
@@ -41,7 +44,12 @@ public class Timer : MonoBehaviour
         timerText = GameObject.Find("Timer").GetComponent<Text>();
         gameManager = FindObjectOfType<GameManager>();
 
-        phase = 3;   
+        phase = 3;
+        if (PlayerPrefs.GetInt("stageSelected") == 10) // if boss level
+        {
+            phase = 5; // set phase to warning 
+            timeLeft = warningAnimationDuration;
+        }
         playerAtkTurn = true;
         animationTrigger = true;
         readyForNextRound = false;
@@ -136,6 +144,16 @@ public class Timer : MonoBehaviour
             else return false;
         }
 
+        if (name == "bossAppearance" && phase == 6)
+        {
+            if (animationTrigger)
+            {
+                animationTrigger = false;
+                return true;
+            }
+            else return false;
+        }
+
         return false;
     }
 
@@ -167,7 +185,7 @@ public class Timer : MonoBehaviour
                 timeLeft -= Time.deltaTime;
                 if (timeLeft <= 0) // when time is up
                 {
-                    // if player has never played game before
+                    // if player has never played the first game before
                     if (PlayerPrefs.GetInt("tutorial") == 0)
                     {
                         // stop timer and show tutorial screen
@@ -178,6 +196,14 @@ public class Timer : MonoBehaviour
                     else
                     {
                         startPuzzle();
+                    }
+                    // if player has never played the third game before (second attack) 
+                    if (PlayerPrefs.GetInt("tutorial") == 2)
+                    {
+                        // stop timer and show tutorial screen
+                        stop = true;
+                        PlayerPrefs.SetInt("tutorial", 3); // set tutorial seen
+                        gameManager.showTutorial(3);
                     }
                 }
             }
@@ -220,6 +246,28 @@ public class Timer : MonoBehaviour
                         timeLeft = splashScreenDelay;
                         animationTrigger = true;
                     }
+                }
+            }
+
+            if (phase == 5) // boss warning animation
+            {
+                timeLeft -= Time.deltaTime;
+                if (timeLeft <= 0)
+                {
+                    phase = 6; // go into boss appear mode
+                    timeLeft = bossAppearAnimationDuration;
+                    animationTrigger = true; // play boss appear animations
+                }
+            }
+
+            if (phase == 6) // boss appearance animation
+            {
+                timeLeft -= Time.deltaTime;
+                if (timeLeft <= 0)
+                {
+                    phase = 3; // go into boss appear mode
+                    timeLeft = splashScreenDelay;
+                    animationTrigger = true; // play boss appear animations
                 }
             }
         }
