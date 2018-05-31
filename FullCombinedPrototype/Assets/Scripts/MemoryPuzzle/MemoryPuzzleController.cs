@@ -18,7 +18,7 @@ public class MemoryPuzzleController : PuzzleControllerInterface {
     private MainCard card;
     [SerializeField] private MainCard originalCard;
     [SerializeField] private Sprite[] images;
- //   [SerializeField] private int clearP = 0;
+    [SerializeField] private int clearP = 0;
 
     // Use this for initialization
     public override void Start() {
@@ -102,7 +102,7 @@ public class MemoryPuzzleController : PuzzleControllerInterface {
             puzzleManagerScript.PuzzleSolved(puzzleType); // tell manager that puzzle solved
             _score = 0;
             ab = 0;
-      //      clearP++;
+            clearP++;
             Restart();
         }
         //To stop the game
@@ -206,7 +206,7 @@ public class MemoryPuzzleController : PuzzleControllerInterface {
         _score = 0;
 
         //Resetting the puzzles solve variable
-      //  clearP = 0;
+        clearP = 0;
 
         for (int a = 0; a < arrayAmt / 2; a++)
         {
