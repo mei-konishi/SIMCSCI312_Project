@@ -56,7 +56,7 @@ public class Enemy : CharacterInterface
         // =ROUNDDOWN(lvl^3*0.08 + lvl^2*0.07 + 1)
         defence = (int)Mathf.Floor(Mathf.Pow(lvl, 3) * 0.08f + Mathf.Pow(lvl, 2) * 0.07f + 1f);
         // =ROUNDUP(lvl^4*0.09 + 50)
-        maxHealth = (int)Mathf.Ceil(Mathf.Pow(lvl, 4) * 0.09f + 18f);
+        maxHealth = (int)Mathf.Ceil(Mathf.Pow(lvl, 4) * 0.085f + 18f);
         currentHealth = maxHealth;
         StatsUIManager.InitEnemyValues(strength, defence, maxHealth); // update UI 
 

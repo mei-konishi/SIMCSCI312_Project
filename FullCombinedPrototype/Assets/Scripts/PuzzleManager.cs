@@ -34,12 +34,12 @@ public class PuzzleManager : MonoBehaviour
     void Awake()
     {
         if (instance == null) // check if instance already exists
-        { 
+        {
             instance = this;    // if not, set instance to this
         }
 
         else if (instance != this) // if instance already exists and is not this
-        { 
+        {
             Destroy(gameObject);    // then destroy it. enforcing singleton
         }
 
@@ -71,7 +71,7 @@ public class PuzzleManager : MonoBehaviour
 
         // get the controllers of each puzzle
         GetControllers();
-        
+
     }
 
     private void InstantiatePuzzles()
@@ -106,26 +106,19 @@ public class PuzzleManager : MonoBehaviour
         // instantiate memory space for puzzle controllers
         puzzleControllers = new PuzzleControllerInterface[noOfPuzzles];
 
-        // check level of puzzles 
-        int[] puzzlesLevel = new int[3];
-        Formulas.StringToIntArray(PlayerPrefs.GetString("equippedSkillsLevels"), puzzlesLevel);
-
         // get the controllers that are being created
         if (puzzles[0] == 1) // attack puzzle is first puzzle type
         {
             puzzleControllers[0] = FindObjectOfType<SimonSaysGameController>(); // load simon says
-            puzzleControllers[0].SetDifficulty(puzzlesLevel[0]); // set the difficulty of the puzzle
         }
         else if (puzzles[0] == 2) // attack puzzle is second puzzle type
         {
             puzzleControllers[0] = FindObjectOfType<FollowTheLeaderController>(); // load follow the leader says
-            puzzleControllers[0].SetDifficulty(puzzlesLevel[0]); // set the difficulty of the puzzle
         }
 
         if (puzzles[1] == 1) // defend puzzle is first puzzle type
         {
             puzzleControllers[1] = FindObjectOfType<MemoryPuzzleController>(); // load memory puzzle
-            puzzleControllers[1].SetDifficulty(puzzlesLevel[1]); // set the difficulty of the puzzle
         }
         else if (puzzles[1] == 2) // defend puzzle is second puzzle type
         {
@@ -135,7 +128,6 @@ public class PuzzleManager : MonoBehaviour
         if (puzzles[2] == 1) // ultimate puzzle is available
         {
             puzzleControllers[2] = FindObjectOfType<UltimatePuzzleController>(); // load ultimate puzzle
-            puzzleControllers[2].SetDifficulty(puzzlesLevel[2]); // set the difficulty of the puzzle
         }
 
 
@@ -151,19 +143,22 @@ public class PuzzleManager : MonoBehaviour
     {
         switch (puzType)
         {
-            case 1: if (playerAtkPuzSolved < MAX_PUZ_SOLVE) // if max not reached
-                { 
+            case 1:
+                if (playerAtkPuzSolved < MAX_PUZ_SOLVE) // if max not reached
+                {
                     playerAtkPuzSolved++;   // increment attack puzzle count
                     statsUIManagerScript.UpdateAtkPuzzleSolved(playerAtkPuzSolved); // update UI
                 }
                 break;
-            case 2: if (playerDefPuzSolved < MAX_PUZ_SOLVE)// if max not reached
-                { 
+            case 2:
+                if (playerDefPuzSolved < MAX_PUZ_SOLVE)// if max not reached
+                {
                     playerDefPuzSolved++; // increment defence puzzle count
                     statsUIManagerScript.UpdateDefPuzzleSolved(playerDefPuzSolved); // update UI
                 }
                 break;
-            case 3: playerUltiPuzSolved = true;
+            case 3:
+                playerUltiPuzSolved = true;
                 break;
         }
     }
@@ -282,7 +277,7 @@ public class PuzzleManager : MonoBehaviour
                 playerDefPuzSolved++;
             }
         }
-        
+
     }
 
     // check current active puzzle being selected, and make sure the layer is being set right
@@ -350,6 +345,28 @@ public class PuzzleManager : MonoBehaviour
             Vector3 originalPosition = currObj.GetComponent<Transform>().position;
             Vector3 newPosition = originalPosition + new Vector3(0, 0, -0.9f); // move the object backwards
             currObj.GetComponent<Transform>().position = newPosition;
+        }
+    }
+
+    // for all puzzle controllers to check and get the level of the puzzle they need to load
+    // puzzle type is 1 for attack, 2 for defend, and 3 for ulti
+    public int CheckLevel(int puzzleType)
+    {
+        int[] puzzleLevels = new int[3];
+        Formulas.StringToIntArray(PlayerPrefs.GetString("equippedSkillsLevels"), puzzleLevels);
+
+        switch (puzzleType)
+        {
+            case 1:
+                return puzzleLevels[0];
+                break;
+            case 2:
+                return puzzleLevels[1];
+                break;
+            case 3:
+                return puzzleLevels[2];
+                break;
+            default: return 0;
         }
     }
 

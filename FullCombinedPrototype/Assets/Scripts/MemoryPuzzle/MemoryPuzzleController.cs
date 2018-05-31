@@ -9,7 +9,7 @@ public class MemoryPuzzleController : PuzzleControllerInterface {
     private int gridCols;
     private int arrayAmt;
     public const float offsetX = 1.35f;
-    public const float offsetY = 1.4f;
+    public const float offsetY = 1.3f;
 
     public bool IsEnable = false;
     
@@ -18,14 +18,14 @@ public class MemoryPuzzleController : PuzzleControllerInterface {
     private MainCard card;
     [SerializeField] private MainCard originalCard;
     [SerializeField] private Sprite[] images;
-    [SerializeField] private int clearP = 0;
+ //   [SerializeField] private int clearP = 0;
 
     // Use this for initialization
     public override void Start() {
 
         base.Start();
         puzzleType = 2; // this puzzle is a defence type
-        puzzleDifficulty = 1;
+        puzzleDifficulty = puzzleManagerScript.CheckLevel(puzzleType);
         
         Vector3 startPos = originalCard.transform.position;
 
@@ -102,7 +102,7 @@ public class MemoryPuzzleController : PuzzleControllerInterface {
             puzzleManagerScript.PuzzleSolved(puzzleType); // tell manager that puzzle solved
             _score = 0;
             ab = 0;
-            clearP++;
+      //      clearP++;
             Restart();
         }
         //To stop the game
@@ -123,7 +123,7 @@ public class MemoryPuzzleController : PuzzleControllerInterface {
     private MainCard _secondRevealed;
 
     private int _score = 0;
-    [SerializeField] private TextMesh scoreLabel;
+  
 
     public bool canReveal
     {
@@ -206,7 +206,7 @@ public class MemoryPuzzleController : PuzzleControllerInterface {
         _score = 0;
 
         //Resetting the puzzles solve variable
-        clearP = 0;
+      //  clearP = 0;
 
         for (int a = 0; a < arrayAmt / 2; a++)
         {

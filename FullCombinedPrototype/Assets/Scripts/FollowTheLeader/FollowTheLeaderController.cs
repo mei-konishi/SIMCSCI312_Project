@@ -8,13 +8,12 @@ public class FollowTheLeaderController : PuzzleControllerInterface
     public bool IsEnable = false;
 
     // Variables
-    public int level = 1;
-    public List<FTLCard> cards;
+    public List<FTLCard> cards;                         //stores the 9 cards in position
 
-    private bool[] gameStateCheck = new bool[9]; //default is false
-    private List<int> cardList = new List<int>();
-    private Queue<int> cardsToTap = new Queue<int>();   
-    private int cardsLeftToLight = 0;
+    private bool[] gameStateCheck = new bool[9];        //default is false
+    private List<int> cardList = new List<int>();       //Store remaining cards
+    private Queue<int> cardsToTap = new Queue<int>();   //cards left to tap to win
+    private int cardsLeftToLight = 0;                   //how many cards left to pop up
 
 
     // Override Functions
@@ -22,10 +21,8 @@ public class FollowTheLeaderController : PuzzleControllerInterface
 
         base.Start();
         puzzleType = 1; // this puzzle is a attack type
-        puzzleDifficulty = 1; // set puzzle difficulty to 1 first
-
-        //SetupCards();
-        //StartGame();
+        puzzleDifficulty = puzzleManagerScript.CheckLevel(puzzleType);
+        
     }
 
     public override void Play()
@@ -38,9 +35,8 @@ public class FollowTheLeaderController : PuzzleControllerInterface
     public override void Stop()
     {
         IsEnable = false;
-        /* base.Stop();
-        stop = true;
-        gameActive = false;*/
+        cardsToTap.Clear();
+        cardList.Clear();
     }
 
     // Update is called once per frame
@@ -69,7 +65,7 @@ public class FollowTheLeaderController : PuzzleControllerInterface
 
             // HOW TO MAKE CARD BECOME ACTIVE
             cards[index].gameObject.SetActive(true);
-            yield return new WaitForSecondsRealtime(1);
+            yield return new WaitForSecondsRealtime(0.4f);
 
             cardsLeftToLight--;
         }      
@@ -100,8 +96,6 @@ public class FollowTheLeaderController : PuzzleControllerInterface
             }
             // Reset number of cards for next round if true
             puzzleManagerScript.PuzzleSolved(puzzleType);
-            //SetupCards();
-            //StartGame();
             return true;
         } else
         {
@@ -111,7 +105,7 @@ public class FollowTheLeaderController : PuzzleControllerInterface
 
     public void SetupCards()
     {
-        cardsLeftToLight = level + 2;
+        cardsLeftToLight = puzzleDifficulty + 2;
         cardsToTap.Clear();
         cardList.Clear();
         for (int i = 0; i < cards.Count; i++)

@@ -41,6 +41,7 @@ public class SimonSaysGameController : PuzzleControllerInterface
     {
         base.Start();
         puzzleType = 1; // this puzzle is an attack type
+        puzzleDifficulty = puzzleManagerScript.CheckLevel(puzzleType);
     }
 
     // Update is called once per frame

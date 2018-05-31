@@ -26,9 +26,8 @@ public class UltimatePuzzleController : PuzzleControllerInterface
     public override void Start()
     {
         base.Start();
-
+        puzzleType = 3;
         CreatePuzzle();
-
     }
 
     public override void Play()
