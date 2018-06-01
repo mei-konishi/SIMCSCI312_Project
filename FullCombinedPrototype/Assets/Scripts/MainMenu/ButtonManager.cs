@@ -9,12 +9,13 @@ public class ButtonManager : MonoBehaviour
     public GameObject levelButtonContainer;
     public GameObject levelPanelContainer;
     public GameObject levelPanel;
-    public string gameSceneName = "MergedScene";
-    private bool counter = false;
+    public string gameSceneName = "DoubleMergedScene";
 
     private Transform cameraTranform;
     private Transform cameraFinalLookAt;
     private const float CAMERA_ROTATION_SPEED = 3.0f;
+
+    public Button[] levelButtons;
 
     public void Start()
     {
@@ -37,7 +38,7 @@ public class ButtonManager : MonoBehaviour
 
             levelButtonContainer.transform.Find(sceneName).GetComponent<Button>().onClick.AddListener(() => OpenLevelPanel(sceneName));
         }
-        
+        CheckStagesUnlocked();
     }
 
     public void Update()
@@ -80,5 +81,17 @@ public class ButtonManager : MonoBehaviour
     public void SetPlayedLevel(int level)
     {
         PlayerPrefs.SetInt("stageSelected", level);
+    }
+
+    public void CheckStagesUnlocked ()
+    {
+        int levelReached = PlayerPrefs.GetInt("stageUnlocked");
+        for (int i = 0; i < levelButtons.Length; i++)
+        {
+            if (i+1 > levelReached)
+            {
+                levelButtons[i].interactable = false;
+            }
+        }
     }
 }

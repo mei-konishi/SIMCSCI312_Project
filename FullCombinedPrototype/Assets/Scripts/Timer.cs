@@ -20,11 +20,12 @@ public class Timer : MonoBehaviour
 
     private static int phase;   // 1 for puzzle phase, 2 for attack phase, 0 for tutorial, 
                                 // 3 for puzzle splash screen, 4 for attack splash screen
-                                // 5 for warning, 6 for boss appear
+                                // 5 for warning, 6 for boss appear, 7 for boss die, 8 for winning screen
     private static bool playerAtkTurn; // true for player's turn, false for enemy's turn
     private static bool animationTrigger; // true for animation to play (used as trigger switch)
     private static bool readyForNextRound; // true to start next round (used as a trigger switch)
     private static bool stop; // use for showing tutorial, or game over
+    private static bool gameWon; // use to store if game is won or not
 
     // Use this for initialization
     void Awake()
@@ -154,6 +155,26 @@ public class Timer : MonoBehaviour
             else return false;
         }
 
+        if (name == "bossDie" && phase == 7)
+        {
+            if (animationTrigger)
+            {
+                animationTrigger = false;
+                return true;
+            }
+            else return false;
+        }
+
+        if (name == "gameWon" && phase == 8)
+        {
+            if (animationTrigger)
+            {
+                animationTrigger = false;
+                return true;
+            }
+            else return false;
+        }
+
         return false;
     }
 
@@ -268,7 +289,27 @@ public class Timer : MonoBehaviour
                 {
                     phase = 3; // go into boss appear mode
                     timeLeft = splashScreenDelay;
-                    animationTrigger = true; // play boss appear animations
+                    animationTrigger = true; // play splash screen animation
+                }
+            }
+
+            if (phase == 7) // boss dying animation
+            {
+                timeLeft -= Time.deltaTime;
+                if (timeLeft <= 0)
+                {
+                    phase = 8; // go into game won animation
+                    timeLeft = 3;
+                    animationTrigger = true; // play game won animations
+                }
+            }
+
+            if (phase == 8) // show winning screen
+            {
+                timeLeft -= Time.deltaTime;
+                if (timeLeft <= 0)
+                {
+                    stop = true;
                 }
             }
         }
@@ -288,5 +329,17 @@ public class Timer : MonoBehaviour
         PuzzleManager.StartPuzzle(); // activate the puzzle again
         timeLeft = puzzleDuration; // set timer back to puzzle count down
         animationTrigger = true; // play character attack animations
+    }
+
+    public void GameWin()
+    {
+        if (gameWon == false) // so to make sure it only happens once
+        {
+            gameWon = true;
+            phase = 7; // go into boss dying animation
+            timeLeft = 3;
+            animationTrigger = true; // play boss die animation
+        }
+        
     }
 }

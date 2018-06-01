@@ -200,19 +200,31 @@ public class GameManager : MonoBehaviour {
         { 
             stageWin = 1;
             winText.text = "YOU WIN!";
-            Timer.stopTimer();
+            
             // ADD PANEL HERE
             if (rewardOnceOnly == false)
             {
                 player.GainExp(formulasScript.calculateExpGain(level));
+                PlayerPrefs.SetInt("stageUnlocked", level+1);
                 rewardOnceOnly = true;
             }         
-            GameObject.FindGameObjectWithTag("Canvas").transform.GetChild(13).gameObject.SetActive(true);
-            if (level == 10)
+            if (level != 10)
+            {
+                GameObject.FindGameObjectWithTag("Canvas").transform.GetChild(14).gameObject.SetActive(true);
+                Timer.stopTimer();
+            }
+            else 
             {
                 // BOSS DIE HERE 
-                // SPECIAL WIN PANEL TOO
-                // might want to encase the stuff ontop with an IF case too
+                timer.GameWin();
+                if (Timer.checkAnimationTriggered("bossDie"))
+                {
+                    enemies[0].BossDie();
+                }
+                if (Timer.checkAnimationTriggered("gameWon"))
+                {
+                    Instantiate(winningScreen); // show winning screen
+                }
             }
         }
         else if (player.CheckDead())
@@ -221,7 +233,7 @@ public class GameManager : MonoBehaviour {
             winText.text = "DEFEATED!";
             Timer.stopTimer();
             // ADD PANEL HERE
-            GameObject.FindGameObjectWithTag("Canvas").transform.GetChild(14).gameObject.SetActive(true);
+            GameObject.FindGameObjectWithTag("Canvas").transform.GetChild(13).gameObject.SetActive(true);
         }
         else
         {

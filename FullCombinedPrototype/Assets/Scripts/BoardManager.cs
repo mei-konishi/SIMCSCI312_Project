@@ -31,12 +31,15 @@ public class BoardManager : MonoBehaviour {
         Instantiate(enemyTiles[level -1], new Vector3(5.2f, 2.6f, 0f), Quaternion.identity);
 
         // create panels for level
-        GameObject theWinPanel = Instantiate(winPanels[level - 1], new Vector3(0f, 0f, 0f), Quaternion.identity);
         GameObject theLosePanel = Instantiate(losePanel, new Vector3(0f, 0f, 0f), Quaternion.identity);
-        theWinPanel.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform, false);
         theLosePanel.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform, false);
-        theWinPanel.transform.Find("MainMenuButton").GetComponent<Button>().onClick.AddListener(() => LoadLevel("StartMenu"));
         theLosePanel.transform.Find("MainMenuButton").GetComponent<Button>().onClick.AddListener(() => LoadLevel("StartMenu"));
+        if ((level-1) < 9)
+        {
+            GameObject theWinPanel = Instantiate(winPanels[level - 1], new Vector3(0f, 0f, 0f), Quaternion.identity);
+            theWinPanel.transform.SetParent(GameObject.FindGameObjectWithTag("Canvas").transform, false);
+            theWinPanel.transform.Find("MainMenuButton").GetComponent<Button>().onClick.AddListener(() => LoadLevel("StartMenu"));
+        }              
     }
 
 
