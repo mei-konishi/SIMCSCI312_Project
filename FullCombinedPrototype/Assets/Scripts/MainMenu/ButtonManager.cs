@@ -19,7 +19,6 @@ public class ButtonManager : MonoBehaviour
 
     public void Start()
     {
-        CheckStagesUnlocked();
         cameraTranform = Camera.main.transform;
 
         // Creates a set of buttons with images and a loadscene function
@@ -39,11 +38,11 @@ public class ButtonManager : MonoBehaviour
 
             levelButtonContainer.transform.Find(sceneName).GetComponent<Button>().onClick.AddListener(() => OpenLevelPanel(sceneName));
         }
-        CheckStagesUnlocked();
     }
 
     public void Update()
     {
+        CheckStagesUnlocked();
         // Camera rotation speed adjust here
         if (cameraFinalLookAt != null)
         {

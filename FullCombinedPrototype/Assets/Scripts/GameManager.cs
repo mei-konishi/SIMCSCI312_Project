@@ -19,7 +19,8 @@ public class GameManager : MonoBehaviour {
     private int stageWin; // -1 for lose, 0 for ongoing, 1 for win
     private bool ultimateUsed; // true if ultimate is already used up
     private bool ultimateUnleashed; // true if ultimate puzzle is solved
-    
+    private int[] equippedSkillsLevel;
+
     private Text enemyDmgedText;
     private Text playerDmgedText;
     private Text winText;
@@ -62,6 +63,9 @@ public class GameManager : MonoBehaviour {
         timer = GetComponent<Timer>();
         level = PlayerPrefs.GetInt("stageSelected");
         SetUltimateSkill(); // a temp function to just hard code such that ultimate will only show on level 5 on onwards
+
+        equippedSkillsLevel = new int[3];
+        Formulas.StringToIntArray(PlayerPrefs.GetString("equippedSkillsLevels"), equippedSkillsLevel);
 
         if (level == 10) // if boss level, create warning sign
         {
@@ -226,7 +230,7 @@ public class GameManager : MonoBehaviour {
         }
         // calculate damage dealt to enemy
         int enemyDmgReceived = formulasScript.calculateDmg(
-                            puzzleManagerScript.GetPlayerAtkScore() * player.GetStrength(),
+                            puzzleManagerScript.GetPlayerAtkScore() * player.GetStrength() * equippedSkillsLevel[0],
                             puzzleManagerScript.GetEnemyDefScore() * enemies[0].GetDefence());
 
         // deal damage to enemy
@@ -243,7 +247,7 @@ public class GameManager : MonoBehaviour {
         // calculate damage received
         int playerDmgReceived = formulasScript.calculateDmg(
                                 puzzleManagerScript.GetEnemyAtkScore() * enemies[0].GetStrength(),
-                                puzzleManagerScript.GetPlayerDefScore() * player.GetDefence());
+                                puzzleManagerScript.GetPlayerDefScore() * player.GetDefence() * equippedSkillsLevel[1]) ;
 
         // receive damage 
         playerDmgedText.text = playerDmgReceived + "!"; // show dmg text
