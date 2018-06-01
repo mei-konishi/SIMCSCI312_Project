@@ -16,10 +16,10 @@ public class GameInitialization : MonoBehaviour {
             PlayerPrefs.SetInt("exp", 0);
 
         if (!PlayerPrefs.HasKey("str"))
-            PlayerPrefs.SetInt("str", 1);
+            PlayerPrefs.SetInt("str", 5);
 
         if (!PlayerPrefs.HasKey("def"))
-            PlayerPrefs.SetInt("def", 1);
+            PlayerPrefs.SetInt("def", 5);
 
         if (!PlayerPrefs.HasKey("hp"))
             PlayerPrefs.SetInt("hp", 100);

@@ -32,6 +32,18 @@ public class GameManager : MonoBehaviour {
     public GameObject warningLogo; // just the boss level warning logo
     public GameObject winningScreen; // winning screen animation
 
+    public AudioClip atksound;
+    public AudioClip battlebgm;
+    public AudioClip bossbgm;
+    public AudioClip warning;
+    public AudioClip bossdie1;
+    public AudioClip bossdie2;
+    public AudioClip bossdie3;
+    public AudioClip victorybgm;
+    public AudioClip bosslaugh;
+
+    AudioSource source;
+
     // Use this for initialization
     void Awake () {
         if (instance == null){ // check if instance already exists
@@ -54,6 +66,12 @@ public class GameManager : MonoBehaviour {
         if (level == 10) // if boss level, create warning sign
         {
             Instantiate(warningLogo, new Vector3(3f, 0f, 0f), Quaternion.identity);
+        }
+
+        else
+        {
+            source = GetComponent<AudioSource>();
+            source.PlayOneShot(battlebgm, 0.7f);
         }
 
         InitGame();
@@ -128,6 +146,14 @@ public class GameManager : MonoBehaviour {
             if (Timer.checkAnimationTriggered("splashAttack"))
             {
                 splashScript.SplashAttackScreen();
+                source = GetComponent<AudioSource>();
+                source.PlayOneShot(atksound, 0.7f);
+
+                if (level != 10)
+                {
+                    source = GetComponent<AudioSource>();
+                    source.PlayOneShot(battlebgm, 0.7f);
+                }
             }
 
             if (Timer.checkAnimationTriggered("player"))
@@ -154,10 +180,23 @@ public class GameManager : MonoBehaviour {
                 Invoke("PlayerDamagedAnimation", 0.5f); // delay player's damaged animation by 0.5 second
             }
 
+            if (Timer.checkAnimationTriggered("Warning"))
+            {
+                source = GetComponent<AudioSource>();
+                source.PlayOneShot(warning, 0.7f);
+            }
+
             if (Timer.checkAnimationTriggered("bossAppearance"))
             {
+                source = GetComponent<AudioSource>();
+                source.PlayOneShot(bosslaugh, 0.7f);
                 enemies[0].BossAppearance();
                 Destroy(GameObject.FindGameObjectWithTag("Warning"));
+                //source = GetComponent<AudioSource>();
+                //source.PlayOneShot(bossbgm, 0.7f);
+                //source = GetComponents<AudioSource>();
+                source.Play();
+                
             }
 
         }
@@ -247,7 +286,11 @@ public class GameManager : MonoBehaviour {
             if (rewardOnceOnly == false)
             {
                 player.GainExp(formulasScript.calculateExpGain(level));
-                PlayerPrefs.SetInt("stageUnlocked", level+1);
+                int currentStageUnlocked = PlayerPrefs.GetInt("stageUnlocked");
+                if (currentStageUnlocked < level+1)
+                {
+                    PlayerPrefs.SetInt("stageUnlocked", level + 1);
+                }              
                 rewardOnceOnly = true;
             }         
             if (level != 10)
@@ -261,10 +304,19 @@ public class GameManager : MonoBehaviour {
                 timer.GameWin();
                 if (Timer.checkAnimationTriggered("bossDie"))
                 {
+                    source = GetComponent<AudioSource>();
+                    source.PlayOneShot(bossdie1, 0.7f);
+                    source = GetComponent<AudioSource>();
+                    source.PlayOneShot(bossdie2, 0.7f);
+                    source = GetComponent<AudioSource>();
+                    source.PlayOneShot(bossdie3, 0.7f);
                     enemies[0].BossDie();
                 }
                 if (Timer.checkAnimationTriggered("gameWon"))
                 {
+                    source.Stop();
+                    source = GetComponent<AudioSource>();
+                    source.PlayOneShot(victorybgm, 0.7f);
                     Instantiate(winningScreen); // show winning screen
                 }
             }
@@ -327,7 +379,7 @@ public class GameManager : MonoBehaviour {
         tutorial = GameObject.FindGameObjectWithTag("Tutorial");
         Destroy(tutorial);
     }
-
+   
 }
 
 

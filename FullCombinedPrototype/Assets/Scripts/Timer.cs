@@ -146,6 +146,16 @@ public class Timer : MonoBehaviour
             else return false;
         }
 
+        if (name == "Warning" && phase == 5)
+        {
+            if (animationTrigger)
+            {
+                animationTrigger = false;
+                return true;
+            }
+            else return false;
+        }
+
         if (name == "bossAppearance" && phase == 6)
         {
             if (animationTrigger)
