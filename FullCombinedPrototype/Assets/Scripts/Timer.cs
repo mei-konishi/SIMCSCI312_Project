@@ -12,7 +12,7 @@ public class Timer : MonoBehaviour
     private float timeLeft;
     private Text timerText;
     private float splashScreenDelay = 2.0f;
-    private float animationDelay = 2.0f;
+    private float animationDelay = 3.0f;
     private float warningAnimationDuration = 4.0f;
     private float bossAppearAnimationDuration = 4.0f;
 
@@ -21,6 +21,7 @@ public class Timer : MonoBehaviour
     private static int phase;   // 1 for puzzle phase, 2 for attack phase, 0 for tutorial, 
                                 // 3 for puzzle splash screen, 4 for attack splash screen
                                 // 5 for warning, 6 for boss appear, 7 for boss die, 8 for winning screen
+                                // 9 for back to main menu pop up 
     private static bool playerAtkTurn; // true for player's turn, false for enemy's turn
     private static bool animationTrigger; // true for animation to play (used as trigger switch)
     private static bool readyForNextRound; // true to start next round (used as a trigger switch)
@@ -166,6 +167,16 @@ public class Timer : MonoBehaviour
         }
 
         if (name == "gameWon" && phase == 8)
+        {
+            if (animationTrigger)
+            {
+                animationTrigger = false;
+                return true;
+            }
+            else return false;
+        }
+
+        if (name == "backToMainMenu" && phase == 9)
         {
             if (animationTrigger)
             {

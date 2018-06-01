@@ -222,6 +222,7 @@ public class UltimatePuzzleController : PuzzleControllerInterface
         }
 
         state = PuzzleState.Solved;
+        puzzleManagerScript.PuzzleSolved(puzzleType);
         emptyBlock.gameObject.SetActive(true);
     }
 

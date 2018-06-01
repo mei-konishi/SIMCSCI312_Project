@@ -46,6 +46,11 @@ public class Enemy : CharacterInterface
         statsUIManager.UpdateEnemyHealth(currentHealth); // update UI
     }
 
+    public void HalveHealth()
+    {
+        currentHealth /= 2;
+    }
+
     public void SetLevel(int lvl)
     {
         level = lvl;

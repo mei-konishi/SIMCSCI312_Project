@@ -100,4 +100,9 @@ public class Player : CharacterInterface {
     {
         animator.SetTrigger("PlayerDamage");
     }
+
+    public void DoUltimateAnimation()
+    {
+        animator.SetTrigger("PlayerUltimate");
+    }
 }

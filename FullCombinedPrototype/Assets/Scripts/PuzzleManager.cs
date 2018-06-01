@@ -26,11 +26,11 @@ public class PuzzleManager : MonoBehaviour
 
     public static PuzzleControllerInterface[] puzzleControllers; // this holds the puzzle controllers 
 
-    // HAAAAAX. As in hacks :3
+/*    // HAAAAAX. As in hacks :3
     public bool hack_Ulti_On;
     public bool hack_init_tutorials;
     public bool hack_init_everything;
-
+*/
     // Use this for initialization
     void Awake()
     {
@@ -51,7 +51,7 @@ public class PuzzleManager : MonoBehaviour
         enemyDefPuzSolved = 0;
         currentActivePuzzle = 1;
 
-        checkHacks(); // check if any hacks on, and update accordingly
+    //    checkHacks(); // check if any hacks on, and update accordingly
 
         // go to player prefs to get skills equipped information,
         // and pass into function to turn the string into array of int to find puzzles equipped
@@ -125,7 +125,7 @@ public class PuzzleManager : MonoBehaviour
         }
         else if (puzzles[1] == 2) // defend puzzle is second puzzle type
         {
-            // load your new puzzle controller here 
+            puzzleControllers[1] = FindObjectOfType<Math>();
         }
 
         if (puzzles[2] == 1) // ultimate puzzle is available
@@ -158,6 +158,7 @@ public class PuzzleManager : MonoBehaviour
                 }
                 break;
             case 3: playerUltiPuzSolved = true;
+                gameManager.UltimateUnleashed();
                 break;
         }
     }
@@ -214,54 +215,58 @@ public class PuzzleManager : MonoBehaviour
     // setter ======================================================
     public void SetNewActive(int puzzleNumber)
     {
-        // if new input is different from current
-        if (puzzleNumber != currentActivePuzzle)
+        // if new input is different from current (and only during puzzle phase)
+        if (puzzleNumber != currentActivePuzzle && Timer.checkPuzzlePhase())
         {
-            // swap their display layers
-            UpdateActivePuzzleSelection(puzzleNumber);
-
-            // update current active puzzle
-            currentActivePuzzle = puzzleNumber;
-
-            // activate and deactivate puzzles 
-            switch (puzzleNumber)
+            // to prevent tab to switch to ultimate when ultimate is solved
+            if (!(playerUltiPuzSolved && puzzleNumber == 3))
             {
-                case 1: // attack button
-                    puzzleControllers[0].Play();
-                    puzzleControllers[1].Stop();
-                    if (noOfPuzzles == 3)
-                        puzzleControllers[2].Stop();
-                    break;
-                case 2: // defend button
-                    puzzleControllers[0].Stop();
-                    puzzleControllers[1].Play();
-                    if (noOfPuzzles == 3)
-                        puzzleControllers[2].Stop();
-                    // check if player has ever played the second puzzle before (first defence puzzle)
-                    if (PlayerPrefs.GetInt("tutorial") == 1) // if not, show tutorial
-                    {
-                        PlayerPrefs.SetInt("tutorial", 2); // set tutorial seen to 2
-                        gameManager.showTutorial(2); // show tutorial 2
-                    }
-                    // check if player has ever played the forth puzzle before (second defence puzzle)
-                    if (PlayerPrefs.GetInt("tutorial") == 3 && puzzles[1] == 2)
-                    {
-                        PlayerPrefs.SetInt("tutorial", 4); // set tutorial seen to 4
-                        gameManager.showTutorial(4);
-                    }
+                // swap their display layers
+                UpdateActivePuzzleSelection(puzzleNumber);
+
+                // update current active puzzle
+                currentActivePuzzle = puzzleNumber;
+
+                // activate and deactivate puzzles 
+                switch (puzzleNumber)
+                {
+                    case 1: // attack button
+                        puzzleControllers[0].Play();
+                        puzzleControllers[1].Stop();
+                        if (noOfPuzzles == 3)
+                            puzzleControllers[2].Stop();
                         break;
-                case 3: // ultimate button
-                    puzzleControllers[0].Stop();
-                    puzzleControllers[1].Stop();
-                    if (noOfPuzzles == 3)
-                        puzzleControllers[2].Play();
-                    // check if player has ever played the fith puzzle before (the ultimate puzzle)
-                    if (PlayerPrefs.GetInt("tutorial") == 4)
-                    {
-                        PlayerPrefs.SetInt("tutorial", 5); // set tutorial seen to 5
-                        gameManager.showTutorial(5);
-                    }
-                    break;
+                    case 2: // defend button
+                        puzzleControllers[0].Stop();
+                        puzzleControllers[1].Play();
+                        if (noOfPuzzles == 3)
+                            puzzleControllers[2].Stop();
+                        // check if player has ever played the second puzzle before (first defence puzzle)
+                        if (PlayerPrefs.GetInt("tutorial") == 1) // if not, show tutorial
+                        {
+                            PlayerPrefs.SetInt("tutorial", 2); // set tutorial seen to 2
+                            gameManager.showTutorial(2); // show tutorial 2
+                        }
+                        // check if player has ever played the forth puzzle before (second defence puzzle)
+                        if (PlayerPrefs.GetInt("tutorial") == 3 && puzzles[1] == 2)
+                        {
+                            PlayerPrefs.SetInt("tutorial", 4); // set tutorial seen to 4
+                            gameManager.showTutorial(4);
+                        }
+                        break;
+                    case 3: // ultimate button
+                        puzzleControllers[0].Stop();
+                        puzzleControllers[1].Stop();
+                        if (noOfPuzzles == 3)
+                            puzzleControllers[2].Play();
+                        // check if player has ever played the fith puzzle before (the ultimate puzzle)
+                        if (PlayerPrefs.GetInt("tutorial") == 4)
+                        {
+                            PlayerPrefs.SetInt("tutorial", 5); // set tutorial seen to 5
+                            gameManager.showTutorial(5);
+                        }
+                        break;
+                }
             }
         }
     }
@@ -375,15 +380,12 @@ public class PuzzleManager : MonoBehaviour
         switch (puzzleType)
         {
             case 1: return puzzleLevels[0];
-                break;
             case 2: return puzzleLevels[1];
-                break;
             case 3: return puzzleLevels[2];
-                break;
             default: return 0;
         }
     }
-
+/*
     private void checkHacks()
     {
         if (hack_Ulti_On) // turn on ultimate skill (Available to play)
@@ -419,7 +421,7 @@ public class PuzzleManager : MonoBehaviour
             PlayerPrefs.SetInt("stageLastPlayed", 0);
             PlayerPrefs.SetInt("tutorial", 0);
         }
-    }
+    }*/
 }
 
 

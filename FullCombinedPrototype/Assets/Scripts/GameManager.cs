@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour {
    
     public static int level;      // used to keep track of stage 
     private int stageWin; // -1 for lose, 0 for ongoing, 1 for win
+    private bool ultimateUsed; // true if ultimate is already used up
+    private bool ultimateUnleashed; // true if ultimate puzzle is solved
     
     private Text enemyDmgedText;
     private Text playerDmgedText;
@@ -47,6 +49,7 @@ public class GameManager : MonoBehaviour {
         formulasScript = GetComponent<Formulas>();
         timer = GetComponent<Timer>();
         level = PlayerPrefs.GetInt("stageSelected");
+        SetUltimateSkill(); // a temp function to just hard code such that ultimate will only show on level 5 on onwards
 
         if (level == 10) // if boss level, create warning sign
         {
@@ -59,6 +62,11 @@ public class GameManager : MonoBehaviour {
     void Start ()
     {
         
+    }
+
+    public void UltimateUnleashed()
+    {
+        ultimateUnleashed = true;
     }
 
     // set or reset stats to prepare for next round
@@ -114,7 +122,7 @@ public class GameManager : MonoBehaviour {
             // check with timer if it's time to play certain animations
             if (Timer.checkAnimationTriggered("splashPuzzle"))
             {
-                splashScript.SplashPuzzleScreen(); 
+                splashScript.SplashPuzzleScreen();
             }
 
             if (Timer.checkAnimationTriggered("splashAttack"))
@@ -125,15 +133,25 @@ public class GameManager : MonoBehaviour {
             if (Timer.checkAnimationTriggered("player"))
             {
                 StartCoroutine(AttackEnemy());
-                player.DoHitAnimation();
-                enemies[0].DoDmgedAnimation();
+                if (ultimateUnleashed && !ultimateUsed)
+                {
+                    player.DoUltimateAnimation();
+                    ultimateUsed = true;
+                    Invoke("EnemyDamagedAnimation", 1f); // delay enemy's damaged animation by 1 second
+                }
+                else
+                {
+                    player.DoHitAnimation();
+                    Invoke("EnemyDamagedAnimation", 0.5f); // delay enemy's damaged animation by 0.5 second
+                }
+                
             }
 
             if (Timer.checkAnimationTriggered("enemy"))
             {
                 StartCoroutine(GetAttacked());
                 enemies[0].DoHitAnimation();
-                player.DoDmgedAnimation();
+                Invoke("PlayerDamagedAnimation", 0.5f); // delay player's damaged animation by 0.5 second
             }
 
             if (Timer.checkAnimationTriggered("bossAppearance"))
@@ -141,9 +159,16 @@ public class GameManager : MonoBehaviour {
                 enemies[0].BossAppearance();
                 Destroy(GameObject.FindGameObjectWithTag("Warning"));
             }
-            
+
         }
 
+        else
+        {
+            if (Timer.checkAnimationTriggered("backToMainMenu"))
+            {
+                // show back to main menu button
+            }
+        }
         // check if game is over or not. if not, reset stats for next round
         if (checkGameOver() == 0 && Timer.checkReadyForNextRound())
         {
@@ -154,6 +179,12 @@ public class GameManager : MonoBehaviour {
 
     IEnumerator AttackEnemy()
     {
+        // if ultimate is unleashed
+        if (ultimateUnleashed)
+        {
+            enemies[0].HalveHealth();
+            yield return new WaitForSeconds(1f);
+        }
         // calculate damage dealt to enemy
         int enemyDmgReceived = formulasScript.calculateDmg(
                             puzzleManagerScript.GetPlayerAtkScore() * player.GetStrength(),
@@ -169,6 +200,7 @@ public class GameManager : MonoBehaviour {
 
     IEnumerator GetAttacked()
     {
+        yield return new WaitForSeconds(1f);
         // calculate damage received
         int playerDmgReceived = formulasScript.calculateDmg(
                                 puzzleManagerScript.GetEnemyAtkScore() * enemies[0].GetStrength(),
@@ -191,7 +223,17 @@ public class GameManager : MonoBehaviour {
     {
         playerDmgedText.text = "";
     }
-     
+
+    private void EnemyDamagedAnimation()
+    {
+        enemies[0].DoDmgedAnimation();
+    }
+
+    private void PlayerDamagedAnimation()
+    {
+        player.DoDmgedAnimation();
+    }
+
     // check if either player or enemy is dead
     // returns -1 for lose, 1 for win, 0 for no one dead
     private int checkGameOver()
@@ -240,6 +282,32 @@ public class GameManager : MonoBehaviour {
             stageWin = 0;
         }
         return stageWin;
+    }
+
+    private void SetUltimateSkill()
+    {
+        if (level >= 5)
+        {
+            int[] skills = new int[3];
+            // get playerPrefs current skill sets
+            Formulas.StringToIntArray(PlayerPrefs.GetString("skillsEquipped"), skills);
+            skills[2] = 1; // set ultimate to on
+                           // change back numbers to string
+            string skillsString = Formulas.IntArrayToString(skills);
+            // set back the numbers to playerPrefs
+            PlayerPrefs.SetString("skillsEquipped", skillsString);
+        }
+        else
+        {
+            int[] skills = new int[3];
+            // get playerPrefs current skill sets
+            Formulas.StringToIntArray(PlayerPrefs.GetString("skillsEquipped"), skills);
+            skills[2] = 0; // set ultimate to off
+                           // change back numbers to string
+            string skillsString = Formulas.IntArrayToString(skills);
+            // set back the numbers to playerPrefs
+            PlayerPrefs.SetString("skillsEquipped", skillsString);
+        }
     }
 
     public static int getLevel()
