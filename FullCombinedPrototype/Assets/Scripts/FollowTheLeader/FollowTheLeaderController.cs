@@ -35,6 +35,8 @@ public class FollowTheLeaderController : PuzzleControllerInterface
     public override void Stop()
     {
         IsEnable = false;
+        cardsToTap.Clear();
+        cardList.Clear();
     }
 
     // Update is called once per frame

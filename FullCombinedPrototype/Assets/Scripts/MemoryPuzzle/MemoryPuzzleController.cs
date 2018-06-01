@@ -9,7 +9,7 @@ public class MemoryPuzzleController : PuzzleControllerInterface {
     private int gridCols;
     private int arrayAmt;
     public const float offsetX = 1.35f;
-    public const float offsetY = 1.4f;
+    public const float offsetY = 1.3f;
 
     public bool IsEnable = false;
     
