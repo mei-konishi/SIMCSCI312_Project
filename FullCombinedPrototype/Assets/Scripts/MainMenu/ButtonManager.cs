@@ -19,6 +19,7 @@ public class ButtonManager : MonoBehaviour
 
     public void Start()
     {
+        CheckStagesUnlocked();
         cameraTranform = Camera.main.transform;
 
         // Creates a set of buttons with images and a loadscene function
@@ -83,12 +84,12 @@ public class ButtonManager : MonoBehaviour
         PlayerPrefs.SetInt("stageSelected", level);
     }
 
-    public void CheckStagesUnlocked ()
+    public void CheckStagesUnlocked()
     {
         int levelReached = PlayerPrefs.GetInt("stageUnlocked");
         for (int i = 0; i < levelButtons.Length; i++)
         {
-            if (i+1 > levelReached)
+            if (i + 1 > levelReached)
             {
                 levelButtons[i].interactable = false;
             }

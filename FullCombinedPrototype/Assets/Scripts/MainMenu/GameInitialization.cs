@@ -16,13 +16,13 @@ public class GameInitialization : MonoBehaviour {
             PlayerPrefs.SetInt("exp", 0);
 
         if (!PlayerPrefs.HasKey("str"))
-            PlayerPrefs.SetInt("str", 5);
+            PlayerPrefs.SetInt("str", 99);
 
         if (!PlayerPrefs.HasKey("def"))
-            PlayerPrefs.SetInt("def", 5);
+            PlayerPrefs.SetInt("def", 99);
 
         if (!PlayerPrefs.HasKey("hp"))
-            PlayerPrefs.SetInt("hp", 100);
+            PlayerPrefs.SetInt("hp", 900);
 
         if (!PlayerPrefs.HasKey("statsPoints"))
             PlayerPrefs.SetInt("statsPoints", 0);
@@ -31,7 +31,7 @@ public class GameInitialization : MonoBehaviour {
             PlayerPrefs.SetInt("skillPoints", 0);
 
         if (!PlayerPrefs.HasKey("skillsLevelsUnlocked"))
-            PlayerPrefs.SetString("skillsLevelsUnlocked", "10100");
+            PlayerPrefs.SetString("skillsLevelsUnlocked", "44441");
 
         if (!PlayerPrefs.HasKey("skillsEquipped"))
             PlayerPrefs.SetString("skillsEquipped", "110");
@@ -40,8 +40,8 @@ public class GameInitialization : MonoBehaviour {
             PlayerPrefs.SetString("equippedSkillsLevels", "110");
 
         if (!PlayerPrefs.HasKey("stageUnlocked"))
-            PlayerPrefs.SetInt("stageUnlocked", 1);
-
+            PlayerPrefs.SetInt("stageUnlocked", 10);
+        PlayerPrefs.SetInt("stageUnlocked", 6);
         if (!PlayerPrefs.HasKey("stageLastPlayed"))
             PlayerPrefs.SetInt("stageLastPlayed", 0);
 
